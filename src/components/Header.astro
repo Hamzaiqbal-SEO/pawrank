@@ -242,7 +242,7 @@ const resources = [
 
   .nav-pill-header {
     pointer-events: all;
-    max-width: 1080px;
+    max-width: 1040px;
     width: 100%;
     background: rgba(255, 255, 255, 0.92);
     backdrop-filter: blur(24px);
@@ -250,7 +250,7 @@ const resources = [
     border: 1px solid rgba(11, 40, 69, 0.1);
     border-radius: var(--radius-pill);
     box-shadow: 0 10px 30px rgba(11, 40, 69, 0.08), 0 1px 3px rgba(11, 40, 69, 0.04);
-    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    transition: max-width 0.45s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.45s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.3s ease, background-color 0.3s ease;
     position: relative;
   }
 
@@ -258,6 +258,32 @@ const resources = [
     background: rgba(255, 255, 255, 0.98);
     box-shadow: 0 14px 36px rgba(11, 40, 69, 0.12), 0 2px 6px rgba(11, 40, 69, 0.06);
     border-color: rgba(50, 92, 232, 0.2);
+  }
+
+  /* Desktop Hover Stretch Animation */
+  @media (min-width: 901px) {
+    .nav-pill-header:hover {
+      max-width: 1140px;
+      box-shadow: 0 18px 44px rgba(11, 40, 69, 0.14), 0 4px 12px rgba(50, 92, 232, 0.1);
+      border-color: rgba(50, 92, 232, 0.25);
+    }
+
+    .nav-pill-inner {
+      transition: padding 0.45s cubic-bezier(0.22, 1, 0.36, 1), gap 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .nav-pill-header:hover .nav-pill-inner {
+      padding: 0 26px 0 30px;
+      gap: 26px;
+    }
+
+    .nav-links {
+      transition: gap 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .nav-pill-header:hover .nav-links {
+      gap: 12px;
+    }
   }
 
   .nav-pill-inner {
