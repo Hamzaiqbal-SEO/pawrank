@@ -295,11 +295,11 @@ const resources = [
       transform: translateX(50px);
     }
 
-    /* When clicked/active, the icon slides left to indicate going back to home */
+    /* When clicked, the icon moves left by the same 50px stretch distance to indicate going home */
     .nav-logo:active,
     .nav-logo.clicked {
-      transform: translateX(-6px) scale(0.96) !important;
-      transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+      transform: translateX(0px) !important;
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1) !important;
     }
   }
 
