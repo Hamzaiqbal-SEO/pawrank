@@ -2,27 +2,27 @@
 const services = [
   {
     title: "Local Veterinary SEO",
-    description: "Rank #1 when pet owners search for vets and emergency care near them.",
+    description: "Rank #1 when pet owners search for local care.",
     href: "/pricing/",
-    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`
   },
   {
     title: "Google Business Profile",
-    description: "Dominate the Google 3-Pack and capture high-intent local map clicks.",
+    description: "Dominate Google Maps and the 3-Pack.",
     href: "/pricing/",
-    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`
   },
   {
     title: "Reputation Management",
-    description: "Turn positive pet owner reviews into your strongest conversion engine.",
+    description: "Build trust with automated client reviews.",
     href: "/pricing/",
-    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`
   },
   {
     title: "Conversion Optimization (CRO)",
-    description: "Turn website visitors into booked appointments and phone calls.",
+    description: "Convert website traffic into booked appointments.",
     href: "/pricing/",
-    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>`
+    icon: `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>`
   },
 ];
 
@@ -31,16 +31,17 @@ const resources = [
     title: "Veterinary SEO Guide",
     description: "Our complete 30-day pillar guide to gaining more clients.",
     href: "/blog/veterinary-seo-guide/",
-    badge: "Popular"
+    badge: "Guide"
   },
   {
     title: "ROI Calculator",
-    description: "Calculate your clinic's revenue potential from position 1 rankings.",
+    description: "Calculate revenue potential from position 1 rankings.",
     href: "/#vet-seo-roi-calculator",
+    badge: "Tool"
   },
   {
-    title: "Blog & Insights",
-    description: "Tips, algorithms updates, and growth strategies for vet clinics.",
+    title: "All Articles & Insights",
+    description: "Industry news, algorithm updates, and growth tips.",
     href: "/blog/",
   },
 ];
@@ -53,7 +54,7 @@ const resources = [
       
       <!-- Logo -->
       <a href="/" class="nav-logo" aria-label="Paw Rank Home">
-        <img src="/images/pawrank-logo.png" alt="Paw Rank" width="132" height="36" />
+        <img src="/images/Pawrank-Logo.png" alt="Paw Rank" width="132" height="36" />
       </a>
 
       <!-- Desktop Nav Items -->
@@ -139,29 +140,85 @@ const resources = [
 
     </div>
 
-    <!-- Mobile Dropdown Drawer -->
+    <!-- Mobile Dropdown Drawer (Redesigned with Premium Collapsible Cards & Fluid Hierarchy) -->
     <div class="mobile-drawer" id="mobile-drawer">
       <nav class="mobile-drawer-nav">
-        <a href="/" class="mobile-nav-link">Home</a>
         
-        <div class="mobile-section-title">Services</div>
-        <div class="mobile-sub-grid">
-          {services.map((svc) => (
-            <a href={svc.href} class="mobile-sub-link">
-              <span class="mobile-sub-title">{svc.title}</span>
-            </a>
-          ))}
+        <a href="/" class="mobile-nav-link">
+          <span>Home</span>
+        </a>
+        
+        <!-- Mobile Services Accordion Section -->
+        <div class="mobile-accordion-group">
+          <button class="mobile-accordion-btn" id="mobile-services-btn" aria-expanded="true">
+            <span class="mobile-accordion-label">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--pr-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              <span>Services</span>
+            </span>
+            <svg class="mobile-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+
+          <div class="mobile-accordion-body open" id="mobile-services-body">
+            <div class="mobile-services-list">
+              {services.map((svc) => (
+                <a href={svc.href} class="mobile-service-card">
+                  <div class="mobile-svc-icon" set:html={svc.icon} />
+                  <div class="mobile-svc-info">
+                    <span class="mobile-svc-title">{svc.title}</span>
+                    <span class="mobile-svc-desc">{svc.description}</span>
+                  </div>
+                  <span class="mobile-svc-arrow">›</span>
+                </a>
+              ))}
+            </div>
+          </div>
         </div>
 
-        <a href="/pricing/" class="mobile-nav-link">Pricing</a>
-        <a href="/about/" class="mobile-nav-link">About</a>
-        <a href="/blog/" class="mobile-nav-link">Blog & Guides</a>
-        <a href="/contact/" class="mobile-nav-link">Contact</a>
+        <a href="/pricing/" class="mobile-nav-link">
+          <span>Pricing</span>
+          <span class="mobile-link-badge">From $995/mo</span>
+        </a>
         
-        <div class="mobile-drawer-cta">
-          <a href="/contact/#calendly" class="btn btn--primary btn--full">
-            Book a Free 30-Min Call
+        <a href="/about/" class="mobile-nav-link">
+          <span>About Us</span>
+        </a>
+
+        <!-- Mobile Resources Section -->
+        <div class="mobile-accordion-group">
+          <button class="mobile-accordion-btn" id="mobile-resources-btn" aria-expanded="false">
+            <span class="mobile-accordion-label">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--pr-blue)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>
+              <span>Resources</span>
+            </span>
+            <svg class="mobile-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+
+          <div class="mobile-accordion-body" id="mobile-resources-body">
+            <div class="mobile-resources-list">
+              {resources.map((res) => (
+                <a href={res.href} class="mobile-resource-card">
+                  <span class="mobile-res-title">{res.title}</span>
+                  {res.badge && <span class="mobile-res-badge">{res.badge}</span>}
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <a href="/contact/" class="mobile-nav-link">
+          <span>Contact</span>
+        </a>
+        
+        <!-- Mobile Drawer CTA Banner -->
+        <div class="mobile-drawer-footer">
+          <a href="/contact/#calendly" class="btn btn--primary btn--full mobile-primary-cta">
+            Book a Free Consultation
           </a>
+          <p class="mobile-footer-tag">100% Focused on Veterinary Growth</p>
         </div>
       </nav>
     </div>
@@ -187,9 +244,9 @@ const resources = [
     pointer-events: all;
     max-width: 1080px;
     width: 100%;
-    background: rgba(255, 255, 255, 0.88);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
     border: 1px solid rgba(11, 40, 69, 0.1);
     border-radius: var(--radius-pill);
     box-shadow: 0 10px 30px rgba(11, 40, 69, 0.08), 0 1px 3px rgba(11, 40, 69, 0.04);
@@ -198,7 +255,7 @@ const resources = [
   }
 
   .nav-pill-header.scrolled {
-    background: rgba(255, 255, 255, 0.95);
+    background: rgba(255, 255, 255, 0.98);
     box-shadow: 0 14px 36px rgba(11, 40, 69, 0.12), 0 2px 6px rgba(11, 40, 69, 0.06);
     border-color: rgba(50, 92, 232, 0.2);
   }
@@ -222,6 +279,7 @@ const resources = [
   .nav-logo img {
     height: 32px;
     width: auto;
+    object-fit: contain;
   }
 
   /* Nav Items */
@@ -507,11 +565,11 @@ const resources = [
   /* Mobile Toggle */
   .mobile-toggle-btn {
     display: none;
-    width: 40px;
-    height: 40px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
-    background: var(--pr-light-blue);
-    border: none;
+    background: var(--pr-chalk);
+    border: 1px solid var(--pr-border);
     align-items: center;
     justify-content: center;
     cursor: pointer;
@@ -519,7 +577,8 @@ const resources = [
   }
 
   .mobile-toggle-btn:hover {
-    background: rgba(50, 92, 232, 0.15);
+    background: var(--pr-light-blue);
+    border-color: rgba(50, 92, 232, 0.2);
   }
 
   .hamburger-bar {
@@ -546,36 +605,49 @@ const resources = [
   .hamburger-bar::before { top: -6px; }
   .hamburger-bar::after { bottom: -6px; }
 
+  .mobile-toggle-btn.active {
+    background: var(--pr-navy);
+    border-color: var(--pr-navy);
+  }
+
   .mobile-toggle-btn.active .hamburger-bar {
     background: transparent;
   }
 
   .mobile-toggle-btn.active .hamburger-bar::before {
     top: 0;
+    background: var(--pr-white);
     transform: rotate(45deg);
   }
 
   .mobile-toggle-btn.active .hamburger-bar::after {
     bottom: 0;
+    background: var(--pr-white);
     transform: rotate(-45deg);
   }
 
-  /* Mobile Drawer */
+  /* ========================================================
+     PREMIUM MOBILE DRAWER (Redesigned without clunky boxes)
+     ======================================================== */
   .mobile-drawer {
     display: none;
     position: absolute;
     top: calc(100% + 12px);
     left: 0;
     right: 0;
-    background: var(--pr-white);
-    border: 1px solid var(--pr-border);
+    background: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border: 1px solid rgba(11, 40, 69, 0.1);
     border-radius: var(--radius-2xl);
-    box-shadow: 0 20px 48px rgba(11, 40, 69, 0.15);
-    padding: 24px;
+    box-shadow: 0 24px 60px rgba(11, 40, 69, 0.18), 0 4px 12px rgba(11, 40, 69, 0.06);
+    padding: 16px;
     opacity: 0;
     transform: translateY(-8px) scale(0.98);
     pointer-events: none;
     transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
   }
 
   .mobile-drawer.open {
@@ -587,17 +659,20 @@ const resources = [
   .mobile-drawer-nav {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
   }
 
   .mobile-nav-link {
     font-family: var(--font-heading);
-    font-size: 16px;
+    font-size: 15px;
     font-weight: 800;
     color: var(--pr-navy);
-    padding: 10px 14px;
-    border-radius: var(--radius-md);
+    padding: 12px 16px;
+    border-radius: var(--radius-lg);
     text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     transition: all 0.2s ease;
   }
 
@@ -606,37 +681,184 @@ const resources = [
     color: var(--pr-blue);
   }
 
-  .mobile-section-title {
-    font-family: var(--font-heading);
+  .mobile-link-badge {
     font-size: 11px;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
+    font-weight: 700;
     color: var(--pr-blue);
-    padding: 8px 14px 2px;
+    background: var(--pr-light-blue);
+    padding: 3px 8px;
+    border-radius: var(--radius-pill);
   }
 
-  .mobile-sub-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 6px;
-    padding: 0 6px;
-  }
-
-  .mobile-sub-link {
-    padding: 8px 10px;
+  /* Mobile Accordion Groups */
+  .mobile-accordion-group {
     background: var(--pr-chalk);
-    border-radius: var(--radius-sm);
+    border: 1px solid var(--pr-border);
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    margin: 4px 0;
+  }
+
+  .mobile-accordion-btn {
+    width: 100%;
+    padding: 14px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--pr-navy);
+    text-align: left;
+    transition: background-color 0.2s ease;
+  }
+
+  .mobile-accordion-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .mobile-chevron {
+    color: var(--pr-text);
+    transition: transform 0.3s ease;
+  }
+
+  .mobile-accordion-btn.open .mobile-chevron,
+  .mobile-accordion-body.open + .mobile-accordion-btn .mobile-chevron {
+    transform: rotate(180deg);
+  }
+
+  .mobile-accordion-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .mobile-accordion-body.open {
+    grid-template-rows: 1fr;
+  }
+
+  .mobile-services-list,
+  .mobile-resources-list {
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 0 8px 12px;
+  }
+
+  /* Redesigned Mobile Service Item Card */
+  .mobile-service-card {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    background: var(--pr-white);
+    border: 1px solid rgba(11, 40, 69, 0.06);
+    border-radius: var(--radius-lg);
     text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .mobile-service-card:hover {
+    border-color: rgba(50, 92, 232, 0.25);
+    background: var(--pr-light-blue);
+    transform: translateX(2px);
+  }
+
+  .mobile-svc-icon {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    background: var(--pr-light-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pr-blue);
+    flex-shrink: 0;
+  }
+
+  .mobile-svc-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+  }
+
+  .mobile-svc-title {
+    font-family: var(--font-heading);
+    font-size: 13.5px;
+    font-weight: 800;
+    color: var(--pr-navy);
+    line-height: 1.3;
+  }
+
+  .mobile-svc-desc {
+    font-size: 11.5px;
+    color: var(--pr-text);
+    line-height: 1.35;
+  }
+
+  .mobile-svc-arrow {
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--pr-blue);
+    margin-left: 4px;
+  }
+
+  /* Mobile Resource Card */
+  .mobile-resource-card {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 12px;
+    background: var(--pr-white);
+    border: 1px solid rgba(11, 40, 69, 0.06);
+    border-radius: var(--radius-md);
+    text-decoration: none;
+  }
+
+  .mobile-res-title {
+    font-family: var(--font-heading);
     font-size: 13px;
     font-weight: 700;
     color: var(--pr-navy);
   }
 
-  .mobile-drawer-cta {
-    margin-top: 16px;
-    padding-top: 16px;
+  .mobile-res-badge {
+    font-size: 10px;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: var(--radius-pill);
+    background: var(--pr-light-blue);
+    color: var(--pr-blue);
+    text-transform: uppercase;
+  }
+
+  /* Drawer Footer */
+  .mobile-drawer-footer {
+    margin-top: 12px;
+    padding-top: 14px;
     border-top: 1px solid var(--pr-border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .mobile-primary-cta {
+    border-radius: var(--radius-pill);
+  }
+
+  .mobile-footer-tag {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--pr-text);
+    margin: 0;
   }
 
   /* Responsive Breakpoints */
@@ -683,8 +905,29 @@ const resources = [
     );
   });
 
+  // Mobile Accordion Toggles
+  const servicesBtn = document.getElementById('mobile-services-btn');
+  const servicesBody = document.getElementById('mobile-services-body');
+  
+  servicesBtn?.addEventListener('click', () => {
+    const isOpen = servicesBody?.classList.contains('open');
+    servicesBody?.classList.toggle('open');
+    servicesBtn?.classList.toggle('open');
+    servicesBtn?.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+  });
+
+  const resourcesBtn = document.getElementById('mobile-resources-btn');
+  const resourcesBody = document.getElementById('mobile-resources-body');
+
+  resourcesBtn?.addEventListener('click', () => {
+    const isOpen = resourcesBody?.classList.contains('open');
+    resourcesBody?.classList.toggle('open');
+    resourcesBtn?.classList.toggle('open');
+    resourcesBtn?.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+  });
+
   // Close drawer when clicking any link
-  document.querySelectorAll('.mobile-nav-link, .mobile-sub-link, .mobile-drawer-cta a').forEach((link) => {
+  document.querySelectorAll('.mobile-nav-link, .mobile-service-card, .mobile-resource-card, .mobile-primary-cta').forEach((link) => {
     link.addEventListener('click', () => {
       toggleBtn?.classList.remove('active');
       drawer?.classList.remove('open');
