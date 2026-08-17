@@ -269,12 +269,11 @@ const resources = [
     }
 
     .nav-pill-inner {
-      transition: padding 0.45s cubic-bezier(0.22, 1, 0.36, 1), gap 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+      transition: gap 0.45s cubic-bezier(0.22, 1, 0.36, 1);
     }
 
     .nav-pill-header:hover .nav-pill-inner {
-      padding: 0 26px 0 30px;
-      gap: 26px;
+      gap: 24px;
     }
 
     .nav-links {
@@ -283,6 +282,24 @@ const resources = [
 
     .nav-pill-header:hover .nav-links {
       gap: 12px;
+    }
+
+    /* Keep the logo locked in the EXACT SAME screen position during the stretch */
+    .nav-logo {
+      transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
+      transform: translateX(0);
+    }
+
+    /* Counteract the 50px leftward expansion of the centered pill */
+    .nav-pill-header:hover .nav-logo {
+      transform: translateX(50px);
+    }
+
+    /* When clicked/active, the icon slides left to indicate going back to home */
+    .nav-logo:active,
+    .nav-logo.clicked {
+      transform: translateX(-6px) scale(0.96) !important;
+      transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
     }
   }
 
@@ -295,11 +312,20 @@ const resources = [
     gap: 20px;
   }
 
-  /* Logo */
+  /* Logo with Expanded Click Hit-Target */
   .nav-logo {
     display: flex;
     align-items: center;
     flex-shrink: 0;
+    position: relative;
+    padding: 6px 4px;
+    border-radius: var(--radius-md);
+  }
+
+  .nav-logo::before {
+    content: '';
+    position: absolute;
+    inset: -8px -14px;
   }
 
   .nav-logo img {
@@ -979,5 +1005,11 @@ const resources = [
       toggleBtn?.classList.remove('active');
       drawer?.classList.remove('open');
     });
+  });
+
+  // Desktop Logo Click Interaction (leftward slide feedback)
+  const navLogo = document.querySelector('.nav-logo');
+  navLogo?.addEventListener('click', () => {
+    navLogo.classList.add('clicked');
   });
 </script>
