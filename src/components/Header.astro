@@ -1,204 +1,590 @@
 ---
-const navLinks = [
-  { label: 'Home', href: '/' },
-  { label: 'Pricing', href: '/pricing/' },
-  { label: 'About', href: '/about/' },
-  { label: 'Blog', href: '/blog/' },
-  { label: 'Contact', href: '/contact/' },
+const services = [
+  {
+    title: "Local Veterinary SEO",
+    description: "Rank #1 when pet owners search for vets and emergency care near them.",
+    href: "/pricing/",
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`
+  },
+  {
+    title: "Google Business Profile",
+    description: "Dominate the Google 3-Pack and capture high-intent local map clicks.",
+    href: "/pricing/",
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`
+  },
+  {
+    title: "Reputation Management",
+    description: "Turn positive pet owner reviews into your strongest conversion engine.",
+    href: "/pricing/",
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`
+  },
+  {
+    title: "Conversion Optimization (CRO)",
+    description: "Turn website visitors into booked appointments and phone calls.",
+    href: "/pricing/",
+    icon: `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>`
+  },
+];
+
+const resources = [
+  {
+    title: "Veterinary SEO Guide",
+    description: "Our complete 30-day pillar guide to gaining more clients.",
+    href: "/blog/veterinary-seo-guide/",
+    badge: "Popular"
+  },
+  {
+    title: "ROI Calculator",
+    description: "Calculate your clinic's revenue potential from position 1 rankings.",
+    href: "/#vet-seo-roi-calculator",
+  },
+  {
+    title: "Blog & Insights",
+    description: "Tips, algorithms updates, and growth strategies for vet clinics.",
+    href: "/blog/",
+  },
 ];
 ---
 
-<header class="site-header" id="site-header">
-  <div class="header-inner">
-    <a href="/" class="logo" aria-label="Paw Rank Home">
-      <img src="/images/pawrank-logo.png" alt="Paw Rank" width="140" height="40" />
-    </a>
+<!-- Navigation 2: Centered Floating Rounded Glass Nav with Expanding Card Dropdowns -->
+<div class="nav-floating-wrapper" id="nav-wrapper">
+  <header class="nav-pill-header" id="nav-header">
+    <div class="nav-pill-inner">
+      
+      <!-- Logo -->
+      <a href="/" class="nav-logo" aria-label="Paw Rank Home">
+        <img src="/images/pawrank-logo.png" alt="Paw Rank" width="132" height="36" />
+      </a>
 
-    <nav class="desktop-nav" aria-label="Main navigation">
-      {navLinks.map((link) => (
-        <a href={link.href} class="nav-link">{link.label}</a>
-      ))}
-    </nav>
+      <!-- Desktop Nav Items -->
+      <nav class="nav-links" aria-label="Main Navigation">
+        
+        <!-- Services Dropdown Trigger & Expanding Card Panel -->
+        <div class="nav-item has-dropdown" data-dropdown="services">
+          <button class="nav-link-btn" aria-expanded="false">
+            <span>Services</span>
+            <svg class="chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
 
-    <a href="/contact/#calendly" class="btn btn--primary btn--sm header-cta">
-      Book a Free Call
-    </a>
+          <!-- Expanding Card Dropdown -->
+          <div class="dropdown-panel dropdown-panel--services">
+            <div class="dropdown-card-grid">
+              <div class="dropdown-items">
+                {services.map((svc) => (
+                  <a href={svc.href} class="dropdown-item-card">
+                    <div class="dropdown-item-icon" set:html={svc.icon} />
+                    <div class="dropdown-item-text">
+                      <span class="dropdown-item-title">{svc.title}</span>
+                      <span class="dropdown-item-desc">{svc.description}</span>
+                    </div>
+                  </a>
+                ))}
+              </div>
+              
+              <!-- Featured Card in Dropdown -->
+              <div class="dropdown-featured-card">
+                <div class="featured-badge">Case Study</div>
+                <h4 class="featured-title">+56% Patient Inquiries</h4>
+                <p class="featured-desc">See how Sajjad Pets Clinic climbed to top 4 in local search in 30 days.</p>
+                <a href="/pricing/" class="featured-link">Explore Plans & ROI →</a>
+              </div>
+            </div>
+          </div>
+        </div>
 
-    <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu" aria-expanded="false">
-      <span class="hamburger"></span>
-    </button>
-  </div>
+        <!-- Regular Links -->
+        <a href="/pricing/" class="nav-link">Pricing</a>
+        <a href="/about/" class="nav-link">About</a>
 
-  <!-- Mobile Menu -->
-  <div class="mobile-menu" id="mobile-menu">
-    <nav class="mobile-nav" aria-label="Mobile navigation">
-      {navLinks.map((link) => (
-        <a href={link.href} class="mobile-nav-link">{link.label}</a>
-      ))}
-      <a href="/contact/#calendly" class="btn btn--primary btn--full mt-lg">Book a Free Call</a>
-    </nav>
-  </div>
-</header>
+        <!-- Resources Dropdown Trigger & Expanding Card Panel -->
+        <div class="nav-item has-dropdown" data-dropdown="resources">
+          <button class="nav-link-btn" aria-expanded="false">
+            <span>Resources</span>
+            <svg class="chevron-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
+          </button>
+
+          <div class="dropdown-panel dropdown-panel--resources">
+            <div class="dropdown-resources-list">
+              {resources.map((res) => (
+                <a href={res.href} class="resource-item-card">
+                  <div class="resource-header">
+                    <span class="resource-title">{res.title}</span>
+                    {res.badge && <span class="resource-badge">{res.badge}</span>}
+                  </div>
+                  <span class="resource-desc">{res.description}</span>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <a href="/contact/" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Action Button -->
+      <div class="nav-actions">
+        <a href="/contact/#calendly" class="btn btn--primary btn--sm nav-cta-btn">
+          Book a Free Call
+        </a>
+
+        <!-- Mobile Toggle Button -->
+        <button class="mobile-toggle-btn" id="mobile-toggle-btn" aria-label="Toggle mobile menu" aria-expanded="false">
+          <span class="hamburger-bar"></span>
+        </button>
+      </div>
+
+    </div>
+
+    <!-- Mobile Dropdown Drawer -->
+    <div class="mobile-drawer" id="mobile-drawer">
+      <nav class="mobile-drawer-nav">
+        <a href="/" class="mobile-nav-link">Home</a>
+        
+        <div class="mobile-section-title">Services</div>
+        <div class="mobile-sub-grid">
+          {services.map((svc) => (
+            <a href={svc.href} class="mobile-sub-link">
+              <span class="mobile-sub-title">{svc.title}</span>
+            </a>
+          ))}
+        </div>
+
+        <a href="/pricing/" class="mobile-nav-link">Pricing</a>
+        <a href="/about/" class="mobile-nav-link">About</a>
+        <a href="/blog/" class="mobile-nav-link">Blog & Guides</a>
+        <a href="/contact/" class="mobile-nav-link">Contact</a>
+        
+        <div class="mobile-drawer-cta">
+          <a href="/contact/#calendly" class="btn btn--primary btn--full">
+            Book a Free 30-Min Call
+          </a>
+        </div>
+      </nav>
+    </div>
+
+  </header>
+</div>
 
 <style>
-  .site-header {
+  /* Floating Pill Wrapper (Navigation 2) */
+  .nav-floating-wrapper {
     position: fixed;
-    top: 0;
+    top: 16px;
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(247, 247, 243, 0.85);
+    padding: 0 20px;
+    display: flex;
+    justify-content: center;
+    pointer-events: none;
+  }
+
+  .nav-pill-header {
+    pointer-events: all;
+    max-width: 1080px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.88);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
-    border-bottom: 1px solid rgba(11, 40, 69, 0.06);
-    transition: all 0.3s ease;
+    border: 1px solid rgba(11, 40, 69, 0.1);
+    border-radius: var(--radius-pill);
+    box-shadow: 0 10px 30px rgba(11, 40, 69, 0.08), 0 1px 3px rgba(11, 40, 69, 0.04);
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    position: relative;
   }
 
-  .site-header.scrolled {
-    background: rgba(247, 247, 243, 0.95);
-    box-shadow: 0 4px 20px rgba(11, 40, 69, 0.08);
+  .nav-pill-header.scrolled {
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 14px 36px rgba(11, 40, 69, 0.12), 0 2px 6px rgba(11, 40, 69, 0.06);
+    border-color: rgba(50, 92, 232, 0.2);
   }
 
-  .header-inner {
-    max-width: 1280px;
-    margin: 0 auto;
-    padding: 0 24px;
-    height: 72px;
+  .nav-pill-inner {
+    height: 64px;
+    padding: 0 20px 0 24px;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 32px;
+    gap: 20px;
   }
 
-  .logo {
+  /* Logo */
+  .nav-logo {
     display: flex;
     align-items: center;
     flex-shrink: 0;
   }
 
-  .logo img {
-    height: 36px;
+  .nav-logo img {
+    height: 32px;
     width: auto;
   }
 
-  .desktop-nav {
+  /* Nav Items */
+  .nav-links {
     display: flex;
     align-items: center;
-    gap: 32px;
-    flex: 1;
-    justify-content: center;
+    gap: 8px;
   }
 
-  .nav-link {
+  .nav-link,
+  .nav-link-btn {
     font-family: var(--font-heading);
     font-size: 14px;
-    font-weight: 600;
+    font-weight: 700;
     color: var(--pr-navy);
-    letter-spacing: 0.01em;
-    position: relative;
-    padding: 4px 0;
-    transition: color 0.2s ease;
-  }
-
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -2px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--pr-blue);
-    border-radius: 1px;
-    transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1);
-  }
-
-  .nav-link:hover {
-    color: var(--pr-blue);
-  }
-
-  .nav-link:hover::after {
-    width: 100%;
-  }
-
-  .header-cta {
-    flex-shrink: 0;
-  }
-
-  /* Mobile Toggle */
-  .mobile-toggle {
-    display: none;
-    width: 40px;
-    height: 40px;
-    align-items: center;
-    justify-content: center;
-    padding: 0;
+    padding: 8px 16px;
+    border-radius: var(--radius-pill);
     background: none;
     border: none;
     cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    user-select: none;
   }
 
-  .hamburger {
+  .nav-link:hover,
+  .nav-link-btn:hover,
+  .has-dropdown:hover .nav-link-btn {
+    color: var(--pr-blue);
+    background: rgba(50, 92, 232, 0.08);
+  }
+
+  .chevron-icon {
+    transition: transform 0.25s ease;
+  }
+
+  .has-dropdown:hover .chevron-icon {
+    transform: rotate(180deg);
+  }
+
+  /* Expanding Card Dropdown Panels */
+  .nav-item.has-dropdown {
     position: relative;
-    width: 24px;
+  }
+
+  .dropdown-panel {
+    position: absolute;
+    top: calc(100% + 14px);
+    left: 50%;
+    transform: translateX(-50%) translateY(-8px) scale(0.96);
+    background: var(--pr-white);
+    border: 1px solid var(--pr-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: 0 20px 48px rgba(11, 40, 69, 0.14), 0 4px 12px rgba(11, 40, 69, 0.04);
+    padding: 20px;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: all 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+    z-index: 1001;
+  }
+
+  .dropdown-panel::before {
+    content: '';
+    position: absolute;
+    top: -14px;
+    left: 0;
+    right: 0;
+    height: 14px;
+  }
+
+  .has-dropdown:hover .dropdown-panel {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+
+  /* Services Megamenu Dropdown */
+  .dropdown-panel--services {
+    width: 680px;
+  }
+
+  .dropdown-card-grid {
+    display: grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap: 16px;
+  }
+
+  .dropdown-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .dropdown-item-card {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding: 12px 14px;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+
+  .dropdown-item-card:hover {
+    background: var(--pr-light-blue);
+    transform: translateX(3px);
+  }
+
+  .dropdown-item-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: var(--pr-chalk);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pr-blue);
+    flex-shrink: 0;
+    transition: all 0.2s ease;
+  }
+
+  .dropdown-item-card:hover .dropdown-item-icon {
+    background: var(--pr-blue);
+    color: var(--pr-white);
+  }
+
+  .dropdown-item-text {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .dropdown-item-title {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--pr-navy);
+  }
+
+  .dropdown-item-desc {
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--pr-text);
+  }
+
+  /* Dropdown Featured Card */
+  .dropdown-featured-card {
+    background: var(--pr-navy);
+    border-radius: var(--radius-xl);
+    padding: 20px;
+    color: var(--pr-white);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .dropdown-featured-card::before {
+    content: '';
+    position: absolute;
+    top: -30%;
+    right: -30%;
+    width: 150px;
+    height: 150px;
+    background: radial-gradient(circle, rgba(50, 92, 232, 0.35) 0%, transparent 70%);
+  }
+
+  .featured-badge {
+    display: inline-block;
+    width: fit-content;
+    padding: 3px 8px;
+    background: rgba(50, 92, 232, 0.4);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-heading);
+    font-size: 10px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--pr-blue-light);
+    margin-bottom: 8px;
+  }
+
+  .featured-title {
+    font-size: 18px;
+    font-weight: 900;
+    color: var(--pr-white);
+    margin-bottom: 6px;
+  }
+
+  .featured-desc {
+    font-size: 12px;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.7);
+    margin-bottom: 16px;
+  }
+
+  .featured-link {
+    font-family: var(--font-heading);
+    font-size: 12.5px;
+    font-weight: 800;
+    color: var(--pr-blue-light);
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .featured-link:hover {
+    color: var(--pr-white);
+  }
+
+  /* Resources Dropdown */
+  .dropdown-panel--resources {
+    width: 340px;
+  }
+
+  .dropdown-resources-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .resource-item-card {
+    padding: 12px 14px;
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    transition: all 0.2s ease;
+  }
+
+  .resource-item-card:hover {
+    background: var(--pr-light-blue);
+    transform: translateX(3px);
+  }
+
+  .resource-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .resource-title {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--pr-navy);
+  }
+
+  .resource-badge {
+    font-size: 10px;
+    font-weight: 800;
+    padding: 2px 6px;
+    border-radius: var(--radius-pill);
+    background: var(--pr-blue);
+    color: var(--pr-white);
+    text-transform: uppercase;
+  }
+
+  .resource-desc {
+    font-size: 12px;
+    line-height: 1.4;
+    color: var(--pr-text);
+  }
+
+  /* Actions & CTA */
+  .nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    flex-shrink: 0;
+  }
+
+  .nav-cta-btn {
+    border-radius: var(--radius-pill);
+  }
+
+  /* Mobile Toggle */
+  .mobile-toggle-btn {
+    display: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--pr-light-blue);
+    border: none;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .mobile-toggle-btn:hover {
+    background: rgba(50, 92, 232, 0.15);
+  }
+
+  .hamburger-bar {
+    position: relative;
+    width: 18px;
     height: 2px;
     background: var(--pr-navy);
     border-radius: 2px;
     transition: all 0.3s ease;
   }
 
-  .hamburger::before,
-  .hamburger::after {
+  .hamburger-bar::before,
+  .hamburger-bar::after {
     content: '';
     position: absolute;
     left: 0;
-    width: 24px;
+    width: 18px;
     height: 2px;
     background: var(--pr-navy);
     border-radius: 2px;
     transition: all 0.3s ease;
   }
 
-  .hamburger::before { top: -7px; }
-  .hamburger::after { bottom: -7px; }
+  .hamburger-bar::before { top: -6px; }
+  .hamburger-bar::after { bottom: -6px; }
 
-  .mobile-toggle.active .hamburger {
+  .mobile-toggle-btn.active .hamburger-bar {
     background: transparent;
   }
 
-  .mobile-toggle.active .hamburger::before {
+  .mobile-toggle-btn.active .hamburger-bar::before {
     top: 0;
     transform: rotate(45deg);
   }
 
-  .mobile-toggle.active .hamburger::after {
+  .mobile-toggle-btn.active .hamburger-bar::after {
     bottom: 0;
     transform: rotate(-45deg);
   }
 
-  /* Mobile Menu */
-  .mobile-menu {
+  /* Mobile Drawer */
+  .mobile-drawer {
     display: none;
     position: absolute;
-    top: 72px;
+    top: calc(100% + 12px);
     left: 0;
     right: 0;
     background: var(--pr-white);
-    border-bottom: 1px solid var(--pr-border);
-    box-shadow: 0 20px 40px rgba(11, 40, 69, 0.1);
+    border: 1px solid var(--pr-border);
+    border-radius: var(--radius-2xl);
+    box-shadow: 0 20px 48px rgba(11, 40, 69, 0.15);
     padding: 24px;
     opacity: 0;
-    transform: translateY(-10px);
+    transform: translateY(-8px) scale(0.98);
     pointer-events: none;
-    transition: all 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.25, 1, 0.5, 1);
   }
 
-  .mobile-menu.open {
+  .mobile-drawer.open {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
     pointer-events: all;
   }
 
-  .mobile-nav {
+  .mobile-drawer-nav {
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -206,11 +592,12 @@ const navLinks = [
 
   .mobile-nav-link {
     font-family: var(--font-heading);
-    font-size: 18px;
-    font-weight: 700;
+    font-size: 16px;
+    font-weight: 800;
     color: var(--pr-navy);
-    padding: 12px 16px;
-    border-radius: 12px;
+    padding: 10px 14px;
+    border-radius: var(--radius-md);
+    text-decoration: none;
     transition: all 0.2s ease;
   }
 
@@ -219,25 +606,63 @@ const navLinks = [
     color: var(--pr-blue);
   }
 
+  .mobile-section-title {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--pr-blue);
+    padding: 8px 14px 2px;
+  }
+
+  .mobile-sub-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+    padding: 0 6px;
+  }
+
+  .mobile-sub-link {
+    padding: 8px 10px;
+    background: var(--pr-chalk);
+    border-radius: var(--radius-sm);
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--pr-navy);
+  }
+
+  .mobile-drawer-cta {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid var(--pr-border);
+  }
+
+  /* Responsive Breakpoints */
   @media (max-width: 900px) {
-    .desktop-nav,
-    .header-cta {
+    .nav-links,
+    .nav-cta-btn {
       display: none;
     }
 
-    .mobile-toggle {
+    .mobile-toggle-btn {
       display: flex;
     }
 
-    .mobile-menu {
+    .mobile-drawer {
       display: block;
+    }
+
+    .nav-pill-inner {
+      padding: 0 16px;
     }
   }
 </style>
 
 <script>
-  // Scroll effect
-  const header = document.getElementById('site-header');
+  // Scroll Shadow Effect
+  const header = document.getElementById('nav-header');
   window.addEventListener('scroll', () => {
     if (window.scrollY > 20) {
       header?.classList.add('scrolled');
@@ -246,23 +671,23 @@ const navLinks = [
     }
   });
 
-  // Mobile menu toggle
-  const toggle = document.getElementById('mobile-toggle');
-  const menu = document.getElementById('mobile-menu');
-  
-  toggle?.addEventListener('click', () => {
-    toggle.classList.toggle('active');
-    menu?.classList.toggle('open');
-    toggle.setAttribute('aria-expanded', 
-      toggle.classList.contains('active') ? 'true' : 'false'
+  // Mobile Drawer Toggle
+  const toggleBtn = document.getElementById('mobile-toggle-btn');
+  const drawer = document.getElementById('mobile-drawer');
+
+  toggleBtn?.addEventListener('click', () => {
+    toggleBtn.classList.toggle('active');
+    drawer?.classList.toggle('open');
+    toggleBtn.setAttribute('aria-expanded', 
+      toggleBtn.classList.contains('active') ? 'true' : 'false'
     );
   });
 
-  // Close mobile menu on link click
-  document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+  // Close drawer when clicking any link
+  document.querySelectorAll('.mobile-nav-link, .mobile-sub-link, .mobile-drawer-cta a').forEach((link) => {
     link.addEventListener('click', () => {
-      toggle?.classList.remove('active');
-      menu?.classList.remove('open');
+      toggleBtn?.classList.remove('active');
+      drawer?.classList.remove('open');
     });
   });
 </script>
