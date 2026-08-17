@@ -1,0 +1,73 @@
+---
+interface Props {
+  icon: string;
+  title: string;
+  description: string;
+  delay?: number;
+}
+
+const { icon, title, description, delay = 0 } = Astro.props;
+---
+
+<div class={`feature-card reveal reveal-delay-${delay}`}>
+  <div class="feature-card__icon" set:html={icon} />
+  <h3 class="feature-card__title">{title}</h3>
+  <p class="feature-card__desc">{description}</p>
+</div>
+
+<style>
+  .feature-card {
+    background: var(--pr-white);
+    border: 1px solid var(--pr-border);
+    border-radius: var(--radius-xl);
+    padding: 32px;
+    transition: all var(--transition-base);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-card-hover);
+    border-color: rgba(50, 92, 232, 0.25);
+  }
+
+  .feature-card__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: var(--pr-light-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pr-blue);
+    flex-shrink: 0;
+    transition: all 0.3s ease;
+  }
+
+  .feature-card:hover .feature-card__icon {
+    background: var(--pr-blue);
+    color: var(--pr-white);
+    transform: scale(1.05);
+  }
+
+  :global(.feature-card__icon svg) {
+    width: 26px;
+    height: 26px;
+    stroke-width: 2;
+    transition: all 0.3s ease;
+  }
+
+  .feature-card__title {
+    font-size: 19px;
+    font-weight: 800;
+    color: var(--pr-navy);
+  }
+
+  .feature-card__desc {
+    font-size: 14.5px;
+    line-height: 1.65;
+    color: var(--pr-text);
+  }
+</style>

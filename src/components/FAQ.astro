@@ -1,0 +1,137 @@
+---
+interface FaqItem {
+  question: string;
+  answer: string;
+}
+
+interface Props {
+  items: FaqItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="faq-accordion">
+  {items.map((item, index) => (
+    <div class="faq-item" data-faq-index={index}>
+      <button class="faq-header" aria-expanded="false" aria-controls={`faq-body-${index}`}>
+        <span class="faq-question">{item.question}</span>
+        <div class="faq-icon">
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+            <path class="faq-icon-v" d="M7 0v14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+            <path d="M0 7h14" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </button>
+      <div class="faq-body" id={`faq-body-${index}`}>
+        <p set:html={item.answer} />
+      </div>
+    </div>
+  ))}
+</div>
+
+<style>
+  .faq-accordion {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .faq-item {
+    background: var(--pr-white);
+    border: 1px solid var(--pr-border);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+    transition: all 0.3s ease;
+  }
+
+  .faq-item.open {
+    border-color: rgba(50, 92, 232, 0.2);
+    box-shadow: 0 8px 24px rgba(50, 92, 232, 0.06);
+  }
+
+  .faq-header {
+    width: 100%;
+    padding: 22px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    cursor: pointer;
+    background: none;
+    border: none;
+    text-align: left;
+  }
+
+  .faq-question {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--pr-navy);
+    line-height: 1.4;
+  }
+
+  .faq-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: var(--pr-light-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--pr-blue);
+    transition: all 0.3s ease;
+  }
+
+  .faq-item.open .faq-icon {
+    background: var(--pr-blue);
+    color: var(--pr-white);
+    transform: rotate(45deg);
+  }
+
+  .faq-icon-v {
+    transition: opacity 0.2s ease;
+  }
+
+  .faq-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.25, 1, 0.5, 1), padding 0.3s ease;
+    padding: 0 28px;
+  }
+
+  .faq-item.open .faq-body {
+    max-height: 500px;
+    padding: 0 28px 24px;
+  }
+
+  .faq-body p {
+    font-size: 15px;
+    line-height: 1.7;
+    color: var(--pr-text);
+  }
+</style>
+
+<script>
+  document.querySelectorAll('.faq-header').forEach((header) => {
+    header.addEventListener('click', () => {
+      const item = header.closest('.faq-item');
+      const isOpen = item?.classList.contains('open');
+      
+      // Close all others
+      document.querySelectorAll('.faq-item').forEach((i) => {
+        i.classList.remove('open');
+        i.querySelector('.faq-header')?.setAttribute('aria-expanded', 'false');
+      });
+      
+      // Toggle current
+      if (!isOpen) {
+        item?.classList.add('open');
+        header.setAttribute('aria-expanded', 'true');
+      }
+    });
+  });
+</script>

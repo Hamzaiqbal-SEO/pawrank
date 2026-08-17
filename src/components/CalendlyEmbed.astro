@@ -1,0 +1,42 @@
+---
+interface Props {
+  url?: string;
+}
+
+const { url = "https://calendly.com/pawrankofficial/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=0b2845&text_color=ffffff&primary_color=325ce8" } = Astro.props;
+---
+
+<div class="calendly-wrapper" id="calendly">
+  <div class="calendly-embed">
+    <div class="calendly-inline-widget" data-url={url}></div>
+  </div>
+</div>
+
+<script is:inline src="https://assets.calendly.com/assets/external/widget.js" async></script>
+
+<style>
+  .calendly-wrapper {
+    scroll-margin-top: 100px;
+  }
+
+  .calendly-embed {
+    max-width: 1080px;
+    margin: 0 auto;
+    border-radius: var(--radius-xl);
+    overflow: hidden;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--pr-border);
+    background: var(--pr-navy);
+  }
+
+  .calendly-inline-widget {
+    min-width: 320px;
+    height: 700px;
+  }
+
+  @media (max-width: 767px) {
+    .calendly-inline-widget {
+      height: 900px;
+    }
+  }
+</style>

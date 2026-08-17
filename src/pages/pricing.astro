@@ -1,0 +1,528 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import FAQ from '../components/FAQ.astro';
+import CTABanner from '../components/CTABanner.astro';
+
+// SVG Icons for Pricing Page
+const icons = {
+  clinic: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>`,
+  message: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>`,
+  growth: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>`,
+  calendar: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
+  eye: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>`,
+  scale: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`,
+};
+
+const getFoundFeatures = [
+  "3–5 core veterinary service opportunities",
+  "1 major page project per month",
+  "1 supporting content improvement per month",
+  "2 Google Business Profile posts per month",
+  "Monthly technical + local SEO health review",
+  "Quarterly conversion review + essential improvements",
+  "Practice-level call and form tracking",
+  "Strategy call every 3 months",
+];
+
+const growFeatures = [
+  "6–10 veterinary service opportunities",
+  "2 major page projects per month",
+  "2 supporting content improvements per month",
+  "4 Google Business Profile posts per month",
+  "Monthly technical SEO review + priority improvements",
+  "8–12 authority opportunities researched monthly",
+  "Monthly reputation review + improvement cycle",
+  "Monthly conversion review + prioritized improvement",
+  "Advanced call, form, and conversion tracking",
+  "Monthly strategy call",
+];
+
+const comparisonRows = [
+  { element: "Service Focus", getFound: "3–5 core services", grow: "6–10 core & growth services", diff: "Double the active service coverage" },
+  { element: "Website / Content Work", getFound: "2 actions/month", grow: "4 actions/month", diff: "Twice the monthly page & content output" },
+  { element: "GBP Posts", getFound: "2/month", grow: "4/month", diff: "More active local presence" },
+  { element: "Authority Building", getFound: "Not included", grow: "8–12 opportunities/month", diff: "Active outreach for domain authority" },
+  { element: "Reputation Management", getFound: "Not included", grow: "Monthly review cycle", diff: "Proactive review & trust signal work" },
+  { element: "Conversion Optimization", getFound: "Quarterly review", grow: "Monthly review + improvements", diff: "Continuous conversion improvement" },
+  { element: "Strategy Calls", getFound: "Every 3 months", grow: "Monthly", diff: "4× more strategic touch points" },
+  { element: "Tracking", getFound: "Practice-level", grow: "Advanced conversion tracking", diff: "Deeper insight into what converts" },
+];
+
+const faqItems = [
+  { question: "Why do SEO prices vary so much between agencies?", answer: "Because 'SEO' isn't one service — it's a combination of technical work, content creation, local optimization, authority building, and conversion strategy. Cheaper agencies often do less or use shortcuts. We show exactly what your investment funds." },
+  { question: "What's the difference between Get Found and Grow Appointments?", answer: "Get Found builds a strong SEO foundation focused on your core services. Grow Appointments expands that with more services, authority building, reputation management, and monthly conversion optimization. It's about campaign capacity — how much we can move forward each month." },
+  { question: "Why is there a setup fee?", answer: "The first 30 days cover essential one-time work: comprehensive audit, competitor research, tracking setup, Google Business Profile optimization, and strategic campaign planning. This foundation work ensures everything that follows is built on solid data." },
+  { question: "Can I switch between plans?", answer: "Yes. If you start with Get Found and want to scale up, we can transition to Grow Appointments. We'll adjust the strategy to use the additional capacity effectively." },
+  { question: "What if I'm not sure which plan is right?", answer: "Book a free consultation. We'll look at your market, competition, and goals — then recommend which level of support makes the most sense for your practice right now." },
+  { question: "How do you handle multiple locations?", answer: "Each location requires its own SEO campaign. We offer multi-location pricing — contact us for a custom quote based on the number of locations and competitive landscape of each." },
+  { question: "Do you require a long-term contract?", answer: "No. We work on a month-to-month basis. SEO is most effective as a sustained investment, but we believe in earning your trust through results, not contracts." },
+  { question: "What results can I expect and when?", answer: "Most clients see improvements in local visibility within 2–3 months. Significant growth in calls and appointments typically builds between months 4–8. We set realistic expectations based on your specific market and competition." },
+];
+---
+
+<BaseLayout
+  title="Veterinary SEO Pricing – Transparent Plans for Vet Clinics | Paw Rank"
+  description="Premium Veterinary SEO pricing designed to outrank corporate giants. See exactly what's included in each plan, compare features, and choose the right level for your practice."
+>
+  <!-- HERO -->
+  <Hero
+    eyebrow="Plans & Pricing"
+    title="Veterinary SEO Pricing<br/>Without the Black Box"
+    subtitle="Compare our two veterinary SEO plans, see the key differences, and understand how your investment is used before you schedule a call."
+    primaryCta={{ label: "Compare Plans", href: "#pricing-plans" }}
+    secondaryCta={{ label: "Help Me Choose", href: "/contact/#calendly" }}
+  />
+
+  <!-- TRANSPARENCY SECTION -->
+  <section class="section section--chalk">
+    <div class="container">
+      <SectionHeading
+        eyebrow="A Clearer Approach"
+        title="You Shouldn't Have to Understand SEO to Know Whether It's Being Done Well"
+        subtitle="Our responsibility is to explain what we're doing, why we're doing it, and what it's meant to improve."
+      />
+
+      <div class="grid grid--3">
+        <FeatureCard
+          icon={icons.clinic}
+          title="We Start With Your Practice"
+          description="Our experience with veterinary practices gives us context around how pet owners search, which services matter, and where practices lose visibility. We combine that with research into your specific market."
+          delay={1}
+        />
+        <FeatureCard
+          icon={icons.message}
+          title="Plain English, No Jargon"
+          description="Instead of saying 'conversion optimization,' we explain that we're improving appointment buttons, forms and contact paths so pet owners can take the next step more easily."
+          delay={2}
+        />
+        <FeatureCard
+          icon={icons.growth}
+          title="Growth Over Vanity Metrics"
+          description="Rankings and traffic matter, but they're not the final goal. We look at calls, form submissions, and appointment actions — because a keyword ranking is useful only when it grows your practice."
+          delay={3}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING PLANS -->
+  <section class="section section--white" id="pricing-plans">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Plans & Pricing"
+        title="Choose the Level of SEO Support That Fits Your Practice"
+        subtitle="Both plans help your practice become easier to find, understand and contact online. The difference is campaign capacity."
+      />
+
+      <div class="pricing-grid reveal">
+        <!-- GET FOUND -->
+        <div class="pricing-card">
+          <div class="pricing-card-header">
+            <span class="pricing-tier">Foundation Tier</span>
+            <h3 class="pricing-name">Get Found</h3>
+            <p class="pricing-tagline">Build a Stronger Local Search Foundation</p>
+          </div>
+          
+          <div class="pricing-setup">
+            <span class="pricing-setup-label">First 30 Days</span>
+            <span class="pricing-setup-price">$750</span>
+            <span class="pricing-setup-note">Campaign setup, audits, research & GBP optimization</span>
+          </div>
+
+          <div class="pricing-monthly">
+            <span class="pricing-monthly-label">Then</span>
+            <span class="pricing-monthly-price">$995<span>/month</span></span>
+          </div>
+
+          <div class="pricing-best-for">
+            <strong>Best for:</strong> Veterinary practices that need a stronger SEO foundation and want steady, focused improvement around their core services.
+          </div>
+
+          <ul class="pricing-features">
+            {getFoundFeatures.map((feature) => (
+              <li>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6 11.6 2.7 8.3" stroke="#325CE8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+
+          <a href="/contact/#calendly" class="btn btn--navy btn--full">
+            Schedule a Call About Get Found →
+          </a>
+        </div>
+
+        <!-- GROW APPOINTMENTS -->
+        <div class="pricing-card pricing-card--featured">
+          <div class="pricing-badge">Most Popular</div>
+          <div class="pricing-card-header">
+            <span class="pricing-tier">Growth Tier</span>
+            <h3 class="pricing-name">Grow Appointments</h3>
+            <p class="pricing-tagline">Expand Demand Across the Services You Want to Grow</p>
+          </div>
+
+          <div class="pricing-setup">
+            <span class="pricing-setup-label">First 30 Days</span>
+            <span class="pricing-setup-price">$1,250</span>
+            <span class="pricing-setup-note">Deeper research, tracking architecture & growth planning</span>
+          </div>
+
+          <div class="pricing-monthly">
+            <span class="pricing-monthly-label">Then</span>
+            <span class="pricing-monthly-price">$1,695<span>/month</span></span>
+          </div>
+
+          <div class="pricing-best-for">
+            <strong>Best for:</strong> Established practices with capacity for more clients that want to compete more actively across selected services and growth opportunities.
+          </div>
+
+          <ul class="pricing-features">
+            {growFeatures.map((feature) => (
+              <li>
+                <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M13.3 4.3L6 11.6 2.7 8.3" stroke="#79A3FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                {feature}
+              </li>
+            ))}
+          </ul>
+
+          <a href="/contact/#calendly" class="btn btn--primary btn--full">
+            Schedule a Call About Grow Appointments →
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPARISON TABLE -->
+  <section class="section section--chalk">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Side by Side"
+        title="What the Extra $700/Month Actually Funds"
+      />
+
+      <div class="table-container reveal">
+        <table class="comparison-table">
+          <thead>
+            <tr>
+              <th>Campaign Element</th>
+              <th>Get Found ($995/mo)</th>
+              <th>Grow Appointments ($1,695/mo)</th>
+              <th>What the Extra $700 Funds</th>
+            </tr>
+          </thead>
+          <tbody>
+            {comparisonRows.map((row) => (
+              <tr>
+                <td><strong>{row.element}</strong></td>
+                <td>{row.getFound}</td>
+                <td>{row.grow}</td>
+                <td class="diff-cell">{row.diff}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXCLUSIVE FEATURES -->
+  <section class="section section--white">
+    <div class="container">
+      <SectionHeading
+        eyebrow="What Sets Us Apart"
+        title="Exclusive Features of Paw Rank Packages"
+        subtitle="Here's what our clients say they value most about working with us."
+      />
+
+      <div class="grid grid--2">
+        <FeatureCard icon={icons.clinic} title="Built Specifically for Veterinary Practices" description="We've spent years working with independent clinics and local animal hospitals. We know what actually moves the needle for practices competing with bigger chains." delay={1} />
+        <FeatureCard icon={icons.calendar} title="Focused on Booked Appointments" description="Clicks from out-of-state pet owners don't help your schedule. We focus on reaching local clients looking for wellness exams, dentals, or urgent care today." delay={2} />
+        <FeatureCard icon={icons.eye} title="Clear Scope, Transparent Pricing" description="You'll see exactly what you're paying for, with no surprise fees. The plan is laid out up front, so you know what to expect." delay={1} />
+        <FeatureCard icon={icons.scale} title="Scales as Your Clinic Grows" description="If you're hiring another DVM, adding new services, or opening a second location, the SEO plan grows with you." delay={2} />
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section--chalk">
+    <div class="container">
+      <SectionHeading
+        eyebrow="FAQ"
+        title="Frequently Asked Questions About Our Pricing"
+      />
+      <FAQ items={faqItems} />
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CTABanner
+    title="Let's Build a Clear SEO Plan for Your Practice"
+    subtitle="No hard sell. No confusing jargon. Just a focused conversation about your clinic's visibility, competition, and realistic next steps."
+    primaryCta={{ label: "Schedule a Free Consultation", href: "/contact/#calendly" }}
+    secondaryCta={{ label: "Contact Us", href: "/contact/" }}
+  />
+</BaseLayout>
+
+<style>
+  /* Pricing Grid */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .pricing-card {
+    background: var(--pr-chalk);
+    border: 1px solid var(--pr-border-dark);
+    border-radius: var(--radius-2xl);
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    transition: all var(--transition-base);
+  }
+
+  .pricing-card:hover {
+    box-shadow: var(--shadow-card-hover);
+    transform: translateY(-4px);
+  }
+
+  .pricing-card--featured {
+    background: var(--pr-navy);
+    border-color: var(--pr-blue);
+    color: var(--pr-white);
+  }
+
+  .pricing-badge {
+    position: absolute;
+    top: -12px;
+    right: 28px;
+    padding: 6px 16px;
+    background: var(--pr-blue);
+    color: var(--pr-white);
+    border-radius: var(--radius-pill);
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .pricing-tier {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--pr-blue);
+  }
+
+  .pricing-card--featured .pricing-tier {
+    color: var(--pr-blue-light);
+  }
+
+  .pricing-name {
+    font-size: 28px;
+    margin: 8px 0;
+  }
+
+  .pricing-card--featured .pricing-name {
+    color: var(--pr-white);
+  }
+
+  .pricing-tagline {
+    font-size: 14.5px;
+    margin-bottom: 24px;
+  }
+
+  .pricing-card--featured .pricing-tagline {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .pricing-setup {
+    background: var(--pr-white);
+    border-radius: var(--radius-md);
+    padding: 16px;
+    margin-bottom: 16px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .pricing-card--featured .pricing-setup {
+    background: rgba(255, 255, 255, 0.08);
+  }
+
+  .pricing-setup-label {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    color: var(--pr-text);
+    letter-spacing: 0.06em;
+  }
+
+  .pricing-card--featured .pricing-setup-label {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .pricing-setup-price {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--pr-blue);
+  }
+
+  .pricing-card--featured .pricing-setup-price {
+    color: var(--pr-white);
+  }
+
+  .pricing-setup-note {
+    font-size: 12.5px;
+    color: var(--pr-text);
+  }
+
+  .pricing-card--featured .pricing-setup-note {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .pricing-monthly {
+    margin-bottom: 20px;
+  }
+
+  .pricing-monthly-label {
+    font-size: 12px;
+    color: var(--pr-text);
+  }
+
+  .pricing-card--featured .pricing-monthly-label {
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .pricing-monthly-price {
+    font-family: var(--font-heading);
+    font-size: 36px;
+    font-weight: 900;
+    color: var(--pr-navy);
+  }
+
+  .pricing-monthly-price span {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--pr-text);
+  }
+
+  .pricing-card--featured .pricing-monthly-price {
+    color: var(--pr-white);
+  }
+
+  .pricing-card--featured .pricing-monthly-price span {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .pricing-best-for {
+    font-size: 13.5px;
+    line-height: 1.6;
+    padding: 16px;
+    background: var(--pr-light-blue);
+    border-radius: var(--radius-md);
+    margin-bottom: 24px;
+  }
+
+  .pricing-card--featured .pricing-best-for {
+    background: rgba(50, 92, 232, 0.15);
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .pricing-card--featured .pricing-best-for strong {
+    color: var(--pr-white);
+  }
+
+  .pricing-features {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .pricing-features li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--pr-text);
+  }
+
+  .pricing-card--featured .pricing-features li {
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .pricing-features svg {
+    flex-shrink: 0;
+    margin-top: 3px;
+  }
+
+  /* Comparison Table */
+  .table-container {
+    overflow-x: auto;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--pr-border);
+    box-shadow: var(--shadow-subtle);
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .comparison-table {
+    width: 100%;
+    text-align: left;
+    font-size: 14px;
+    background: var(--pr-white);
+  }
+
+  .comparison-table thead tr {
+    background: var(--pr-navy);
+    color: var(--pr-white);
+  }
+
+  .comparison-table th {
+    padding: 18px 22px;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.02em;
+  }
+
+  .comparison-table td {
+    padding: 16px 22px;
+    border-bottom: 1px solid var(--pr-border);
+    color: var(--pr-text);
+  }
+
+  .comparison-table tbody tr:hover {
+    background: var(--pr-light-blue);
+  }
+
+  .comparison-table td strong {
+    color: var(--pr-navy);
+  }
+
+  .diff-cell {
+    color: var(--pr-blue) !important;
+    font-weight: 600;
+    font-size: 13px;
+  }
+
+  @media (max-width: 900px) {
+    .pricing-grid {
+      grid-template-columns: 1fr;
+      max-width: 500px;
+    }
+  }
+</style>

@@ -1,0 +1,599 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import CTABanner from '../../components/CTABanner.astro';
+
+const toc = [
+  { id: "intro", label: "Introduction" },
+  { id: "understanding", label: "1. Understanding Veterinary SEO" },
+  { id: "case-study", label: "Case Study: Sajjad Pets Clinic" },
+  { id: "pillars", label: "2. The Pillars of Veterinary SEO" },
+  { id: "local-seo", label: "3. Local SEO for Vets" },
+  { id: "on-page", label: "4. On-Page SEO" },
+  { id: "content", label: "5. Content SEO" },
+  { id: "technical", label: "6. Technical SEO" },
+  { id: "reputation", label: "7. Reputation Management" },
+  { id: "measuring", label: "8. Measuring Your Results" },
+];
+---
+
+<BaseLayout
+  title="Veterinary SEO Guide: 30-Day Plan to Get More Vet Clients | Paw Rank"
+  description="Proven veterinary SEO strategies with a real case study — 56% more calls in 30 days. Covers local SEO, GBP, content & reviews. Get your free audit today."
+>
+  <!-- Article Hero -->
+  <section class="article-hero">
+    <div class="container container--narrow">
+      <a href="/blog/" class="back-link">← Back to Blog</a>
+      <span class="eyebrow eyebrow--light">SEO Guide</span>
+      <h1>Veterinary SEO: The Complete Guide to Get More Clients</h1>
+      <p class="article-meta">
+        <span>Published March 18, 2026</span>
+        <span>•</span>
+        <span>25 min read</span>
+        <span>•</span>
+        <span>By Paw Rank</span>
+      </p>
+    </div>
+  </section>
+
+  <!-- Article Content -->
+  <section class="section section--white article-section">
+    <div class="article-layout">
+      <!-- Table of Contents Sidebar -->
+      <aside class="toc-sidebar" id="toc">
+        <div class="toc-inner">
+          <h4 class="toc-title">Contents</h4>
+          <nav class="toc-nav">
+            {toc.map((item) => (
+              <a href={`#${item.id}`} class="toc-link">{item.label}</a>
+            ))}
+          </nav>
+        </div>
+      </aside>
+
+      <!-- Main Article -->
+      <article class="article-content">
+        <img src="/images/Veterinary-seo-guide.webp" alt="What is Veterinary SEO - Complete Guide" class="article-hero-img" loading="eager" />
+
+        <div id="intro" class="article-anchor">
+          <h2>Introduction</h2>
+          <p>Practicing good medicine is only part of building a successful clinic now. If you're having trouble getting new clients, seeing other clinics show up ahead of you in Google, or just feeling lost with online marketing, you're not alone. Most vets want to show up online but aren't sure what to do first.</p>
+          <p>At <a href="/">Paw Rank</a>, we've looked at hundreds of veterinary websites over the years. The same thing keeps happening: skilled teams get outranked by competitors because of a few small digital missteps. This guide breaks down the practical steps that actually work to help your clinic get found online.</p>
+        </div>
+
+        <div id="understanding" class="article-anchor">
+          <h2>1. Understanding Veterinary SEO: Your Digital Front Door</h2>
+          
+          <h3>What is Veterinary SEO?</h3>
+          <p>Veterinary SEO means making your website, Google Business Profile, and social media easier to find in search results. The goal is simple: help local pet owners find your clinic when they need a vet.</p>
+          <p>Good SEO helps you show up in local searches, attract people who actually need a vet, and build trust before they call. When you get this right, you'll rely less on paid ads and see more steady, organic traffic.</p>
+
+          <div class="callout">
+            <strong>Key Insight:</strong> This isn't just tech work. It's a practical way to grow your practice and help more pets.
+          </div>
+
+          <h3>Why SEO is Crucial for Veterinary Practices</h3>
+          <p>Most pet owners now use Google to find a vet. Over 90% of people use search engines to find local businesses, including veterinary clinics. When a dog starts limping or a cat won't eat, people grab their phone and search.</p>
+
+          <img src="/images/importance-of-veterinary-seo.webp" alt="93% of pet owners won't go further than the first page of Google" loading="lazy" />
+
+          <p>Showing up at the top of Google builds trust. Data shows that almost <strong>93% of searchers don't go past the first page</strong>. Most people assume the clinics they see first are the best. If your clinic is near the top, you'll get more calls and appointments.</p>
+
+          <p>Local search is competitive, especially for <strong>"near me" searches</strong>. When someone types "emergency vet near me" or "dog vaccination near me," they're <strong>ready to book</strong>. Your Google Business Profile is your most important local SEO tool.</p>
+        </div>
+
+        <div id="case-study" class="article-anchor">
+          <h2>Real Results: The Sajjad Pets Clinic Story</h2>
+          
+          <div class="article-case-study">
+            <div class="acs-block">
+              <h4>The Challenge</h4>
+              <p>Sajjad Pets Clinic offered exceptional care but struggled with low online visibility. Despite a functional website, they were buried in local search results and missing out on predictable new patient flow.</p>
+            </div>
+            <div class="acs-block">
+              <h4>The PAW Rank Solution</h4>
+              <p>We implemented a targeted local SEO strategy — optimizing their Google Business Profile, launching hyper-local keyword campaigns, and executing a content series addressing common pet health questions.</p>
+            </div>
+            <div class="acs-block acs-block--highlight">
+              <h4>The Results</h4>
+              <p>In one month, they saw a <strong>56% increase in new patient calls</strong>, moved up to <strong>4th place in local search</strong>, and received significantly more reviews.</p>
+            </div>
+          </div>
+
+          <img src="/images/Sajjad-pets-clinic-local-ranking-map.jpg" alt="Sajjad Pets Clinic local ranking improvement map" loading="lazy" />
+        </div>
+
+        <div id="pillars" class="article-anchor">
+          <h2>2. The Pillars of Veterinary SEO</h2>
+          <p>SEO works when you get the basics right. Each part supports your online presence. If you skip one, you'll notice.</p>
+          
+          <div class="pillar-grid">
+            <div class="pillar-card">
+              <div class="pillar-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#325CE8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+              </div>
+              <h4>Local SEO</h4>
+              <p>Optimize your online presence for "near me" searches. Focus on Google Business Profile, local citations, and geographic keywords.</p>
+            </div>
+            <div class="pillar-card">
+              <div class="pillar-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#325CE8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+              </div>
+              <h4>On-Page SEO</h4>
+              <p>Optimize individual web pages with service-specific keywords, header tags, meta descriptions, and internal linking.</p>
+            </div>
+            <div class="pillar-card">
+              <div class="pillar-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#325CE8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              </div>
+              <h4>Content SEO</h4>
+              <p>Create valuable blog content answering pet owners' questions, establish authority, and build a library of evergreen resources.</p>
+            </div>
+            <div class="pillar-card">
+              <div class="pillar-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#325CE8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              </div>
+              <h4>Technical SEO</h4>
+              <p>Ensure fast loading, mobile-friendliness, HTTPS, proper sitemaps, and crawlability for search engines.</p>
+            </div>
+            <div class="pillar-card">
+              <div class="pillar-icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#325CE8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+              </div>
+              <h4>Reputation</h4>
+              <p>Actively manage reviews, respond professionally, and build a positive online reputation that attracts new clients.</p>
+            </div>
+          </div>
+        </div>
+
+        <div id="local-seo" class="article-anchor">
+          <h2>3. Local SEO for Vets: Showing Up in "Near Me" Searches</h2>
+          <p>Local SEO is where most clinics win or lose. Most clients want a vet close to home. Here's how to make sure they find you.</p>
+
+          <h3>Google Business Profile (GBP) Optimization</h3>
+          <p>If you're not sure where to start with SEO, begin with your Google Business Profile. Most clients see this first when they search for a vet, and it often decides whether they call you or someone else.</p>
+          
+          <div class="checklist">
+            <h4>GBP Optimization Checklist:</h4>
+            <ul>
+              <li>Claim and verify your listing</li>
+              <li>Use your exact business name (no keyword stuffing)</li>
+              <li>Ensure address matches all other online listings</li>
+              <li>Add local phone number (mobile tap-to-call)</li>
+              <li>Keep hours updated, including holidays</li>
+              <li>List all services with specific keywords</li>
+              <li>Select precise categories (Veterinarian, Animal Hospital)</li>
+              <li>Upload high-quality photos of clinic, team, and patients</li>
+              <li>Write a compelling business description (750 chars)</li>
+              <li>Post updates 2–3 times per week</li>
+              <li>Monitor and answer Q&A section</li>
+              <li>Respond to every review promptly</li>
+            </ul>
+          </div>
+
+          <div class="callout">
+            <strong>Quick Win:</strong> Add a Google Map to your Contact page. Go to Google Maps → Search your clinic → Share → Embed a map → paste the code. This gives pet owners directions AND sends Google a confirmed location signal.
+          </div>
+
+          <h3>Building Local Citations</h3>
+          <img src="/images/Building-local-citations-for-Veterinary-seo.webp" alt="Building local citations for veterinary SEO" loading="lazy" />
+          <p>Citations are online mentions of your clinic's Name, Address, and Phone Number (NAP). Consistency across all platforms is critical — even small variations like "Street" vs "St." can hurt your rankings.</p>
+
+          <h3>Managing Your Online Reputation</h3>
+          <img src="/images/reputation-management-veterinary-seo.webp" alt="Reputation management for veterinary SEO" loading="lazy" />
+          <p>Reviews are social proof. Actively encourage happy clients to leave reviews, and respond to every one — positive with gratitude, negative with empathy and a solution.</p>
+        </div>
+
+        <div id="on-page" class="article-anchor">
+          <h2>4. On-Page SEO for Veterinary Websites</h2>
+          <p>On-page SEO is about optimizing each individual page on your website so search engines understand what it's about and rank it appropriately.</p>
+
+          <h3>Key On-Page Elements</h3>
+          <div class="checklist">
+            <ul>
+              <li><strong>Title Tags:</strong> Include your primary keyword and location (e.g., "Puppy Vaccinations in Austin | Your Clinic")</li>
+              <li><strong>Meta Descriptions:</strong> Write compelling descriptions that encourage clicks</li>
+              <li><strong>H1 Tags:</strong> One per page, clearly describing the page content</li>
+              <li><strong>Service Pages:</strong> Create dedicated pages for each major service</li>
+              <li><strong>Internal Links:</strong> Connect related pages to help search engines and users navigate</li>
+              <li><strong>Image Alt Text:</strong> Describe all images for accessibility and SEO</li>
+            </ul>
+          </div>
+
+          <h3>Website Structure: The Interlinking Strategy</h3>
+          <img src="/images/Veterinary-seo-interlinking-structure.webp" alt="Veterinary SEO interlinking structure" loading="lazy" />
+          <p>Think of your website as a web of interconnected pages. Your homepage links to service pages, service pages link to blog posts, and blog posts link back to services. This creates a clear hierarchy that search engines love.</p>
+        </div>
+
+        <div id="content" class="article-anchor">
+          <h2>5. Content SEO: Becoming the Authority</h2>
+          <p>Content is what transforms your website from a digital brochure into a patient-generating machine. When you create content that answers real questions pet owners are asking, you attract visitors who need your services.</p>
+          
+          <h3>The Sales Funnel for Vet SEO</h3>
+          <img src="/images/Sales-funnel-for-vet-seo.webp" alt="Sales funnel for veterinary SEO" loading="lazy" />
+          
+          <h3>Content Ideas for Veterinary Clinics</h3>
+          <div class="checklist">
+            <ul>
+              <li>Seasonal pet health tips (summer safety, winter care)</li>
+              <li>Common pet health questions ("What to do if your dog eats chocolate?")</li>
+              <li>Service explainers (What to expect during a dental cleaning)</li>
+              <li>Client success stories and testimonials</li>
+              <li>Preventative care guides (vaccination schedules, parasite prevention)</li>
+              <li>New team member introductions</li>
+              <li>Community events and involvement</li>
+            </ul>
+          </div>
+        </div>
+
+        <div id="technical" class="article-anchor">
+          <h2>6. Technical SEO for Veterinary Websites</h2>
+          <p>Technical SEO ensures that search engines can properly crawl, index, and understand your website. Think of it as the foundation that all other SEO efforts build upon.</p>
+
+          <h3>Key Technical Elements</h3>
+          <img src="/images/veterinary-seo-http-vs-https.webp" alt="HTTP vs HTTPS for veterinary websites" loading="lazy" />
+          
+          <div class="checklist">
+            <ul>
+              <li><strong>Page Speed:</strong> Your site should load in under 3 seconds. Compress images, minimize code.</li>
+              <li><strong>Mobile-Friendliness:</strong> Over 60% of searches are on mobile. Your site must work perfectly on phones.</li>
+              <li><strong>HTTPS:</strong> Secure your site with SSL. Google marks non-HTTPS sites as "Not Secure."</li>
+              <li><strong>XML Sitemap:</strong> Submit to Google Search Console to help crawlers find all your pages.</li>
+              <li><strong>Fix Broken Links:</strong> Regularly check for and fix 404 errors.</li>
+              <li><strong>Schema Markup:</strong> Add LocalBusiness and Veterinarian structured data to help Google understand your clinic.</li>
+            </ul>
+          </div>
+
+          <img src="/images/Google-Analytics-vs-Google-search-console-for-veterinary-clinics.webp" alt="Google Analytics vs Google Search Console for veterinary clinics" loading="lazy" />
+        </div>
+
+        <div id="reputation" class="article-anchor">
+          <h2>7. Reputation Management</h2>
+          <p>Your online reputation is often the deciding factor for potential clients. A strong review profile builds trust before a pet owner ever walks through your door.</p>
+
+          <div class="callout">
+            <strong>The Review Rule:</strong> Respond to every review — positive ones with genuine gratitude, negative ones with empathy and a clear path to resolution. This shows potential clients you care about every experience.
+          </div>
+        </div>
+
+        <div id="measuring" class="article-anchor">
+          <h2>8. Measuring Your SEO Results</h2>
+          <p>You can't improve what you don't measure. Here are the key metrics to track:</p>
+
+          <div class="checklist">
+            <ul>
+              <li><strong>Organic Traffic:</strong> Are more people finding your site through search?</li>
+              <li><strong>Local Pack Rankings:</strong> Where does your GBP appear for key searches?</li>
+              <li><strong>Phone Calls:</strong> Are you getting more calls from organic search visitors?</li>
+              <li><strong>Form Submissions:</strong> Are more people filling out appointment requests?</li>
+              <li><strong>Review Volume & Rating:</strong> Is your review profile growing and improving?</li>
+              <li><strong>Keyword Rankings:</strong> Are you moving up for target keywords?</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- End CTA -->
+        <div class="article-end-cta">
+          <h3>Need Help Implementing These Strategies?</h3>
+          <p>This guide gives you the roadmap, but implementing a comprehensive SEO strategy while running a veterinary practice is a full-time job. Let us handle the SEO so you can focus on your patients.</p>
+          <a href="/contact/#calendly" class="btn btn--primary">Book a Free SEO Consultation</a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <CTABanner
+    title="Ready to Put These Strategies to Work?"
+    subtitle="Book a free consultation and get a personalized SEO analysis for your veterinary practice."
+    primaryCta={{ label: "Book a Free Consultation", href: "/contact/#calendly" }}
+    secondaryCta={{ label: "See Our Pricing", href: "/pricing/" }}
+  />
+</BaseLayout>
+
+<style>
+  /* Article Hero */
+  .article-hero {
+    background: var(--gradient-hero);
+    padding: 150px 24px 80px;
+    color: var(--pr-white);
+  }
+
+  .back-link {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    display: inline-block;
+    margin-bottom: 24px;
+    transition: color 0.2s;
+  }
+
+  .back-link:hover { color: var(--pr-white); }
+
+  .article-hero h1 {
+    color: var(--pr-white);
+    margin-top: 12px;
+    font-size: clamp(30px, 4.5vw, 52px);
+  }
+
+  .article-meta {
+    display: flex;
+    gap: 8px;
+    margin-top: 16px;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  /* Article Layout */
+  .article-layout {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: grid;
+    grid-template-columns: 240px 1fr;
+    gap: 64px;
+    align-items: start;
+  }
+
+  .article-section { padding-top: 48px; }
+
+  /* Table of Contents */
+  .toc-sidebar {
+    position: sticky;
+    top: 96px;
+  }
+
+  .toc-inner {
+    background: var(--pr-chalk);
+    border: 1px solid var(--pr-border);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+  }
+
+  .toc-title {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--pr-navy);
+    margin-bottom: 16px;
+  }
+
+  .toc-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .toc-link {
+    font-size: 13px;
+    color: var(--pr-text);
+    padding: 4px 0;
+    border-left: 2px solid transparent;
+    padding-left: 12px;
+    transition: all 0.2s;
+  }
+
+  .toc-link:hover, .toc-link.active {
+    color: var(--pr-blue);
+    border-left-color: var(--pr-blue);
+  }
+
+  /* Article Content */
+  .article-content {
+    max-width: 780px;
+  }
+
+  .article-anchor {
+    scroll-margin-top: 100px;
+    margin-bottom: 48px;
+  }
+
+  .article-content h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--pr-border);
+  }
+
+  .article-content h2:first-of-type { border-top: none; padding-top: 0; }
+
+  .article-content h3 {
+    font-size: 22px;
+    margin-top: 32px;
+    margin-bottom: 12px;
+  }
+
+  .article-content p {
+    margin-bottom: 16px;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  .article-content img {
+    border-radius: var(--radius-lg);
+    margin: 24px 0;
+    box-shadow: var(--shadow-subtle);
+  }
+
+  .article-hero-img {
+    width: 100%;
+    margin-bottom: 40px;
+  }
+
+  .article-content a {
+    color: var(--pr-blue);
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .article-content a:hover { color: var(--pr-blue-hover); }
+
+  /* Callout */
+  .callout {
+    background: var(--pr-light-blue);
+    border-left: 4px solid var(--pr-blue);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    padding: 20px 24px;
+    margin: 24px 0;
+    font-size: 15px;
+    line-height: 1.65;
+  }
+
+  .callout strong { color: var(--pr-blue); }
+
+  /* Checklist */
+  .checklist {
+    background: var(--pr-chalk);
+    border: 1px solid var(--pr-border);
+    border-radius: var(--radius-lg);
+    padding: 24px 28px;
+    margin: 24px 0;
+  }
+
+  .checklist h4 {
+    font-size: 16px;
+    color: var(--pr-navy);
+    margin-bottom: 16px;
+  }
+
+  .checklist ul {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .checklist li {
+    font-size: 14.5px;
+    line-height: 1.55;
+    padding-left: 24px;
+    position: relative;
+    color: var(--pr-text);
+  }
+
+  .checklist li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--pr-success);
+    font-weight: 700;
+  }
+
+  /* Pillar Grid */
+  .pillar-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .pillar-card {
+    background: var(--pr-chalk);
+    border: 1px solid var(--pr-border);
+    border-radius: var(--radius-lg);
+    padding: 20px;
+    transition: all var(--transition-base);
+  }
+
+  .pillar-card:hover {
+    border-color: rgba(50, 92, 232, 0.15);
+    transform: translateY(-2px);
+  }
+
+  .pillar-card h4 { font-size: 15px; margin-bottom: 8px; }
+  .pillar-card p { font-size: 13px; line-height: 1.55; margin: 0; }
+
+  /* Case Study */
+  .article-case-study {
+    display: grid;
+    gap: 16px;
+    margin: 24px 0;
+  }
+
+  .acs-block {
+    padding: 20px 24px;
+    background: var(--pr-chalk);
+    border: 1px solid var(--pr-border);
+    border-radius: var(--radius-md);
+  }
+
+  .acs-block h4 {
+    font-size: 14px;
+    color: var(--pr-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 8px;
+  }
+
+  .acs-block p { margin: 0; font-size: 15px; }
+
+  .acs-block--highlight {
+    background: var(--pr-navy);
+    border-color: var(--pr-blue);
+  }
+
+  .acs-block--highlight h4 { color: var(--pr-blue-light); }
+  .acs-block--highlight p { color: rgba(255, 255, 255, 0.9); }
+  .acs-block--highlight strong { color: var(--pr-success); }
+
+  /* End CTA */
+  .article-end-cta {
+    background: var(--pr-navy);
+    border-radius: var(--radius-xl);
+    padding: 40px;
+    text-align: center;
+    margin-top: 48px;
+  }
+
+  .article-end-cta h3 {
+    color: var(--pr-white);
+    margin-top: 0;
+    margin-bottom: 12px;
+  }
+
+  .article-end-cta p {
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 500px;
+    margin: 0 auto 24px;
+  }
+
+  @media (max-width: 900px) {
+    .article-layout {
+      grid-template-columns: 1fr;
+      gap: 0;
+    }
+
+    .toc-sidebar {
+      display: none;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .article-hero {
+      padding: 130px 16px 60px;
+    }
+
+    .article-meta {
+      flex-wrap: wrap;
+    }
+  }
+</style>
+
+<script>
+  // Active TOC highlighting
+  const tocLinks = document.querySelectorAll('.toc-link');
+  const anchors = document.querySelectorAll('.article-anchor');
+  
+  const tocObserver = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          tocLinks.forEach((link) => link.classList.remove('active'));
+          const activeLink = document.querySelector(`.toc-link[href="#${entry.target.id}"]`);
+          activeLink?.classList.add('active');
+        }
+      });
+    },
+    { rootMargin: '-20% 0px -70% 0px' }
+  );
+
+  anchors.forEach((anchor) => tocObserver.observe(anchor));
+</script>

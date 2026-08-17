@@ -1,0 +1,370 @@
+---
+---
+
+<section class="roi-section section section--navy" id="vet-seo-roi-calculator">
+  <div class="container">
+    <div class="roi-header text-center">
+      <span class="eyebrow eyebrow--light">ROI Calculator</span>
+      <h2 style="color: var(--pr-white); margin-top: 16px;">Calculate Your Potential ROI</h2>
+      <p class="text-lead text-lead--centered" style="color: var(--pr-text-light); margin-top: 12px;">
+        Curious what a consistent increase in local search visibility could be worth to your clinic?
+      </p>
+    </div>
+
+    <div class="roi-calculator reveal">
+      <div class="roi-inputs">
+        <div class="roi-step">
+          <span class="roi-step-badge">Step 1</span>
+          <h4>Your Practice</h4>
+          
+          <label class="roi-label">City size (population)</label>
+          <select id="roi-city" class="roi-select">
+            <option value="small">Small town (under 50k)</option>
+            <option value="mid" selected>Mid-size city (50k–200k)</option>
+            <option value="large">Large city (200k–500k)</option>
+            <option value="metro">Major metro (500k+)</option>
+          </select>
+
+          <label class="roi-label">Open appointment slots per week</label>
+          <input type="range" id="roi-slots" min="2" max="30" value="8" class="roi-range" />
+          <div class="roi-range-value"><span id="roi-slots-value">8</span> slots/week</div>
+        </div>
+
+        <div class="roi-step">
+          <span class="roi-step-badge">Step 2</span>
+          <h4>The Competition</h4>
+          
+          <label class="roi-label">Clinics ranking above you on Google</label>
+          <input type="range" id="roi-competitors" min="1" max="10" value="4" class="roi-range" />
+          <div class="roi-range-value"><span id="roi-competitors-value">4</span> clinics</div>
+        </div>
+
+        <div class="roi-step">
+          <span class="roi-step-badge">Step 3</span>
+          <h4>Patient Value</h4>
+          
+          <label class="roi-label">Average annual spend per patient family ($)</label>
+          <input type="range" id="roi-value" min="200" max="2000" step="50" value="600" class="roi-range" />
+          <div class="roi-range-value">$<span id="roi-value-value">600</span>/year (AVMA avg: $600)</div>
+        </div>
+      </div>
+
+      <div class="roi-results">
+        <div class="roi-result-card roi-result-card--loss">
+          <h4>What you're losing to competitors</h4>
+          <div class="roi-metrics">
+            <div class="roi-metric">
+              <span class="roi-metric-value" id="roi-searches">—</span>
+              <span class="roi-metric-label">local vet searches/mo</span>
+            </div>
+            <div class="roi-metric">
+              <span class="roi-metric-value" id="roi-clicks-lost">—</span>
+              <span class="roi-metric-label">clicks going to competitors</span>
+            </div>
+            <div class="roi-metric roi-metric--highlight">
+              <span class="roi-metric-value" id="roi-revenue-lost">—</span>
+              <span class="roi-metric-label">annual revenue lost</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="roi-result-card roi-result-card--gain">
+          <h4>If you reach position 1</h4>
+          <div class="roi-metrics">
+            <div class="roi-metric">
+              <span class="roi-metric-value" id="roi-slots-filled">—</span>
+              <span class="roi-metric-label">empty slots filled/week</span>
+            </div>
+            <div class="roi-metric">
+              <span class="roi-metric-value" id="roi-new-patients">—</span>
+              <span class="roi-metric-label">new patient families/mo</span>
+            </div>
+            <div class="roi-metric roi-metric--highlight">
+              <span class="roi-metric-value" id="roi-revenue-gain">—</span>
+              <span class="roi-metric-label">additional annual revenue</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="roi-disclaimer">
+        These numbers are <strong>research-backed estimates</strong> — not guarantees. 
+        Data: First Page Sage CTR (2025), AVMA Pet Ownership Sourcebook 2024/25, 5% conversion benchmark.
+      </p>
+
+      <div class="roi-cta">
+        <a href="/contact/#calendly" class="btn btn--primary">Let's Talk About Your Competitors</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .roi-header {
+    margin-bottom: 48px;
+  }
+
+  .roi-calculator {
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+
+  .roi-inputs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-bottom: 40px;
+  }
+
+  .roi-step {
+    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-xl);
+    padding: 28px;
+  }
+
+  .roi-step h4 {
+    color: var(--pr-white);
+    font-size: 18px;
+    margin: 12px 0 20px;
+  }
+
+  .roi-step-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    background: rgba(50, 92, 232, 0.3);
+    border-radius: var(--radius-sm);
+    color: var(--pr-blue-light);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .roi-label {
+    display: block;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+    margin-bottom: 8px;
+    margin-top: 16px;
+  }
+
+  .roi-select {
+    width: 100%;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: var(--radius-md);
+    color: var(--pr-white);
+    font-size: 14px;
+    font-family: var(--font-body);
+    outline: none;
+    cursor: pointer;
+    appearance: none;
+  }
+
+  .roi-select option {
+    background: var(--pr-navy);
+    color: var(--pr-white);
+  }
+
+  .roi-range {
+    width: 100%;
+    height: 6px;
+    -webkit-appearance: none;
+    appearance: none;
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 3px;
+    outline: none;
+    margin-top: 4px;
+  }
+
+  .roi-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--pr-blue);
+    cursor: pointer;
+    border: 3px solid var(--pr-white);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  }
+
+  .roi-range-value {
+    font-size: 14px;
+    color: var(--pr-blue-light);
+    font-weight: 600;
+    margin-top: 8px;
+  }
+
+  .roi-results {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-bottom: 32px;
+  }
+
+  .roi-result-card {
+    border-radius: var(--radius-xl);
+    padding: 32px;
+  }
+
+  .roi-result-card h4 {
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+
+  .roi-result-card--loss {
+    background: rgba(243, 114, 98, 0.1);
+    border: 1px solid rgba(243, 114, 98, 0.2);
+  }
+
+  .roi-result-card--loss h4 {
+    color: var(--pr-coral);
+  }
+
+  .roi-result-card--gain {
+    background: rgba(119, 185, 120, 0.1);
+    border: 1px solid rgba(119, 185, 120, 0.2);
+  }
+
+  .roi-result-card--gain h4 {
+    color: var(--pr-success);
+  }
+
+  .roi-metrics {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .roi-metric {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .roi-metric-value {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 800;
+    color: var(--pr-white);
+  }
+
+  .roi-metric-label {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+  }
+
+  .roi-metric--highlight .roi-metric-value {
+    font-size: 36px;
+  }
+
+  .roi-result-card--loss .roi-metric--highlight .roi-metric-value {
+    color: var(--pr-coral);
+  }
+
+  .roi-result-card--gain .roi-metric--highlight .roi-metric-value {
+    color: var(--pr-success);
+  }
+
+  .roi-disclaimer {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.4);
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto 24px;
+    line-height: 1.6;
+  }
+
+  .roi-disclaimer strong {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .roi-cta {
+    text-align: center;
+  }
+
+  @media (max-width: 900px) {
+    .roi-inputs {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 600px) {
+    .roi-results {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const cityData: Record<string, { searches: number; label: string }> = {
+    small: { searches: 800, label: 'Small town' },
+    mid: { searches: 2200, label: 'Mid-size city' },
+    large: { searches: 5000, label: 'Large city' },
+    metro: { searches: 12000, label: 'Major metro' },
+  };
+
+  const ctrByPosition = [0.398, 0.187, 0.109, 0.075, 0.053, 0.038, 0.028, 0.021, 0.016, 0.013];
+  const conversionRate = 0.05;
+
+  function calculate() {
+    const city = (document.getElementById('roi-city') as HTMLSelectElement)?.value || 'mid';
+    const slots = parseInt((document.getElementById('roi-slots') as HTMLInputElement)?.value || '8');
+    const competitors = parseInt((document.getElementById('roi-competitors') as HTMLInputElement)?.value || '4');
+    const patientValue = parseInt((document.getElementById('roi-value') as HTMLInputElement)?.value || '600');
+
+    // Update displayed values
+    const slotsEl = document.getElementById('roi-slots-value');
+    const compEl = document.getElementById('roi-competitors-value');
+    const valEl = document.getElementById('roi-value-value');
+    if (slotsEl) slotsEl.textContent = String(slots);
+    if (compEl) compEl.textContent = String(competitors);
+    if (valEl) valEl.textContent = String(patientValue);
+
+    const monthlySearches = cityData[city]?.searches || 2200;
+
+    // Calculate lost clicks (sum of CTR for positions above you)
+    let lostCTR = 0;
+    for (let i = 0; i < Math.min(competitors, ctrByPosition.length); i++) {
+      lostCTR += ctrByPosition[i];
+    }
+
+    const lostClicks = Math.round(monthlySearches * lostCTR);
+    const lostPatients = Math.round(lostClicks * conversionRate);
+    const lostRevenue = lostPatients * patientValue * 12;
+
+    // Position 1 gains
+    const pos1Clicks = Math.round(monthlySearches * ctrByPosition[0]);
+    const newPatients = Math.round(pos1Clicks * conversionRate);
+    const slotsFilled = Math.min(Math.round(newPatients / 4.3), slots);
+    const gainRevenue = newPatients * patientValue * 12;
+
+    // Update DOM
+    const fmt = (n: number) => n.toLocaleString('en-US');
+    const fmtCurrency = (n: number) => '$' + n.toLocaleString('en-US');
+
+    const searchesEl = document.getElementById('roi-searches');
+    const clicksLostEl = document.getElementById('roi-clicks-lost');
+    const revenueLostEl = document.getElementById('roi-revenue-lost');
+    const slotsFilledEl = document.getElementById('roi-slots-filled');
+    const newPatientsEl = document.getElementById('roi-new-patients');
+    const revenueGainEl = document.getElementById('roi-revenue-gain');
+
+    if (searchesEl) searchesEl.textContent = fmt(monthlySearches);
+    if (clicksLostEl) clicksLostEl.textContent = fmt(lostClicks);
+    if (revenueLostEl) revenueLostEl.textContent = fmtCurrency(lostRevenue);
+    if (slotsFilledEl) slotsFilledEl.textContent = fmt(slotsFilled);
+    if (newPatientsEl) newPatientsEl.textContent = fmt(newPatients);
+    if (revenueGainEl) revenueGainEl.textContent = fmtCurrency(gainRevenue);
+  }
+
+  // Bind events
+  ['roi-city', 'roi-slots', 'roi-competitors', 'roi-value'].forEach((id) => {
+    document.getElementById(id)?.addEventListener('input', calculate);
+  });
+
+  // Initial calculation
+  calculate();
+</script>

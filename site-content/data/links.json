@@ -1,0 +1,374 @@
+[
+  {
+    "source_page": "contact-us",
+    "link_text": "Book Your Strategy Call",
+    "destination": "#calendly-contact",
+    "is_internal": true
+  },
+  {
+    "source_page": "contact-us",
+    "link_text": "Schedule an Appointment (Calendly)",
+    "destination": "https://calendly.com/pawrankofficial/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=0b2845&text_color=ffffff&primary_color=325ce8",
+    "is_internal": false
+  },
+  {
+    "source_page": "contact-us",
+    "link_text": "pawrankofficial@gmail.com",
+    "destination": "mailto:pawrankofficial@gmail.com",
+    "is_internal": false
+  },
+  {
+    "source_page": "contact-us",
+    "link_text": "pawrankofficial@gmail.com",
+    "destination": "mailto:pawrankofficial@gmail.com",
+    "is_internal": false
+  },
+  {
+    "source_page": "contact-us",
+    "link_text": "Book Your Strategy Call",
+    "destination": "#calendly-contact",
+    "is_internal": true
+  },
+  {
+    "source_page": "home",
+    "link_text": "Book a free Consultation",
+    "destination": "https://pawrank.com/schedule-an-appointment/",
+    "is_internal": true
+  },
+  {
+    "source_page": "home",
+    "link_text": "VET seo income calculator",
+    "destination": "#vet-seo-roi-calculator",
+    "is_internal": true
+  },
+  {
+    "source_page": "home",
+    "link_text": "let's find out together",
+    "destination": "https://pawrank.com/schedule-an-appointment/",
+    "is_internal": true
+  },
+  {
+    "source_page": "home",
+    "link_text": "Let's talk about your competitors",
+    "destination": "https://pawrank.com/schedule-an-appointment/",
+    "is_internal": true
+  },
+  {
+    "source_page": "home",
+    "link_text": "Book a free 30 mint Consultation",
+    "destination": "https://pawrank.com/schedule-an-appointment/",
+    "is_internal": true
+  },
+  {
+    "source_page": "privacy-policy",
+    "link_text": "View Google's Privacy Policy →",
+    "destination": "https://policies.google.com/privacy",
+    "is_internal": false
+  },
+  {
+    "source_page": "privacy-policy",
+    "link_text": "View Microsoft's Privacy Policy →",
+    "destination": "https://privacy.microsoft.com/en-us/privacystatement",
+    "is_internal": false
+  },
+  {
+    "source_page": "privacy-policy",
+    "link_text": "View Calendly's Privacy Policy →",
+    "destination": "https://calendly.com/privacy",
+    "is_internal": false
+  },
+  {
+    "source_page": "privacy-policy",
+    "link_text": "View Mailchimp's Privacy Policy →",
+    "destination": "https://mailchimp.com/legal/privacy/",
+    "is_internal": false
+  },
+  {
+    "source_page": "privacy-policy",
+    "link_text": "📧",
+    "destination": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4e7.svg",
+    "is_internal": false
+  },
+  {
+    "source_page": "privacy-policy",
+    "link_text": "🌐",
+    "destination": "https://s.w.org/images/core/emoji/17.0.2/svg/1f310.svg",
+    "is_internal": false
+  },
+  {
+    "source_page": "privacy-policy",
+    "link_text": "pawrank.com",
+    "destination": "https://pawrank.com/",
+    "is_internal": true
+  },
+  {
+    "source_page": "privacy-policy",
+    "link_text": "📍",
+    "destination": "https://s.w.org/images/core/emoji/17.0.2/svg/1f4cd.svg",
+    "is_internal": false
+  },
+  {
+    "source_page": "schedule-an-appointment",
+    "link_text": "Schedule an Appointment (Calendly)",
+    "destination": "https://calendly.com/pawrankofficial/30min?hide_event_type_details=1&hide_gdpr_banner=1&background_color=0b2845&text_color=ffffff&primary_color=325ce8",
+    "is_internal": false
+  },
+  {
+    "source_page": "blogs",
+    "link_text": "Veterinary SEO: The Complete Guide to Get More Clients",
+    "destination": "https://pawrank.com/veterinary-seo-guide/",
+    "is_internal": true
+  },
+  {
+    "source_page": "seo-pricing",
+    "link_text": "Book a free Consultation",
+    "destination": "https://pawrank.com/schedule-an-appointment/",
+    "is_internal": true
+  },
+  {
+    "source_page": "seo-pricing",
+    "link_text": "veterinary SEO",
+    "destination": "https://pawrank.com/",
+    "is_internal": true
+  },
+  {
+    "source_page": "seo-pricing",
+    "link_text": "Hide the Pain Harold meme showing an older man forcing a smile while holding a telephone. The text reads: When the general SEO agency celebrates a 200% spike in traffic... but it's all just people calling the front desk for free medical advice.",
+    "destination": "https://pawrank.com/wp-content/uploads/2026/03/veterinary-seo-meme.webp",
+    "is_internal": true
+  },
+  {
+    "source_page": "seo-pricing",
+    "link_text": "Book a free 30 mint Consultation",
+    "destination": "https://pawrank.com/schedule-an-appointment/",
+    "is_internal": true
+  },
+  {
+    "source_page": "your-last-veterinary-seo-company-paw-rank",
+    "link_text": "Book a free Consultation",
+    "destination": "https://pawrank.com/schedule-an-appointment/",
+    "is_internal": true
+  },
+  {
+    "source_page": "new-seo-pricing",
+    "link_text": "Compare Plans",
+    "destination": "https://pawrank.com/about-us/",
+    "is_internal": true
+  },
+  {
+    "source_page": "new-seo-pricing",
+    "link_text": "Help Me Choose",
+    "destination": "#",
+    "is_internal": true
+  },
+  {
+    "source_page": "new-seo-pricing",
+    "link_text": "Schedule a Call About Get Found\n\n→",
+    "destination": "#",
+    "is_internal": true
+  },
+  {
+    "source_page": "new-seo-pricing",
+    "link_text": "See Everything Included →",
+    "destination": "#",
+    "is_internal": true
+  },
+  {
+    "source_page": "new-seo-pricing",
+    "link_text": "Schedule a Call About Grow Appointments\n\n→",
+    "destination": "#",
+    "is_internal": true
+  },
+  {
+    "source_page": "new-seo-pricing",
+    "link_text": "Explore the Full Growth Program →",
+    "destination": "#",
+    "is_internal": true
+  },
+  {
+    "source_page": "new-seo-pricing",
+    "link_text": "Help Me Choose a Plan\n\n→",
+    "destination": "#",
+    "is_internal": true
+  },
+  {
+    "source_page": "new-seo-pricing",
+    "link_text": "Schedule a Call About Get Found",
+    "destination": "https://pawrank.com/schedule-an-appointment/",
+    "is_internal": true
+  },
+  {
+    "source_page": "new-seo-pricing",
+    "link_text": "Schedule a Call About Grow Appointments",
+    "destination": "https://pawrank.com/schedule-an-appointment/",
+    "is_internal": true
+  },
+  {
+    "source_page": "new-seo-pricing",
+    "link_text": "Help Me Choose a Plan",
+    "destination": "https://pawrank.com/contact-us/",
+    "is_internal": true
+  },
+  {
+    "source_page": "new-seo-pricing",
+    "link_text": "View the Full Case Study →",
+    "destination": "https://pawrank.com/schedule-an-appointment/",
+    "is_internal": true
+  },
+  {
+    "source_page": "new-seo-pricing",
+    "link_text": "View the Full Case Study →",
+    "destination": "https://pawrank.com/schedule-an-appointment/",
+    "is_internal": true
+  },
+  {
+    "source_page": "new-seo-pricing",
+    "link_text": "Schedule a Get Found Call",
+    "destination": "https://pawrank.com/schedule-an-appointment/",
+    "is_internal": true
+  },
+  {
+    "source_page": "new-seo-pricing",
+    "link_text": "Schedule a Grow Call",
+    "destination": "https://pawrank.com/schedule-an-appointment/",
+    "is_internal": true
+  },
+  {
+    "source_page": "new-seo-pricing",
+    "link_text": "Help Me Choose a Plan",
+    "destination": "https://pawrank.com/contact-us/",
+    "is_internal": true
+  },
+  {
+    "source_page": "new-seo-pricing",
+    "link_text": "Schedule an Appointment",
+    "destination": "https://pawrank.com/schedule-an-appointment/",
+    "is_internal": true
+  },
+  {
+    "source_page": "new-seo-pricing",
+    "link_text": "Contact Us",
+    "destination": "https://pawrank.com/contact-us/",
+    "is_internal": true
+  },
+  {
+    "source_page": "veterinary-seo-guide",
+    "link_text": "\"What is Veterinary SEO? How to Do SEO for a Veterinary Practice\" featuring a central SEO hub connected to veterinary-specific growth strategies like blogging on pet care, local citation management, map pack ranking, and client review management, all in a blue and white branding style.",
+    "destination": "https://pawrank.com/wp-content/uploads/2026/03/Veterinary-seo-guide-1024x567.webp",
+    "is_internal": true
+  },
+  {
+    "source_page": "veterinary-seo-guide",
+    "link_text": "Paw Rank",
+    "destination": "https://pawrank.com/",
+    "is_internal": true
+  },
+  {
+    "source_page": "veterinary-seo-guide",
+    "link_text": "eterinary SEO imprortance = Practice Visibility\" that states \"93% of pet owners won't go further than the first page of Google,\" visually represented by a large group of gray people icons and a small group of blue people and a dog icon to illustrate found vs. unfound audiences",
+    "destination": "https://pawrank.com/wp-content/uploads/2026/03/importance-of-veterinary-seo-1024x537.webp",
+    "is_internal": true
+  },
+  {
+    "source_page": "veterinary-seo-guide",
+    "link_text": "Veterinary SEO Strategies: The Only Guide You’ll Need",
+    "destination": "http://#",
+    "is_internal": false
+  },
+  {
+    "source_page": "veterinary-seo-guide",
+    "link_text": "How Google Ranks Veterinary Websites: Core Algorithm Signals",
+    "destination": "http://#",
+    "is_internal": false
+  },
+  {
+    "source_page": "veterinary-seo-guide",
+    "link_text": "(Local Citations | SEO Glossary Term Definition, 2026)",
+    "destination": "https://www.seodiscovery.com/blog/what-are-citations-in-seo/",
+    "is_internal": false
+  },
+  {
+    "source_page": "veterinary-seo-guide",
+    "link_text": "hurt your local rankings. (Newton, 2025)",
+    "destination": "https://www.brightlocal.com/learn/what-is-nap/",
+    "is_internal": false
+  },
+  {
+    "source_page": "veterinary-seo-guide",
+    "link_text": "SEMrush",
+    "destination": "https://www.semrush.com/features/keyword-research/",
+    "is_internal": false
+  },
+  {
+    "source_page": "veterinary-seo-guide",
+    "link_text": "Diagram illustrating veterinary website interlinking through a hub-and-spoke model. It shows how a central clinic homepage connects to core pillars like Pet Wellness and Veterinary Surgery, which then interlink with specific cluster content such as vaccine guides and spay/neuter articles to build search engine authority.",
+    "destination": "https://pawrank.com/wp-content/uploads/2026/03/Veterinary-seo-interlinking-structure-1024x768.webp",
+    "is_internal": true
+  },
+  {
+    "source_page": "veterinary-seo-guide",
+    "link_text": "Rank Math",
+    "destination": "https://rankmath.com/",
+    "is_internal": false
+  },
+  {
+    "source_page": "veterinary-seo-guide",
+    "link_text": "Veterinary SEO Checklist: Everything Your Clinic Needs to Rank",
+    "destination": "http://#",
+    "is_internal": false
+  },
+  {
+    "source_page": "veterinary-seo-guide",
+    "link_text": "53% of mobile users",
+    "destination": "https://www.marketingdive.com/news/google-53-of-mobile-users-abandon-sites-that-take-over-3-seconds-to-load/426070/",
+    "is_internal": false
+  },
+  {
+    "source_page": "veterinary-seo-guide",
+    "link_text": "Google PageSpeed Insights",
+    "destination": "https://pagespeed.web.dev/",
+    "is_internal": false
+  },
+  {
+    "source_page": "veterinary-seo-guide",
+    "link_text": "Google Search Console",
+    "destination": "https://search.google.com/search-console/about",
+    "is_internal": false
+  },
+  {
+    "source_page": "veterinary-seo-guide",
+    "link_text": "Infographic comparing insecure (HTTP) versus secure (HTTPS) veterinary websites, explaining that SSL encryption is crucial for Veterinary SEO to build pet owner trust and improve search engine ranking.",
+    "destination": "https://pawrank.com/wp-content/uploads/2026/03/veterinary-seo-http-vs-https-1024x162.webp",
+    "is_internal": true
+  },
+  {
+    "source_page": "veterinary-seo-guide",
+    "link_text": "PAW Rank SEO ROI Calculator",
+    "destination": "https://pawrank.com/#vet-seo-roi-calculator",
+    "is_internal": true
+  },
+  {
+    "source_page": "veterinary-seo-guide",
+    "link_text": "A branded infographic comparing Analytics and Search Console functions for Veterinary SEO, showing how a veterinary practice manages website health and search visibility.",
+    "destination": "https://pawrank.com/wp-content/uploads/2026/03/Google-Analytics-vs-Google-search-console-for-veterinary-clinics-1024x559.webp",
+    "is_internal": true
+  },
+  {
+    "source_page": "veterinary-seo-guide",
+    "link_text": "Google’s official John Muller said it in one of his conferences",
+    "destination": "https://www.linkedin.com/posts/schwartze_everyones-looking-for-the-aeogeo-secrets-activity-7405672878899187712-j_ln/",
+    "is_internal": false
+  },
+  {
+    "source_page": "veterinary-seo-guide",
+    "link_text": "Veterinary SEO Checklist: Everything Your Clinic Needs to Rank",
+    "destination": "http://#",
+    "is_internal": false
+  },
+  {
+    "source_page": "veterinary-seo-guide",
+    "link_text": "Book Your Free Competitor Analysis & Strategy Session →",
+    "destination": "https://pawrank.com/schedule-an-appointment/",
+    "is_internal": true
+  }
+]

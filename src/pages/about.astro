@@ -1,0 +1,165 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import StatsBar from '../components/StatsBar.astro';
+import CTABanner from '../components/CTABanner.astro';
+
+// SVG Icons for About Page
+const icons = {
+  target: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>`,
+  handshake: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>`,
+  chart: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`,
+  paw: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="17" rx="3.5" ry="2.5"/><ellipse cx="7" cy="11.5" rx="1.5" ry="2.2" transform="rotate(-15 7 11.5)"/><ellipse cx="17" cy="11.5" rx="1.5" ry="2.2" transform="rotate(15 17 11.5)"/><ellipse cx="10" cy="8.5" rx="1.5" ry="2.2"/><ellipse cx="14" cy="8.5" rx="1.5" ry="2.2"/></svg>`,
+  search: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
+  clipboard: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>`,
+  phone: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`,
+  refresh: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg>`,
+  academy: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>`,
+};
+
+const values = [
+  { icon: icons.target, title: "Veterinary Focus Only", description: "We don't divide our attention across industries. Every strategy, every insight, every process we build is shaped by the veterinary world." },
+  { icon: icons.handshake, title: "Radical Transparency", description: "No black-box tactics. You'll always know what we're doing, why we're doing it, and what results it's driving for your practice." },
+  { icon: icons.chart, title: "Results That Matter", description: "We measure success in booked appointments and new patient calls — not vanity metrics like pageviews or impressions." },
+  { icon: icons.paw, title: "Patient-First Philosophy", description: "Everything we build serves one purpose: connecting more pet owners with compassionate veterinary care when they need it most." },
+];
+---
+
+<BaseLayout
+  title="About Paw Rank – Your Last Veterinary SEO Agency"
+  description="Paw Rank is a specialized veterinary SEO agency helping clinics show up in local searches, compete with big-budget corporate clinics, and turn searches into VIP appointments."
+>
+  <!-- HERO -->
+  <Hero
+    eyebrow="About Paw Rank"
+    title="Your Last Veterinary<br/>SEO Agency"
+    subtitle="You trained to practice medicine, not manage Google or deal with marketing agencies. We help clinics show up in local searches, compete with big-budget corporate clinics, protect their reputations, and turn searches into VIP appointments."
+    primaryCta={{ label: "Book a Free Consultation", href: "/contact/#calendly" }}
+    secondaryCta={{ label: "See Our Pricing", href: "/pricing/" }}
+  />
+
+  <!-- MISSION -->
+  <section class="section section--chalk">
+    <div class="container">
+      <div class="mission-grid">
+        <div class="mission-content reveal">
+          <span class="eyebrow eyebrow--blue">Our Mission</span>
+          <h2>We Exist So Veterinarians Don't Have to Become Marketing Experts</h2>
+          <p class="text-lead">
+            The veterinary industry is being reshaped. Corporate consolidators are buying up independent practices, pet owners are relying on search engines more than ever, and AI is changing how people discover local businesses.
+          </p>
+          <p>
+            Independent veterinary clinics need a digital strategy that matches their clinical excellence. But most practice owners didn't go to vet school to learn Google's algorithm — and they shouldn't have to.
+          </p>
+          <p>
+            That's why Paw Rank exists. We bring deep veterinary industry knowledge together with modern SEO, local search, reputation management, and conversion strategy — so you can focus on what matters most: your patients.
+          </p>
+        </div>
+        <div class="mission-visual reveal reveal-delay-2">
+          <img src="/images/Ranky.png" alt="Ranky - Paw Rank's brand mascot" class="mascot-img" loading="lazy" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section section--white">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Our Values"
+        title="What Drives Every Decision We Make"
+      />
+      <div class="grid grid--2">
+        {values.map((value, i) => (
+          <FeatureCard
+            icon={value.icon}
+            title={value.title}
+            description={value.description}
+            delay={(i % 2) + 1}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="section section--chalk" style="padding-top: 32px; padding-bottom: 32px;">
+    <StatsBar stats={[
+      { value: "16+", label: "Businesses Helped" },
+      { value: "100%", label: "Veterinary Focus" },
+      { value: "3", label: "Core Areas" },
+      { value: "0", label: "Long-Term Contracts" },
+    ]} />
+  </section>
+
+  <!-- HOW WE WORK -->
+  <section class="section section--white">
+    <div class="container">
+      <SectionHeading
+        eyebrow="How We Work"
+        title="A Partnership, Not a Transaction"
+        subtitle="We don't just hand you a monthly report and disappear. Here's what working with Paw Rank actually looks like."
+      />
+
+      <div class="grid grid--3">
+        <FeatureCard icon={icons.search} title="Deep Discovery" description="We start by understanding your practice — your services, your market, your competition, and your growth goals. No generic templates." delay={1} />
+        <FeatureCard icon={icons.clipboard} title="Custom Strategy" description="Every recommendation is based on data from your specific market. We build a roadmap tailored to your practice, not a one-size-fits-all checklist." delay={2} />
+        <FeatureCard icon={icons.phone} title="Direct Access" description="You talk directly to the person doing your SEO work. No account managers, no telephone tag, no re-explaining your practice to someone new." delay={3} />
+        <FeatureCard icon={icons.chart} title="Clear Reporting" description="Monthly reports in plain English showing what we did, what changed, and what we're doing next. We track what matters: calls, forms, and appointments." delay={1} />
+        <FeatureCard icon={icons.refresh} title="Continuous Refinement" description="SEO isn't set-and-forget. We review, refine, and adapt your strategy every month based on what the data tells us." delay={2} />
+        <FeatureCard icon={icons.academy} title="Education & Empowerment" description="We don't keep you in the dark. Through private webinars and guides, you'll understand your digital presence and make informed decisions." delay={3} />
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CTABanner
+    title="Ready to Make Paw Rank Your Last SEO Agency?"
+    subtitle="Let's have a no-pressure conversation about your clinic's growth potential and see if we're the right fit."
+    primaryCta={{ label: "Book a Free Consultation", href: "/contact/#calendly" }}
+    secondaryCta={{ label: "See Our Pricing", href: "/pricing/" }}
+  />
+</BaseLayout>
+
+<style>
+  .mission-grid {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr;
+    gap: 64px;
+    align-items: center;
+  }
+
+  .mission-content h2 {
+    margin-top: 12px;
+    margin-bottom: 20px;
+  }
+
+  .mission-content p {
+    margin-bottom: 16px;
+  }
+
+  .mission-visual {
+    display: flex;
+    justify-content: center;
+  }
+
+  .mascot-img {
+    max-width: 340px;
+    width: 100%;
+    border-radius: var(--radius-2xl);
+    animation: float 4s ease-in-out infinite;
+  }
+
+  @media (max-width: 900px) {
+    .mission-grid {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+
+    .mascot-img {
+      max-width: 240px;
+    }
+  }
+</style>

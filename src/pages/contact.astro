@@ -1,0 +1,292 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import CalendlyEmbed from '../components/CalendlyEmbed.astro';
+import ContactForm from '../components/ContactForm.astro';
+import FAQ from '../components/FAQ.astro';
+import CTABanner from '../components/CTABanner.astro';
+
+const faqItems = [
+  { question: "Is this call right for solo or small clinics?", answer: "Yes. We work with clinics at different stages of growth and tailor our recommendations around your goals, market, website, and available resources." },
+  { question: "Is there any obligation?", answer: "No. This is a no-pressure conversation about your clinic's current online visibility, potential opportunities, and practical next steps." },
+  { question: "What happens after the call?", answer: "You'll leave with a clearer understanding of your clinic's growth opportunities and the next SEO, local visibility, or conversion improvements worth prioritising." },
+];
+---
+
+<BaseLayout
+  title="Contact Us – Book Your Veterinary SEO Strategy Call | Paw Rank"
+  description="Book a free, no-pressure veterinary SEO strategy call. We'll cover your visibility, rankings, website performance, and growth opportunities."
+>
+  <!-- HERO -->
+  <Hero
+    eyebrow="Get in Touch"
+    title="Book Your Veterinary SEO<br/>Strategy Call"
+    subtitle="Let's talk about your clinic's visibility, local rankings, website performance, and growth opportunities."
+    primaryCta={{ label: "Book Your Strategy Call", href: "#calendly" }}
+    secondaryCta={{ label: "Send an Email Instead", href: "#contact-form" }}
+  />
+
+  <!-- TRUST BADGES -->
+  <section class="section section--chalk" style="padding-top: 48px; padding-bottom: 48px;">
+    <div class="container">
+      <div class="trust-grid">
+        <div class="trust-item reveal reveal-delay-1">
+          <div class="trust-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h4>Veterinary SEO Specialist</h4>
+          <p>Deep expertise in veterinary search behavior and local competition</p>
+        </div>
+        <div class="trust-item reveal reveal-delay-2">
+          <div class="trust-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+          </div>
+          <h4>Clear Next Steps</h4>
+          <p>Walk away with actionable insights regardless of whether you work with us</p>
+        </div>
+        <div class="trust-item reveal reveal-delay-3">
+          <div class="trust-icon">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg>
+          </div>
+          <h4>No Pressure Consultation</h4>
+          <p>A genuine conversation about your practice, not a sales pitch</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CALENDLY -->
+  <section class="section section--white">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Schedule a Call"
+        title="Choose a Time That Works for You"
+      />
+      <CalendlyEmbed />
+    </div>
+  </section>
+
+  <!-- WHAT WE'LL COVER -->
+  <section class="section section--chalk">
+    <div class="container">
+      <div class="info-grid">
+        <div class="info-card reveal">
+          <h3>What we'll cover</h3>
+          <ul class="info-list">
+            <li>Your current visibility and local rankings</li>
+            <li>Website performance and conversion opportunities</li>
+            <li>Competitor insights in your area</li>
+            <li>Actionable SEO roadmap tailored to your clinic</li>
+          </ul>
+        </div>
+        <div class="info-card reveal reveal-delay-2">
+          <h3>Who this is for</h3>
+          <ul class="info-list">
+            <li>Veterinary clinics looking to get found by more pet owners</li>
+            <li>Practice owners who want sustainable, long-term growth</li>
+            <li>Clinic teams seeking more qualified website leads</li>
+          </ul>
+        </div>
+        <div class="info-card reveal reveal-delay-3">
+          <h3>Prefer email?</h3>
+          <p>No problem. Reach us anytime at:</p>
+          <a href="mailto:pawrankofficial@gmail.com" class="email-link">
+            pawrankofficial@gmail.com
+          </a>
+          <p class="email-note">We'll get back to you within 24 hours.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT FORM -->
+  <section class="section section--white" id="contact-form">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Email Us"
+        title="Send Us a Message"
+        subtitle="Fill out the form below and we'll get back to you with more details."
+      />
+      <ContactForm />
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="section section--chalk" style="padding-top: 32px; padding-bottom: 32px;">
+    <div class="container">
+      <div class="mini-stats reveal">
+        <div class="mini-stat">
+          <span class="mini-stat-value">16+</span>
+          <span class="mini-stat-label">Businesses Helped</span>
+        </div>
+        <div class="mini-stat">
+          <span class="mini-stat-value">3 Core Areas</span>
+          <span class="mini-stat-label">SEO • Local • Conversion</span>
+        </div>
+        <div class="mini-stat">
+          <span class="mini-stat-value">100%</span>
+          <span class="mini-stat-label">Focused on Veterinary Growth</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section section--white">
+    <div class="container">
+      <SectionHeading
+        eyebrow="FAQ"
+        title="Frequently Asked Questions"
+      />
+      <FAQ items={faqItems} />
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <CTABanner
+    eyebrow="Let's Connect"
+    title="Start with a conversation, then decide your next step."
+    subtitle="We're here to help your clinic get found, trusted, and chosen by more pet owners."
+    primaryCta={{ label: "Book Your Strategy Call", href: "#calendly" }}
+    secondaryCta={{ label: "Email Us", href: "mailto:pawrankofficial@gmail.com" }}
+  />
+</BaseLayout>
+
+<style>
+  .trust-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+
+  .trust-item {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .trust-icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 14px;
+    background: var(--pr-light-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pr-blue);
+    transition: all 0.3s ease;
+  }
+
+  .trust-item:hover .trust-icon {
+    background: var(--pr-blue);
+    color: var(--pr-white);
+    transform: scale(1.05);
+  }
+
+  .trust-item h4 {
+    font-size: 16px;
+    color: var(--pr-navy);
+  }
+
+  .trust-item p {
+    font-size: 13.5px;
+    max-width: 240px;
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .info-card {
+    background: var(--pr-white);
+    border: 1px solid var(--pr-border);
+    border-radius: var(--radius-xl);
+    padding: 32px;
+  }
+
+  .info-card h3 {
+    font-size: 20px;
+    color: var(--pr-navy);
+    margin-bottom: 16px;
+  }
+
+  .info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .info-list li {
+    font-size: 14.5px;
+    line-height: 1.5;
+    color: var(--pr-text);
+    padding-left: 20px;
+    position: relative;
+  }
+
+  .info-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: var(--pr-blue);
+    font-weight: 700;
+  }
+
+  .email-link {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--pr-blue);
+    margin: 12px 0 8px;
+    transition: color 0.2s;
+  }
+
+  .email-link:hover {
+    color: var(--pr-blue-hover);
+  }
+
+  .email-note {
+    font-size: 13px;
+    color: var(--pr-text);
+  }
+
+  .mini-stats {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+  }
+
+  .mini-stat {
+    text-align: center;
+  }
+
+  .mini-stat-value {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--pr-blue);
+  }
+
+  .mini-stat-label {
+    font-size: 13px;
+    color: var(--pr-text);
+  }
+
+  @media (max-width: 767px) {
+    .trust-grid,
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

@@ -1,0 +1,268 @@
+---
+const navLinks = [
+  { label: 'Home', href: '/' },
+  { label: 'Pricing', href: '/pricing/' },
+  { label: 'About', href: '/about/' },
+  { label: 'Blog', href: '/blog/' },
+  { label: 'Contact', href: '/contact/' },
+];
+---
+
+<header class="site-header" id="site-header">
+  <div class="header-inner">
+    <a href="/" class="logo" aria-label="Paw Rank Home">
+      <img src="/images/pawrank-logo.png" alt="Paw Rank" width="140" height="40" />
+    </a>
+
+    <nav class="desktop-nav" aria-label="Main navigation">
+      {navLinks.map((link) => (
+        <a href={link.href} class="nav-link">{link.label}</a>
+      ))}
+    </nav>
+
+    <a href="/contact/#calendly" class="btn btn--primary btn--sm header-cta">
+      Book a Free Call
+    </a>
+
+    <button class="mobile-toggle" id="mobile-toggle" aria-label="Toggle menu" aria-expanded="false">
+      <span class="hamburger"></span>
+    </button>
+  </div>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu" id="mobile-menu">
+    <nav class="mobile-nav" aria-label="Mobile navigation">
+      {navLinks.map((link) => (
+        <a href={link.href} class="mobile-nav-link">{link.label}</a>
+      ))}
+      <a href="/contact/#calendly" class="btn btn--primary btn--full mt-lg">Book a Free Call</a>
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(247, 247, 243, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(11, 40, 69, 0.06);
+    transition: all 0.3s ease;
+  }
+
+  .site-header.scrolled {
+    background: rgba(247, 247, 243, 0.95);
+    box-shadow: 0 4px 20px rgba(11, 40, 69, 0.08);
+  }
+
+  .header-inner {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 24px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+  }
+
+  .logo {
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  .logo img {
+    height: 36px;
+    width: auto;
+  }
+
+  .desktop-nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    flex: 1;
+    justify-content: center;
+  }
+
+  .nav-link {
+    font-family: var(--font-heading);
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--pr-navy);
+    letter-spacing: 0.01em;
+    position: relative;
+    padding: 4px 0;
+    transition: color 0.2s ease;
+  }
+
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--pr-blue);
+    border-radius: 1px;
+    transition: width 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  .nav-link:hover {
+    color: var(--pr-blue);
+  }
+
+  .nav-link:hover::after {
+    width: 100%;
+  }
+
+  .header-cta {
+    flex-shrink: 0;
+  }
+
+  /* Mobile Toggle */
+  .mobile-toggle {
+    display: none;
+    width: 40px;
+    height: 40px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .hamburger {
+    position: relative;
+    width: 24px;
+    height: 2px;
+    background: var(--pr-navy);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  .hamburger::before,
+  .hamburger::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 24px;
+    height: 2px;
+    background: var(--pr-navy);
+    border-radius: 2px;
+    transition: all 0.3s ease;
+  }
+
+  .hamburger::before { top: -7px; }
+  .hamburger::after { bottom: -7px; }
+
+  .mobile-toggle.active .hamburger {
+    background: transparent;
+  }
+
+  .mobile-toggle.active .hamburger::before {
+    top: 0;
+    transform: rotate(45deg);
+  }
+
+  .mobile-toggle.active .hamburger::after {
+    bottom: 0;
+    transform: rotate(-45deg);
+  }
+
+  /* Mobile Menu */
+  .mobile-menu {
+    display: none;
+    position: absolute;
+    top: 72px;
+    left: 0;
+    right: 0;
+    background: var(--pr-white);
+    border-bottom: 1px solid var(--pr-border);
+    box-shadow: 0 20px 40px rgba(11, 40, 69, 0.1);
+    padding: 24px;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-menu.open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: all;
+  }
+
+  .mobile-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .mobile-nav-link {
+    font-family: var(--font-heading);
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--pr-navy);
+    padding: 12px 16px;
+    border-radius: 12px;
+    transition: all 0.2s ease;
+  }
+
+  .mobile-nav-link:hover {
+    background: var(--pr-light-blue);
+    color: var(--pr-blue);
+  }
+
+  @media (max-width: 900px) {
+    .desktop-nav,
+    .header-cta {
+      display: none;
+    }
+
+    .mobile-toggle {
+      display: flex;
+    }
+
+    .mobile-menu {
+      display: block;
+    }
+  }
+</style>
+
+<script>
+  // Scroll effect
+  const header = document.getElementById('site-header');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      header?.classList.add('scrolled');
+    } else {
+      header?.classList.remove('scrolled');
+    }
+  });
+
+  // Mobile menu toggle
+  const toggle = document.getElementById('mobile-toggle');
+  const menu = document.getElementById('mobile-menu');
+  
+  toggle?.addEventListener('click', () => {
+    toggle.classList.toggle('active');
+    menu?.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', 
+      toggle.classList.contains('active') ? 'true' : 'false'
+    );
+  });
+
+  // Close mobile menu on link click
+  document.querySelectorAll('.mobile-nav-link').forEach((link) => {
+    link.addEventListener('click', () => {
+      toggle?.classList.remove('active');
+      menu?.classList.remove('open');
+    });
+  });
+</script>
