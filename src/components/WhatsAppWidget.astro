@@ -1,0 +1,549 @@
+---
+interface Props {
+  phoneNumber?: string;
+  defaultMessage?: string;
+  avatarUrl?: string;
+}
+
+const {
+  phoneNumber = "447832703636",
+  defaultMessage = "Hi PawRank, I'd like to learn more about improving my veterinary clinic's online visibility.",
+  avatarUrl = "/images/Pawrank-Logo.png",
+} = Astro.props;
+
+const encodedMessage = encodeURIComponent(defaultMessage);
+const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+---
+
+<!-- ===================================
+     PAW RANK WHATSAPP CHAT WIDGET
+==================================== -->
+<div id="pr-whatsapp-widget" class="pr-whatsapp-widget">
+  <!-- CHAT BOX -->
+  <div id="pr-whatsapp-box" class="pr-whatsapp-box" role="dialog" aria-label="PawRank WhatsApp Chat" aria-hidden="true">
+    <!-- HEADER -->
+    <div class="pr-whatsapp-header">
+      <div class="pr-whatsapp-profile">
+        <!-- LOGO / AVATAR -->
+        <div class="pr-whatsapp-avatar">
+          <img src={avatarUrl} alt="PawRank Logo" onerror="this.style.display='none'; if(this.nextElementSibling) this.nextElementSibling.style.display='flex';" />
+          <span class="pr-avatar-fallback" style="display: none;">PR</span>
+          <span class="pr-online-dot"></span>
+        </div>
+
+        <!-- BUSINESS INFO -->
+        <div class="pr-whatsapp-info">
+          <strong>PawRank</strong>
+          <span>Vet-Run SEO Agency</span>
+        </div>
+      </div>
+
+      <!-- CLOSE BUTTON -->
+      <button id="pr-whatsapp-close" class="pr-whatsapp-close" type="button" aria-label="Close WhatsApp chat">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+
+    <!-- CHAT AREA -->
+    <div class="pr-whatsapp-chat-area">
+      <!-- MESSAGE BUBBLE -->
+      <div class="pr-whatsapp-message">
+        <p>Hi there 👋</p>
+        <p>How can I help your veterinary clinic grow online?</p>
+        <span class="pr-message-time">Now</span>
+      </div>
+
+      <!-- WHATSAPP CTA -->
+      <a href={whatsappUrl} class="pr-whatsapp-cta" target="_blank" rel="noopener noreferrer">
+        <svg viewBox="0 0 32 32" aria-hidden="true" width="22" height="22" fill="currentColor">
+          <path d="M16 3C9 3 3.3 8.6 3.3 15.5c0 2.4.7 4.7 1.9 6.7L3 29l7-2.2c1.9 1 4 1.5 6.1 1.5 7 0 12.7-5.6 12.7-12.5S23 3 16 3zm0 22.9c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.1 1.3 1.3-4-.3-.4c-1.1-1.7-1.7-3.7-1.7-5.7 0-5.7 4.7-10.3 10.5-10.3 5.8 0 10.5 4.6 10.5 10.3S21.8 25.9 16 25.9zm5.8-7.7c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2s-.8 1-.9 1.2c-.2.2-.3.2-.7.1-1.8-.9-3-1.6-4.2-3.7-.3-.6.3-.6.9-2 .1-.3.1-.5 0-.7-.1-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 2.9s1.2 3.3 1.4 3.5c.2.2 2.4 3.7 5.8 5.2.8.3 1.4.6 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.3.2-1.5-.1-.2-.4-.3-.7-.5z"/>
+        </svg>
+        <span>Chat on WhatsApp</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- FLOATING BUTTON -->
+  <button id="pr-whatsapp-launcher" class="pr-whatsapp-launcher" type="button" aria-label="Open WhatsApp chat" aria-haspopup="dialog" aria-expanded="false">
+    <!-- RED NOTIFICATION DOT -->
+    <span id="pr-whatsapp-notification" class="pr-whatsapp-notification"></span>
+
+    <!-- WHATSAPP ICON -->
+    <svg viewBox="0 0 32 32" aria-hidden="true" width="36" height="36" fill="#25D366">
+      <path d="M16 3C9 3 3.3 8.6 3.3 15.5c0 2.4.7 4.7 1.9 6.7L3 29l7-2.2c1.9 1 4 1.5 6.1 1.5 7 0 12.7-5.6 12.7-12.5S23 3 16 3zm0 22.9c-1.9 0-3.8-.5-5.4-1.5l-.4-.2-4.1 1.3 1.3-4-.3-.4c-1.1-1.7-1.7-3.7-1.7-5.7 0-5.7 4.7-10.3 10.5-10.3 5.8 0 10.5 4.6 10.5 10.3S21.8 25.9 16 25.9zm5.8-7.7c-.3-.2-1.9-.9-2.2-1-.3-.1-.5-.2-.7.2s-.8 1-.9 1.2c-.2.2-.3.2-.7.1-1.8-.9-3-1.6-4.2-3.7-.3-.6.3-.6.9-2 .1-.3.1-.5 0-.7-.1-.2-.7-1.7-1-2.3-.3-.6-.5-.5-.7-.5h-.6c-.2 0-.6.1-.9.4-.3.4-1.2 1.2-1.2 2.9s1.2 3.3 1.4 3.5c.2.2 2.4 3.7 5.8 5.2.8.3 1.4.6 1.9.7.8.3 1.5.2 2.1.1.6-.1 1.9-.8 2.2-1.5.3-.7.3-1.3.2-1.5-.1-.2-.4-.3-.7-.5z"/>
+    </svg>
+  </button>
+</div>
+
+<style>
+  /* ==================================
+     RESET & CONTAINMENT
+  ================================== */
+  .pr-whatsapp-widget,
+  .pr-whatsapp-widget * {
+    box-sizing: border-box;
+    font-family: var(--font-body, system-ui, -apple-system, sans-serif);
+  }
+
+  /* ==================================
+     CHAT BOX
+  ================================== */
+  .pr-whatsapp-box {
+    position: fixed;
+    right: 24px;
+    bottom: 105px;
+    width: 380px;
+    max-width: calc(100vw - 32px);
+    border-radius: 18px;
+    overflow: hidden;
+    background: #f4f0e9;
+    box-shadow: 0 18px 55px rgba(11, 40, 69, 0.28);
+    z-index: 999998;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(20px) scale(0.96);
+    transform-origin: bottom right;
+    transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.25s cubic-bezier(0.16, 1, 0.3, 1),
+                visibility 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .pr-whatsapp-box.pr-is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+  }
+
+  /* ==================================
+     HEADER
+  ================================== */
+  .pr-whatsapp-header {
+    position: relative;
+    min-height: 90px;
+    padding: 18px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #0B2845;
+    color: #ffffff;
+  }
+
+  .pr-whatsapp-profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+  }
+
+  /* ==================================
+     PROFILE AVATAR
+  ================================== */
+  .pr-whatsapp-avatar {
+    position: relative;
+    width: 50px;
+    height: 50px;
+    flex: 0 0 50px;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+
+  .pr-whatsapp-avatar img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    border-radius: 50%;
+    padding: 4px;
+  }
+
+  .pr-avatar-fallback {
+    color: #0B2845;
+    font-size: 16px;
+    font-weight: 800;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ONLINE DOT */
+  .pr-online-dot {
+    position: absolute;
+    right: 0px;
+    bottom: 0px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: #37d96c;
+    border: 2px solid #0B2845;
+  }
+
+  /* ==================================
+     BUSINESS INFO
+  ================================== */
+  .pr-whatsapp-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .pr-whatsapp-info strong {
+    margin: 0;
+    color: #ffffff;
+    font-family: var(--font-heading, inherit);
+    font-size: 17px;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+
+  .pr-whatsapp-info span {
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 13px;
+    line-height: 1.3;
+  }
+
+  /* ==================================
+     CLOSE X BUTTON
+  ================================== */
+  .pr-whatsapp-close {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    border: 0;
+    outline: none;
+    background: transparent;
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 26px;
+    font-weight: 300;
+    line-height: 1;
+    padding: 4px;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+
+  .pr-whatsapp-close:hover {
+    color: #ffffff;
+    transform: scale(1.1);
+  }
+
+  /* ==================================
+     CHAT AREA
+  ================================== */
+  .pr-whatsapp-chat-area {
+    min-height: 200px;
+    padding: 20px 18px 24px;
+    background-color: #f3efe8;
+    background-image:
+      radial-gradient(circle at 20% 30%, rgba(0,0,0,0.02) 0, rgba(0,0,0,0.02) 2px, transparent 3px),
+      radial-gradient(circle at 75% 65%, rgba(0,0,0,0.02) 0, rgba(0,0,0,0.02) 2px, transparent 3px);
+    background-size: 36px 36px;
+  }
+
+  /* ==================================
+     MESSAGE BUBBLE
+  ================================== */
+  .pr-whatsapp-message {
+    position: relative;
+    width: 86%;
+    padding: 13px 15px 22px;
+    background: #ffffff;
+    border-radius: 4px 16px 16px 16px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  }
+
+  .pr-whatsapp-message p {
+    margin: 0 0 8px;
+    color: #242424;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.45;
+  }
+
+  .pr-whatsapp-message p:last-of-type {
+    margin-bottom: 0;
+  }
+
+  .pr-message-time {
+    position: absolute;
+    right: 10px;
+    bottom: 6px;
+    color: #9a9a9a;
+    font-size: 11px;
+    line-height: 1;
+  }
+
+  /* ==================================
+     CHAT ON WHATSAPP BUTTON (CTA)
+  ================================== */
+  .pr-whatsapp-cta {
+    width: fit-content;
+    max-width: 100%;
+    margin: 24px auto 0;
+    padding: 12px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border-radius: 50px;
+    background: #25D366;
+    color: #ffffff !important;
+    text-decoration: none !important;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.2;
+    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.32);
+    transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .pr-whatsapp-cta:hover {
+    background: #20ba59;
+    color: #ffffff !important;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(37, 211, 102, 0.4);
+  }
+
+  .pr-whatsapp-cta svg {
+    flex-shrink: 0;
+    fill: #ffffff;
+  }
+
+  /* ==================================
+     FLOATING BUTTON (LAUNCHER)
+  ================================== */
+  .pr-whatsapp-launcher {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    width: 62px;
+    height: 62px;
+    padding: 10px;
+    border: 5px solid #ffffff;
+    border-radius: 50%;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    z-index: 999999;
+    box-shadow: 0 8px 24px rgba(11, 40, 69, 0.22);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .pr-whatsapp-launcher:hover {
+    transform: translateY(-3px) scale(1.04);
+    box-shadow: 0 12px 28px rgba(11, 40, 69, 0.28);
+  }
+
+  .pr-whatsapp-launcher svg {
+    display: block;
+    width: 36px;
+    height: 36px;
+  }
+
+  /* ==================================
+     RED NOTIFICATION DOT
+  ================================== */
+  .pr-whatsapp-notification {
+    position: absolute;
+    top: -2px;
+    right: -2px;
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #ff1727;
+    border: 2.5px solid #ffffff;
+    transition: opacity 0.2s ease, visibility 0.2s ease;
+  }
+
+  .pr-whatsapp-notification.pr-hide {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  /* ==================================
+     MOBILE RESPONSIVE
+  ================================== */
+  @media (max-width: 600px) {
+    .pr-whatsapp-box {
+      right: 16px;
+      bottom: 86px;
+      width: calc(100vw - 32px);
+      border-radius: 16px;
+    }
+
+    .pr-whatsapp-header {
+      min-height: 80px;
+      padding: 14px 16px;
+    }
+
+    .pr-whatsapp-avatar {
+      width: 44px;
+      height: 44px;
+      flex: 0 0 44px;
+    }
+
+    .pr-whatsapp-chat-area {
+      min-height: 180px;
+      padding: 16px 14px 20px;
+    }
+
+    .pr-whatsapp-message {
+      width: 90%;
+      padding: 12px 14px 20px;
+    }
+
+    .pr-whatsapp-cta {
+      width: 90%;
+      padding: 12px 16px;
+      font-size: 14px;
+    }
+
+    .pr-whatsapp-launcher {
+      right: 16px;
+      bottom: 16px;
+      width: 56px;
+      height: 56px;
+      padding: 8px;
+      border-width: 4px;
+    }
+
+    .pr-whatsapp-launcher svg {
+      width: 32px;
+      height: 32px;
+    }
+  }
+
+  /* VERY SMALL PHONES */
+  @media (max-width: 360px) {
+    .pr-whatsapp-box {
+      right: 10px;
+      bottom: 76px;
+      width: calc(100vw - 20px);
+    }
+
+    .pr-whatsapp-info span {
+      max-width: 180px;
+    }
+
+    .pr-whatsapp-cta {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  let hasInteractedOrOpened = false;
+
+  function initWhatsAppWidget() {
+    const chatBox = document.getElementById('pr-whatsapp-box');
+    const launcher = document.getElementById('pr-whatsapp-launcher');
+    const closeButton = document.getElementById('pr-whatsapp-close');
+    const notification = document.getElementById('pr-whatsapp-notification');
+
+    if (!chatBox || !launcher || !closeButton) return;
+    if (chatBox.dataset.waInit === 'true') return;
+    chatBox.dataset.waInit = 'true';
+
+    function markAutoOpened() {
+      hasInteractedOrOpened = true;
+      try {
+        sessionStorage.setItem('pawrank_wa_auto_opened', 'yes');
+      } catch {
+        // Ignore if sessionStorage is restricted
+      }
+    }
+
+    function openChat(focusClose = false) {
+      chatBox?.classList.add('pr-is-open');
+      chatBox?.setAttribute('aria-hidden', 'false');
+      launcher?.setAttribute('aria-expanded', 'true');
+      if (notification) {
+        notification.classList.add('pr-hide');
+      }
+      markAutoOpened();
+      if (focusClose && closeButton) {
+        closeButton.focus();
+      }
+    }
+
+    function closeChat(focusLauncher = false) {
+      chatBox?.classList.remove('pr-is-open');
+      chatBox?.setAttribute('aria-hidden', 'true');
+      launcher?.setAttribute('aria-expanded', 'false');
+      markAutoOpened();
+      if (focusLauncher && launcher) {
+        launcher.focus();
+      }
+    }
+
+    function toggleChat(fromKeyboard = false) {
+      if (chatBox?.classList.contains('pr-is-open')) {
+        closeChat(fromKeyboard);
+      } else {
+        openChat(fromKeyboard);
+      }
+    }
+
+    launcher.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const isKeyboard = (e as MouseEvent).detail === 0;
+      toggleChat(isKeyboard);
+    });
+
+    closeButton.addEventListener('click', (e) => {
+      e.stopPropagation();
+      closeChat(true);
+    });
+
+    document.addEventListener('click', (e) => {
+      if (!chatBox?.classList.contains('pr-is-open')) return;
+      const target = e.target as Node;
+      if (!chatBox.contains(target) && !launcher.contains(target)) {
+        closeChat(false);
+      }
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && chatBox?.classList.contains('pr-is-open')) {
+        closeChat(true);
+      }
+    });
+
+    // Auto-open once per session after 5 seconds if not previously opened
+    try {
+      const alreadyOpened = sessionStorage.getItem('pawrank_wa_auto_opened');
+      if (!alreadyOpened && !hasInteractedOrOpened) {
+        setTimeout(() => {
+          let currentAlreadyOpened = hasInteractedOrOpened;
+          try {
+            if (sessionStorage.getItem('pawrank_wa_auto_opened')) {
+              currentAlreadyOpened = true;
+            }
+          } catch {
+            // Ignore
+          }
+          if (!currentAlreadyOpened) {
+            openChat(false);
+          }
+        }, 5000);
+      }
+    } catch {
+      // Ignore if sessionStorage is disabled
+    }
+  }
+
+  // Support Astro view transitions and regular DOM ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initWhatsAppWidget);
+  } else {
+    initWhatsAppWidget();
+  }
+  document.addEventListener('astro:page-load', initWhatsAppWidget);
+</script>

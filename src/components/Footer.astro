@@ -26,15 +26,21 @@ const footerLinks = {
       <!-- Brand Column -->
       <div class="footer-brand">
         <a href="/" class="footer-logo">
-          <img src="/images/pawrank-logo.png" alt="Paw Rank" width="130" height="38" />
+          <img src="/images/Pawrank-Logo.png" alt="Paw Rank" width="130" height="38" />
         </a>
         <p class="footer-tagline">
           Helping veterinary clinics grow through local SEO, 
           reputation management, and transparent reporting.
         </p>
-        <a href="mailto:pawrankofficial@gmail.com" class="footer-email">
-          pawrankofficial@gmail.com
-        </a>
+        <div class="footer-contacts">
+          <a href="mailto:pawrankofficial@gmail.com" class="footer-email">
+            pawrankofficial@gmail.com
+          </a>
+          <a href="https://wa.me/447832703636?text=Hi%20PawRank%2C%20I%27d%20like%20to%20learn%20more%20about%20improving%20my%20veterinary%20clinic%27s%20online%20visibility." target="_blank" rel="noopener noreferrer" class="footer-whatsapp">
+            <img src="/icons/whatsapp.svg" alt="" width="16" height="16" class="footer-whatsapp-icon" aria-hidden="true" />
+            <span>Chat on WhatsApp</span>
+          </a>
+        </div>
       </div>
 
       <!-- Company Links -->
@@ -126,6 +132,12 @@ const footerLinks = {
     max-width: 280px;
   }
 
+  .footer-contacts {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
   .footer-email {
     font-size: 14px;
     font-weight: 600;
@@ -135,6 +147,29 @@ const footerLinks = {
 
   .footer-email:hover {
     color: var(--pr-white);
+  }
+
+  .footer-whatsapp {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #25D366;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+  }
+
+  .footer-whatsapp:hover {
+    opacity: 0.85;
+    color: #25D366;
+  }
+
+  .footer-whatsapp-icon {
+    width: 16px;
+    height: 16px;
+    display: inline-block;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
   }
 
   .footer-col-title {

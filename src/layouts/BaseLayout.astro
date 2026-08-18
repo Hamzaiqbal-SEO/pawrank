@@ -18,6 +18,7 @@ const canonicalUrl = canonical || new URL(Astro.url.pathname, siteUrl).href;
 
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import WhatsAppWidget from '../components/WhatsAppWidget.astro';
 ---
 
 <!DOCTYPE html>
@@ -64,6 +65,7 @@ import Footer from '../components/Footer.astro';
     <slot />
   </main>
   <Footer />
+  <WhatsAppWidget />
 
   <!-- Scroll Reveal Animation Script -->
   <script>
