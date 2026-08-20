@@ -198,12 +198,25 @@ const {
       font-size: clamp(28px, 8vw, 42px);
     }
 
+    .hero-title :global(br) {
+      display: none;
+    }
+
     .hero-subtitle {
       font-size: 16px;
+      margin-bottom: 32px;
     }
 
     .hero-actions {
       flex-direction: column;
+      width: 100%;
+      max-width: 360px;
+      margin: 0 auto;
+      gap: 12px;
+    }
+
+    .hero-actions .btn {
+      width: 100%;
     }
   }
 </style>
