@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
+    "postbuild": "node -e \"import('node:fs').then(fs => fs.copyFileSync('dist/sitemap-index.xml', 'dist/sitemap_index.xml'))\"",
     "preview": "astro preview",
     "astro": "astro"
   },
