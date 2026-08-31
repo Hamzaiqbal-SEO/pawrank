@@ -33,3 +33,8 @@ uploads/
 
 # Windows thumbnail cache
 Thumbs.db
+
+# ==================================================
+# Graphify - local development artifacts
+# ==================================================
+/graphify-out/
