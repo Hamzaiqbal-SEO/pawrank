@@ -117,6 +117,40 @@ const faqItems = [
         subtitle="Both plans help your practice become easier to find, understand and contact online. The difference is campaign capacity."
       />
 
+      <!-- CURRENCY SWITCHER -->
+      <div class="currency-container">
+        <div class="currency-bar">
+          <div class="currency-selector" role="group" aria-label="Select currency">
+            <span class="currency-selector-label">
+              <svg class="currency-icon" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <line x1="2" y1="12" x2="22" y2="12"></line>
+                <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path>
+              </svg>
+              <span>Currency:</span>
+            </span>
+            <div class="currency-options">
+              <button type="button" class="currency-pill active" data-currency="USD" aria-pressed="true" title="US Dollar">
+                <span class="currency-flag" aria-hidden="true">🇺🇸</span>
+                <span class="currency-code">USD</span>
+                <span class="currency-symbol">($)</span>
+              </button>
+              <button type="button" class="currency-pill" data-currency="GBP" aria-pressed="false" title="British Pound">
+                <span class="currency-flag" aria-hidden="true">🇬🇧</span>
+                <span class="currency-code">GBP</span>
+                <span class="currency-symbol">(£)</span>
+              </button>
+              <button type="button" class="currency-pill" data-currency="CAD" aria-pressed="false" title="Canadian Dollar">
+                <span class="currency-flag" aria-hidden="true">🇨🇦</span>
+                <span class="currency-code">CAD</span>
+                <span class="currency-symbol">($)</span>
+              </button>
+            </div>
+          </div>
+        </div>
+        <p class="currency-note">Prices are shown in your local currency for convenience. Final invoices may vary based on your billing location.</p>
+      </div>
+
       <div class="pricing-grid reveal">
         <!-- GET FOUND -->
         <div class="pricing-card">
@@ -128,13 +162,13 @@ const faqItems = [
           
           <div class="pricing-setup">
             <span class="pricing-setup-label">First 30 Days</span>
-            <span class="pricing-setup-price">$750</span>
+            <span class="pricing-setup-price"><span data-price="getFoundSetup">$750</span></span>
             <span class="pricing-setup-note">Campaign setup, audits, research & GBP optimization</span>
           </div>
 
           <div class="pricing-monthly">
             <span class="pricing-monthly-label">Then</span>
-            <span class="pricing-monthly-price">$995<span>/month</span></span>
+            <span class="pricing-monthly-price"><span data-price="getFoundMonthly">$995</span><span>/month</span></span>
           </div>
 
           <div class="pricing-best-for">
@@ -166,13 +200,13 @@ const faqItems = [
 
           <div class="pricing-setup">
             <span class="pricing-setup-label">First 30 Days</span>
-            <span class="pricing-setup-price">$1,250</span>
+            <span class="pricing-setup-price"><span data-price="growSetup">$1,250</span></span>
             <span class="pricing-setup-note">Deeper research, tracking architecture & growth planning</span>
           </div>
 
           <div class="pricing-monthly">
             <span class="pricing-monthly-label">Then</span>
-            <span class="pricing-monthly-price">$1,695<span>/month</span></span>
+            <span class="pricing-monthly-price"><span data-price="growMonthly">$1,695</span><span>/month</span></span>
           </div>
 
           <div class="pricing-best-for">
@@ -201,7 +235,7 @@ const faqItems = [
     <div class="container">
       <SectionHeading
         eyebrow="Side by Side"
-        title="What the Extra $700/Month Actually Funds"
+        title="What the Extra <span data-price='diffMonthly'>$700</span>/Month Actually Funds"
       />
 
       <div class="table-container reveal">
@@ -215,9 +249,9 @@ const faqItems = [
             <thead>
               <tr>
                 <th>Campaign Element</th>
-                <th>Get Found ($995/mo)</th>
-                <th>Grow Appointments ($1,695/mo)</th>
-                <th>What the Extra $700 Funds</th>
+                <th>Get Found (<span data-price="getFoundMonthly">$995</span>/mo)</th>
+                <th>Grow Appointments (<span data-price="growMonthly">$1,695</span>/mo)</th>
+                <th>What the Extra <span data-price="diffMonthly">$700</span> Funds</th>
               </tr>
             </thead>
             <tbody>
@@ -643,4 +677,265 @@ const faqItems = [
       font-size: 13.5px;
     }
   }
+
+  /* ── Currency Switcher ── */
+  .currency-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -16px;
+    margin-bottom: 36px;
+    gap: 12px;
+    text-align: center;
+  }
+
+  .currency-bar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .currency-note {
+    font-size: 13px;
+    color: var(--pr-text);
+    margin: 0;
+    line-height: 1.5;
+    max-width: 580px;
+    opacity: 0.9;
+  }
+
+  .currency-selector {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px;
+    background: var(--pr-chalk);
+    border: 1px solid var(--pr-border-dark);
+    border-radius: var(--radius-pill);
+    box-shadow: 0 2px 10px rgba(11, 40, 69, 0.04);
+  }
+
+  .currency-selector-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--pr-navy);
+    padding: 0 8px 0 12px;
+    user-select: none;
+  }
+
+  .currency-selector-label svg {
+    color: var(--pr-blue);
+    flex-shrink: 0;
+  }
+
+  .currency-options {
+    display: inline-flex;
+    align-items: center;
+    gap: 3px;
+  }
+
+  .currency-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 13px;
+    height: 32px;
+    border: 1px solid transparent;
+    background: transparent;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    color: var(--pr-text);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+    line-height: 1;
+  }
+
+  .currency-pill:hover:not(.active) {
+    color: var(--pr-navy);
+    background: rgba(50, 92, 232, 0.08);
+  }
+
+  .currency-pill.active {
+    background: var(--pr-blue);
+    color: var(--pr-white);
+    box-shadow: 0 3px 10px rgba(50, 92, 232, 0.35);
+  }
+
+  .currency-pill .currency-flag {
+    font-size: 13px;
+    line-height: 1;
+  }
+
+  .currency-pill .currency-code {
+    font-weight: 800;
+  }
+
+  .currency-pill .currency-symbol {
+    font-size: 11px;
+    font-weight: 600;
+    opacity: 0.75;
+  }
+
+  .currency-pill.active .currency-symbol {
+    opacity: 0.9;
+    color: rgba(255, 255, 255, 0.9);
+  }
+
+  .currency-pill:focus-visible {
+    outline: 2px solid var(--pr-blue);
+    outline-offset: 2px;
+  }
+
+  /* Price update micro-animation */
+  @keyframes priceUpdate {
+    0% {
+      opacity: 0.3;
+      transform: translateY(-2px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .price-anim {
+    display: inline-block;
+    animation: priceUpdate 0.25s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+
+  @media (max-width: 640px) {
+    .currency-container {
+      margin-top: -12px;
+      margin-bottom: 28px;
+      gap: 10px;
+    }
+
+    .currency-note {
+      font-size: 12px;
+      padding: 0 8px;
+    }
+
+    .currency-selector-label {
+      display: none;
+    }
+
+    .currency-pill {
+      padding: 5px 10px;
+      font-size: 11.5px;
+      gap: 4px;
+    }
+  }
+
+  @media (max-width: 380px) {
+    .currency-pill .currency-symbol {
+      display: none;
+    }
+  }
 </style>
+
+<script>
+  type CurrencyCode = 'USD' | 'GBP' | 'CAD';
+
+  interface CurrencyPricing {
+    getFoundSetup: string;
+    getFoundMonthly: string;
+    growSetup: string;
+    growMonthly: string;
+    diffMonthly: string;
+  }
+
+  const currencyRates: Record<CurrencyCode, CurrencyPricing> = {
+    USD: {
+      getFoundSetup: '$750',
+      getFoundMonthly: '$995',
+      growSetup: '$1,250',
+      growMonthly: '$1,695',
+      diffMonthly: '$700',
+    },
+    GBP: {
+      getFoundSetup: '£595',
+      getFoundMonthly: '£795',
+      growSetup: '£995',
+      growMonthly: '£1,345',
+      diffMonthly: '£550',
+    },
+    CAD: {
+      getFoundSetup: 'CA$1,035',
+      getFoundMonthly: 'CA$1,375',
+      growSetup: 'CA$1,725',
+      growMonthly: 'CA$2,345',
+      diffMonthly: 'CA$970',
+    },
+  };
+
+  function setCurrency(curr: CurrencyCode) {
+    if (!currencyRates[curr]) return;
+
+    // Update active button state
+    const pills = document.querySelectorAll<HTMLButtonElement>('.currency-pill');
+    pills.forEach((pill) => {
+      const isSelected = pill.getAttribute('data-currency') === curr;
+      pill.classList.toggle('active', isSelected);
+      pill.setAttribute('aria-pressed', isSelected ? 'true' : 'false');
+    });
+
+    // Update prices with smooth micro-animation
+    const prices = currencyRates[curr];
+    Object.entries(prices).forEach(([key, val]) => {
+      const targets = document.querySelectorAll<HTMLElement>(`[data-price="${key}"]`);
+      targets.forEach((target) => {
+        target.textContent = val;
+        target.classList.remove('price-anim');
+        // trigger reflow
+        void target.offsetWidth;
+        target.classList.add('price-anim');
+      });
+    });
+
+    // Save user preference
+    try {
+      localStorage.setItem('pawrank_currency', curr);
+    } catch {
+      // Storage unavailable or disabled
+    }
+  }
+
+  function initCurrencySwitcher() {
+    const pills = document.querySelectorAll<HTMLButtonElement>('.currency-pill');
+    if (!pills.length) return;
+
+    pills.forEach((pill) => {
+      pill.addEventListener('click', () => {
+        const curr = pill.getAttribute('data-currency') as CurrencyCode;
+        if (curr) setCurrency(curr);
+      });
+    });
+
+    // Check for saved preference
+    try {
+      const saved = localStorage.getItem('pawrank_currency') as CurrencyCode;
+      if (saved && currencyRates[saved] && saved !== 'USD') {
+        setCurrency(saved);
+      }
+    } catch {
+      // Ignore
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initCurrencySwitcher);
+  } else {
+    initCurrencySwitcher();
+  }
+  document.addEventListener('astro:page-load', initCurrencySwitcher);
+</script>
