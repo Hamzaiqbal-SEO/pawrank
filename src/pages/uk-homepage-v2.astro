@@ -1,0 +1,1849 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Hero from '../components/Hero.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+import FeatureCard from '../components/FeatureCard.astro';
+import ProcessTimeline from '../components/ProcessTimeline.astro';
+import StatsBar from '../components/StatsBar.astro';
+import UKROICalculator from '../components/UKROICalculator.astro';
+import FAQ from '../components/FAQ.astro';
+import CTABanner from '../components/CTABanner.astro';
+
+// SVG Icons
+const icons = {
+  search: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>`,
+  mapPin: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>`,
+  star: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`,
+  building: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="2" width="16" height="20" rx="2" ry="2"/><line x1="9" y1="22" x2="9" y2="22.01"/><line x1="15" y1="22" x2="15" y2="22.01"/><line x1="9" y1="6" x2="9" y2="6.01"/><line x1="15" y1="6" x2="15" y2="6.01"/><line x1="9" y1="10" x2="9" y2="10.01"/><line x1="15" y1="10" x2="15" y2="10.01"/><line x1="9" y1="14" x2="9" y2="14.01"/><line x1="15" y1="14" x2="15" y2="14.01"/><line x1="9" y1="18" x2="9" y2="18.01"/><line x1="15" y1="18" x2="15" y2="18.01"/></svg>`,
+  trendUp: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>`,
+  clinic: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z"/><line x1="12" y1="8" x2="12" y2="16"/><line x1="8" y1="12" x2="16" y2="12"/></svg>`,
+  target: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>`,
+  chart: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>`,
+  paw: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="17" rx="3.5" ry="2.5"/><ellipse cx="7" cy="11.5" rx="1.5" ry="2.2" transform="rotate(-15 7 11.5)"/><ellipse cx="17" cy="11.5" rx="1.5" ry="2.2" transform="rotate(15 17 11.5)"/><ellipse cx="10" cy="8.5" rx="1.5" ry="2.2"/><ellipse cx="14" cy="8.5" rx="1.5" ry="2.2"/></svg>`,
+  shield: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  check: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`,
+  calendar: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>`,
+  bot: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8.01" y2="16"/><line x1="16" y1="16" x2="16.01" y2="16"/></svg>`,
+  phone: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`,
+  users: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`,
+};
+
+// 4-Step Methodology
+const ukProcessSteps = [
+  { 
+    number: "01", 
+    title: "UK Catchment & Competitor Audit", 
+    description: "We audit your local 5-mile radius, evaluate corporate rivals (CVS, IVC, Medivet), analyse Google 3-Pack rankings, and identify high-value search queries pet owners use in your UK county or borough." 
+  },
+  { 
+    number: "02", 
+    title: "Google 3-Pack & Local Citation Sync", 
+    description: "We re-architect your Google Business Profile, align veterinary categories, eliminate NAP inconsistencies across Yell, Scoot, 118, and Thomson Local, and build geo-relevance around your physical practice." 
+  },
+  { 
+    number: "03", 
+    title: "Clinical Authority & Reviews Engine", 
+    description: "We publish RCVS-compliant clinical content targeting laparoscopic spays, dental care, and emergency terms while deploying automated post-consultation review requests to hit 100+ Google reviews." 
+  },
+  { 
+    number: "04", 
+    title: "Conversion Tracking & Monthly Refinement", 
+    description: "We connect call tracking, appointment booking events (Vetstoria/PetsApp), and Google Analytics 4. You receive transparent monthly reports showing registered pets and revenue impact—zero vanity metrics." 
+  },
+];
+
+// UK Market Statistics Table Data
+const ukMarketStats = [
+  { metric: "UK Veterinary Market Size", value: "£4.5 Billion", source: "IBISWorld & CMA Veterinary Study", note: "Rapidly expanding market with high owner spend" },
+  { metric: "Registered Veterinary Practices", value: "5,200+ Premises", source: "RCVS Practice Standards Scheme", note: "Across England, Scotland, Wales & Northern Ireland" },
+  { metric: "UK Companion Pet Population", value: "34 Million Pets", source: "PDSA Animal Wellbeing (PAW) Report", note: "13.5M dogs, 12.5M cats, plus small furries & exotics" },
+  { metric: "Pet Owners Searching Online First", value: "70%", source: "UK Digital Health Consumer Survey", note: "Owners consult Google before booking or choosing a vet" },
+  { metric: "'Vet Near Me' Monthly UK Searches", value: "135,000+ Searches/Mo", source: "Google Keyword Planner (UK Aggregate)", note: "Consistently the highest-intent local healthcare query" },
+  { metric: "Corporate Clinic Ownership", value: "~60% of All Practices", source: "CMA Market Investigation (2024–2026)", note: "Dominated by 6 major groups (IVC, CVS, Medivet, Linnaeus)" },
+  { metric: "Corporate vs Independent Marketing Spend", value: "5–8% vs 2–4% of Turnover", source: "UK Veterinary Financial Benchmarks", note: "Independents feel outspent; require trust-led SEO" },
+  { metric: "100+ Google Reviews Growth Multiplier", value: "3.5× More Registrations", source: "Veterinary Local SEO Benchmarks", note: "Practices with 100+ reviews vs those with under 20" },
+  { metric: "Younger Pet Owner Churn Rate (18–34)", value: "48% Likely to Switch", source: "PDSA & Consumer Health Data", note: "Digitally native pet owners switch when booking is slow" },
+  { metric: "Appointment Booking Friction", value: "38% Abandon Telephone", source: "Vetstoria Pet Owner Experience Report", note: "27% of UK pet owners strictly prefer online self-booking" },
+  { metric: "Average Pet Lifetime Healthcare Value", value: "£10,000 – £20,000", source: "Association of British Insurers & PDSA", note: "Lifetime care spend per companion dog or cat" },
+];
+
+// Regional Search Benchmarks
+const regionalBenchmarks = [
+  { region: "Greater London & M25", monthlySearches: "34,500+", avgCompetition: "Very High", avgReviewsTop3: "148 reviews", keyGrowthTerm: "'24 hour vet London', 'cat clinic near me'" },
+  { region: "South East & Home Counties", monthlySearches: "22,000+", avgCompetition: "High", avgReviewsTop3: "112 reviews", keyGrowthTerm: "'vet near me Surrey', 'laparoscopic dog spay'" },
+  { region: "West Midlands & Birmingham", monthlySearches: "15,800+", avgCompetition: "High", avgReviewsTop3: "96 reviews", keyGrowthTerm: "'emergency vet Birmingham', 'rabbit vet'" },
+  { region: "Greater Manchester & North West", monthlySearches: "17,400+", avgCompetition: "High", avgReviewsTop3: "104 reviews", keyGrowthTerm: "'vet near me Manchester', 'pet dental surgery'" },
+  { region: "Yorkshire & Humber (Leeds/Sheffield)", monthlySearches: "12,200+", avgCompetition: "Medium-High", avgReviewsTop3: "82 reviews", keyGrowthTerm: "'independent vet Leeds', 'exotic vet near me'" },
+  { region: "Scotland (Edinburgh & Glasgow)", monthlySearches: "13,600+", avgCompetition: "Medium-High", avgReviewsTop3: "89 reviews", keyGrowthTerm: "'vet clinic Glasgow', 'emergency vet Edinburgh'" },
+  { region: "South West (Bristol, Bath, Devon)", monthlySearches: "10,900+", avgCompetition: "Medium", avgReviewsTop3: "76 reviews", keyGrowthTerm: "'vet Bristol', 'cattery and vet near me'" },
+];
+
+// Software & Product Tool Stack
+const toolStack = [
+  {
+    name: "Google Business Profile",
+    category: "Foundational / Local Pack",
+    desc: "The primary driver of the Google Local 3-Pack and Google Maps. We optimize secondary clinical categories, opening hours, emergency attributes, geo-tagged clinical imagery, and Google Posts.",
+    badge: "Essential"
+  },
+  {
+    name: "Google Search Console & GA4",
+    category: "Analytics & Organic Tracking",
+    desc: "Provides unfiltered data on actual search queries, click-through rates, mobile performance, and conversion tracking across phone calls and online registration forms.",
+    badge: "Essential"
+  },
+  {
+    name: "Semrush & Ahrefs",
+    category: "Market & Keyword Intelligence",
+    desc: "Industry-standard SEO software used to track local keyword movements, analyze competitor backlinks from local UK news and pet associations, and identify untapped clinical searches.",
+    badge: "Professional"
+  },
+  {
+    name: "BrightLocal & Whitespark",
+    category: "Citation & Geo-Grid Rank Tracking",
+    desc: "Audits and standardizes your practice Name, Address, and Phone number (NAP) across authoritative UK directories like Yell, 118, Scoot, and Thomson Local. Pinpoints map rankings down to the postcode.",
+    badge: "Professional"
+  },
+  {
+    name: "Podium & Birdeye",
+    category: "Reviews & Reputation Engine",
+    desc: "Automates friendly SMS and email review invitations directly following clinical appointments, helping your practice cross the decisive 100+ review threshold to unlock the 3.5× registration effect.",
+    badge: "Reputation"
+  },
+  {
+    name: "Vetstoria & Digital Booking",
+    category: "Conversion Rate Optimization (CRO)",
+    desc: "Connects your website directly into your Practice Management System (RoboVet, Merlin, Teleos). Captures the 27% of UK owners who demand instant digital booking and eliminates 38% telephone booking friction.",
+    badge: "Conversion"
+  }
+];
+
+// FAQs for UK Practice Owners
+const ukFaqItems = [
+  { 
+    question: "Why should a UK veterinary practice choose a vet-specialized SEO agency over a general marketing agency?", 
+    answer: "Veterinary search is unlike any other local business. Pet owners make decisions under acute emotional stress, search patterns differ drastically between routine preventive care and emergency queries, and marketing must strictly adhere to the Royal College of Veterinary Surgeons (RCVS) Code of Professional Conduct. General marketing agencies do not understand clinical keyword hierarchies, local catchment geometry, or practice management integrations like Vetstoria. Paw Rank is 100% dedicated to veterinary medicine—we speak your language and understand your caseload." 
+  },
+  { 
+    question: "How can independent UK practices outrank corporate veterinary consolidators?", 
+    answer: "Around 60% of UK practices are owned by corporate groups (CVS, IVC Evidensia, Linnaeus, Medivet, Vets4Pets) with huge 5–8% marketing budgets. However, corporate groups rely on centralized, generic website templates that lack local authenticity and suffer from high staff turnover. Google's Local algorithm prioritizes local relevance, proximity, authentic patient reviews, and clinician E-E-A-T. By building real clinical authority, showcasing named surgeons, and collecting authentic local reviews, an independent practice can consistently outrank corporate clinics in the Google 3-Pack without matching their multimillion-pound advertising spend." 
+  },
+  { 
+    question: "How long does it take for a UK veterinary clinic to see results in local search?", 
+    answer: "Most practices experience measurable improvements in local pack impressions and Google Business Profile actions within 60 to 90 days. Foundation technical fixes, NAP directory synchronization, and profile category corrections yield rapid initial gains. Broader organic rankings for competitive procedures (such as pet laparoscopic spays or dental procedures) compound steadily between months 3 and 6 as domain authority grows." 
+  },
+  { 
+    question: "What is the business case for veterinary SEO based on pet lifetime care value?", 
+    answer: "According to the PDSA PAW Report and the Association of British Insurers, the lifetime care spend of a companion dog or cat ranges between £10,000 and £20,000 across routine consultations, vaccinations, preventative health schemes, diagnostics, dental cleanings, and surgical interventions. Gaining just 5 to 10 additional new client registrations each month translates to £50,000–£100,000 in immediate annual revenue and adds over £1,000,000 in long-term practice equity value. Veterinary SEO delivers an ROI that far exceeds paid Google Ads." 
+  },
+  { 
+    question: "How does your review strategy achieve the '3.5x registration effect' without violating RCVS rules?", 
+    answer: "Market data demonstrates that UK practices with 100+ authentic Google reviews receive 3.5× more new client registrations than competitors with under 20 reviews. We deploy automated, ethical post-consultation SMS and email prompts via review management platforms (such as Podium or Birdeye). Our systems strictly follow RCVS guidelines: we never offer financial inducements or incentivize reviews. Instead, we make it effortless for delighted pet owners to share genuine feedback." 
+  },
+  { 
+    question: "How do you optimize our practice for AI search tools like ChatGPT and Google AI Overviews?", 
+    answer: "AI search engines synthesize direct answers using Generative Engine Optimization (GEO). We structure your website using advanced Veterinary Schema (LocalBusiness, MedicalClinic, openingHours, geoCoordinates), clear clinical question-and-answer formatting, and verifiable author credentials. When pet owners ask ChatGPT or Google AI 'Who is the best cat-friendly clinic in Surrey?', your clinic is cited as the definitive local authority." 
+  },
+  { 
+    question: "Do you require long-term lock-in contracts?", 
+    answer: "No. All our veterinary SEO partnerships operate on a flexible 30-day rolling agreement. We believe in earning our place as your practice's growth partner every single month through measurable increases in booked appointments and registered patients." 
+  },
+  { 
+    question: "What is included in your Free UK Veterinary SEO Audit?", 
+    answer: "Our audit is a custom, manual analysis of your practice's digital presence. We examine your Google Local 3-Pack rank across your 5-mile catchment, compare your review velocity against corporate competitors, test your website's mobile Core Web Vitals speed, audit online booking friction, and identify the top 20 missing veterinary keywords in your UK area. It is 100% free with zero obligation." 
+  },
+  { 
+    question: "Can you support veterinary practices with multiple branch surgeries?", 
+    answer: "Yes. Multi-site practices face unique challenges with keyword cannibalization and Google Maps overlap. We create dedicated, hyper-optimized location landing pages for each branch surgery, synchronize separate Google Business Profiles, and ensure consistent citations across all UK directories so every location dominates its immediate local radius." 
+  },
+];
+---
+
+<BaseLayout
+  title="Veterinary SEO Agency UK | SEO Services for Vets That Win Local Searches"
+  description="Paw Rank is the specialist UK veterinary SEO agency. We help independent vet practices dominate 'vet near me' local searches, outrank corporate clinics, and fill appointment books."
+  canonical="https://pawrank.com/uk-homepage-v2"
+>
+  <!-- JSON-LD Structured Data for AI & Search Engines -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "ProfessionalService",
+        "@id": "https://pawrank.com/#agency",
+        "name": "Paw Rank UK - Veterinary SEO Agency",
+        "url": "https://pawrank.com/uk-homepage",
+        "logo": "https://pawrank.com/images/Pawrank-Logo.png",
+        "image": "https://pawrank.com/images/pawrank-cover.png",
+        "description": "Specialist UK Veterinary SEO Agency helping independent vet clinics win 'vet near me' searches, outrank corporate consolidators, and drive appointment bookings.",
+        "email": "pawrankofficial@gmail.com",
+        "address": {
+          "@type": "PostalAddress",
+          "addressCountry": "GB"
+        },
+        "areaServed": "United Kingdom",
+        "priceRange": "££",
+        "knowsAbout": [
+          "Veterinary SEO",
+          "Veterinary Local SEO",
+          "Google Business Profile for Vet Clinics",
+          "Veterinary Reputation Management",
+          "Vetstoria Online Booking Optimization",
+          "RCVS Advertising Compliance"
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://pawrank.com/uk-homepage#faq",
+        "mainEntity": ukFaqItems.map(item => ({
+          "@type": "Question",
+          "name": item.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": item.answer
+          }
+        }))
+      }
+    ]
+  })} />
+
+  <!-- HERO SECTION -->
+  <Hero
+    eyebrow="Specialist Veterinary SEO Agency UK"
+    title="Veterinary SEO Agency Helping UK Practices Win More Local Clients"
+    subtitle="We help independent UK veterinary practices dominate local search, strengthen their online visibility, and become the trusted choice for pet owners searching for veterinary care."
+    primaryCta={{ label: "Request Your Free Visibility Audit", href: "#free-audit" }}
+    secondaryCta={{ label: "ROI Calculator", href: "#uk-vet-roi-calculator" }}
+  />
+
+  <!-- QUICK STATS BAR -->
+  <section class="section section--white" style="padding-top: 24px; padding-bottom: 24px; border-bottom: 1px solid var(--pr-border);">
+    <StatsBar stats={[
+      { value: "135,000+", label: "Monthly UK 'Vet Near Me' Searches" },
+      { value: "3.5×", label: "Client Registrations With 100+ Reviews" },
+      { value: "£10k–£20k", label: "Lifetime Value Per Registered Pet" },
+      { value: "100%", label: "Veterinary Industry Focus" },
+    ]} />
+  </section>
+
+  <!-- THE UK VETERINARY MARKET DILEMMA (PROBLEM STATEMENT) -->
+  <section class="section section--chalk">
+    <div class="container">
+      <SectionHeading
+        eyebrow="UK Veterinary Market Analysis"
+        title="Why Independent UK Practices Feel Outspent in Local Search"
+        subtitle="The UK veterinary landscape has changed dramatically. Understanding the numbers is the first step to reclaiming your local market."
+      />
+
+      <div class="split-section">
+        <div class="split-content reveal">
+          <span class="eyebrow eyebrow--blue">Market Reality</span>
+          <h2>The Battle for Your 5-Mile Catchment Area</h2>
+          <p class="text-lead">
+            Across the UK, <strong>5,200+ veterinary surgeries</strong> compete for <strong>34 million companion pets</strong> in a <strong>£4.5 billion market</strong>. But the playing field is no longer balanced.
+          </p>
+          <p>
+            Around <strong>60% of UK veterinary practices</strong> are now owned by corporate consolidators—including CVS Group, IVC Evidensia, Linnaeus, Medivet, and Vets4Pets. Corporate chains deploy <strong>5% to 8% of revenue</strong> into centralized digital marketing, outspending independent practices who traditionally invest only 2% to 4%.
+          </p>
+          <p>
+            When a local pet owner's dog displays sudden lethargy or needs a vaccination, they turn to Google. <strong>135,000+ monthly searches</strong> in the UK query <em>"vet near me"</em> or location-specific terms like <em>"independent vet Edinburgh"</em> or <em>"emergency vet Birmingham"</em>. If your clinic does not appear in the top 3 Google Maps positions, corporate clinics win those new pet registrations by default.
+          </p>
+          <div class="quote-box">
+            <p>
+              <em>"Practices with 100+ authentic Google reviews see 3.5× more new client registrations than those with fewer than 20. Digital visibility is no longer an afterthought—it is the lifeline of practice independence."</em>
+            </p>
+          </div>
+        </div>
+
+        <div class="split-visual reveal reveal-delay-2">
+          <div class="pain-points-card">
+            <h3>Key Challenges Facing UK Vet Practices</h3>
+            <ul class="pain-points-list">
+              <li>
+                <div class="pain-icon" set:html={icons.mapPin} />
+                <div>
+                  <strong>Invisible in the Local 3-Pack:</strong>
+                  <span>Losing local visibility for high-volume 'vet near me' and emergency terms despite serving the community for years.</span>
+                </div>
+              </li>
+              <li>
+                <div class="pain-icon" set:html={icons.building} />
+                <div>
+                  <strong>Corporate Budget Disadvantage:</strong>
+                  <span>Struggling to compete with corporate chains spending hundreds of thousands on ads and centralized marketing teams.</span>
+                </div>
+              </li>
+              <li>
+                <div class="pain-icon" set:html={icons.star} />
+                <div>
+                  <strong>Review Starvation:</strong>
+                  <span>Fewer than 50 Google reviews leaves pet owners hesitant, even when clinical care is exceptional.</span>
+                </div>
+              </li>
+              <li>
+                <div class="pain-icon" set:html={icons.calendar} />
+                <div>
+                  <strong>Booking Friction & Churn:</strong>
+                  <span>27% of UK pet owners prefer digital self-booking. Practices without integrated booking lose up to 48% of younger clients within a year.</span>
+                </div>
+              </li>
+              <li>
+                <div class="pain-icon" set:html={icons.bot} />
+                <div>
+                  <strong>Absent from AI Search:</strong>
+                  <span>Not appearing when pet owners ask ChatGPT, Perplexity, or Google AI Overviews for veterinary recommendations in their town.</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE INDEPENDENT PRACTICE ADVANTAGE -->
+  <section class="section section--white">
+    <div class="container">
+      <SectionHeading
+        eyebrow="The Independent Advantage"
+        title="How Independent Vets Out-Trust Corporate Groups Without Outspending Them"
+        subtitle="Corporate clinics have bigger budgets, but independent practices possess what pet owners value most: genuine trust, clinical continuity, and authentic community roots."
+      />
+
+      <div class="grid grid--3">
+        <FeatureCard
+          icon={icons.shield}
+          title="Authentic E-E-A-T & Continuity"
+          description="Pet owners dread seeing a different locum at every appointment. We highlight your permanent clinical team, veterinary surgeons, and registered veterinary nurses (RVNs) to build profound owner trust."
+          delay={1}
+        />
+        <FeatureCard
+          icon={icons.star}
+          title="Reviews-First Local SEO"
+          description="We lead with review velocity. Reaching 100+ glowing, authentic Google reviews generates a 3.5× multiplier in client registrations that corporate automated marketing cannot fake."
+          delay={2}
+        />
+        <FeatureCard
+          icon={icons.target}
+          title="Hyper-Local Postcode Targeting"
+          description="We don't waste budget on broad county keywords. We optimize for high-intent pet owners within your exact 3-to-7 mile radius, targeting village, suburb, and borough search intent."
+          delay={3}
+        />
+        <FeatureCard
+          icon={icons.clinic}
+          title="High-Value Clinical Procedures"
+          description="Generalist agencies only rank for 'vet'. We capture lucrative, high-margin caseloads: laparoscopic keyhole spays, dental extractions, orthopaedic consults, and ultrasound scans."
+          delay={1}
+        />
+        <FeatureCard
+          icon={icons.calendar}
+          title="Frictionless Booking Integration"
+          description="We integrate tools like Vetstoria directly with your website to capture the 27% of pet owners who refuse to book via phone during clinical opening hours."
+          delay={2}
+        />
+        <FeatureCard
+          icon={icons.bot}
+          title="AI Search & Generative Visibility"
+          description="We structure your clinical data so AI models (ChatGPT, Google AI Overviews) cite your practice as the trusted, premier veterinary recommendation in your catchment."
+          delay={3}
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- SCANNABLE UK VETERINARY MARKET DATA TABLE -->
+  <section class="section section--chalk" id="uk-market-data">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Verified Industry Data"
+        title="UK Veterinary Market Statistics & Benchmarks"
+        subtitle="Citable, authoritative data points from the CMA, RCVS, PDSA PAW Report, and IBISWorld illustrating digital opportunity in the UK."
+      />
+
+      <div class="table-wrapper reveal">
+        <table class="market-table">
+          <thead>
+            <tr>
+              <th>Market Metric</th>
+              <th>UK Industry Value</th>
+              <th>Primary Source</th>
+              <th>Strategic Impact on Veterinary Practice SEO</th>
+            </tr>
+          </thead>
+          <tbody>
+            {ukMarketStats.map((item) => (
+              <tr>
+                <td class="td-metric"><strong>{item.metric}</strong></td>
+                <td class="td-value"><span class="badge-value">{item.value}</span></td>
+                <td class="td-source">{item.source}</td>
+                <td class="td-note">{item.note}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p class="table-footnote">
+        *Sources: Competition and Markets Authority (CMA) Veterinary Services Market Study (2024–2026); Royal College of Veterinary Surgeons (RCVS); PDSA Animal Wellbeing (PAW) Report; Association of British Insurers (ABI); IBISWorld UK Industry Report 75.000.
+      </p>
+    </div>
+  </section>
+
+  <!-- INTERACTIVE UK ROI CALCULATOR COMPONENT -->
+  <UKROICalculator />
+
+  <!-- LIVE UK VET SEARCH DATA & REGIONAL BENCHMARKS -->
+  <section class="section section--white" id="uk-search-benchmarks">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Search Intelligence"
+        title="Live UK Veterinary Search Data & Regional Benchmarks"
+        subtitle="Current search volumes, local competition levels, and high-growth clinical keywords across key UK metropolitan and regional markets."
+      />
+
+      <div class="benchmarks-grid reveal">
+        {regionalBenchmarks.map((b) => (
+          <div class="benchmark-card">
+            <div class="benchmark-header">
+              <h4>{b.region}</h4>
+              <span class="benchmark-volume">{b.monthlySearches}</span>
+            </div>
+            <div class="benchmark-body">
+              <div class="benchmark-row">
+                <span class="b-label">Local 3-Pack Competition:</span>
+                <span class={`b-val b-val--${b.avgCompetition.toLowerCase().replace(/[^a-z]/g, '')}`}>{b.avgCompetition}</span>
+              </div>
+              <div class="benchmark-row">
+                <span class="b-label">Average Top-3 Reviews:</span>
+                <span class="b-val">{b.avgReviewsTop3}</span>
+              </div>
+              <div class="benchmark-row">
+                <span class="b-label">High-Intent Keywords:</span>
+                <span class="b-val b-val--kw">{b.keyGrowthTerm}</span>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="benchmark-summary-box reveal">
+        <div class="summary-stat">
+          <span class="stat-num">64%</span>
+          <span class="stat-text">Of all UK veterinary search clicks go directly to the Google Maps 3-Pack. Ranking below position 3 forfeits nearly two-thirds of your market.</span>
+        </div>
+        <div class="summary-stat">
+          <span class="stat-num">135k+</span>
+          <span class="stat-text">High-intent 'vet near me' searches conducted monthly in the UK, peaking during morning registration and evening emergency windows.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FULL-SCOPE UK VETERINARY SEO SERVICES -->
+  <section class="section section--chalk" id="services">
+    <div class="container">
+      <SectionHeading
+        eyebrow="What We Deliver"
+        title="Comprehensive Veterinary SEO Services Built for UK Clinics"
+        subtitle="We provide the complete technical, local, clinical, and conversion framework required to achieve market leadership."
+      />
+
+      <div class="services-list-grid">
+        <!-- Service 1 -->
+        <div class="service-box reveal">
+          <div class="service-box-number">01</div>
+          <div class="service-box-content">
+            <h3>Google Business Profile & Local 3-Pack Domination</h3>
+            <p>
+              Your Google Business Profile is your digital storefront. We audit and calibrate primary and secondary categories (e.g. <em>Veterinarian</em>, <em>Animal Hospital</em>, <em>Emergency Veterinarian Service</em>), manage geo-tagged clinical imagery, configure emergency attributes, eliminate duplicate listings, and post weekly updates to hold top-3 local pack rank.
+            </p>
+            <ul class="service-features-list">
+              <li>Geo-grid rank tracking across your full 5-mile catchment radius</li>
+              <li>Standardization of Name, Address, and Phone (NAP) across all UK directories</li>
+              <li>Postcode-level optimization targeting surrounding villages and suburbs</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Service 2 -->
+        <div class="service-box reveal reveal-delay-1">
+          <div class="service-box-number">02</div>
+          <div class="service-box-content">
+            <h3>RCVS-Compliant Clinical Content & Blogging</h3>
+            <p>
+              We write medically accurate, engaging content that addresses pet owner anxieties while adhering strictly to the Royal College of Veterinary Surgeons (RCVS) Code of Conduct. From seasonal toxin warnings (xylitol, lilies) to complex guides on laparoscopic spay vs traditional spay, we establish your surgeons as trusted local authorities.
+            </p>
+            <ul class="service-features-list">
+              <li>Dedicated service pages for surgical, diagnostic, and dental care</li>
+              <li>Veterinary Schema (MedicalCondition, MedicalClinic, MedicalProcedure)</li>
+              <li>Zero generic stock content—tailored to your clinic's services</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Service 3 -->
+        <div class="service-box reveal">
+          <div class="service-box-number">03</div>
+          <div class="service-box-content">
+            <h3>Reviews-First Reputation & 100+ Review Acceleration</h3>
+            <p>
+              Reaching 100+ Google reviews unlocks a proven <strong>3.5× new registration multiplier</strong>. We integrate review collection software (Podium / Birdeye) with your practice management software to send automated, friendly review requests via SMS after positive appointments, building a stellar reputation that outshines corporate rivals.
+            </p>
+            <ul class="service-features-list">
+              <li>Review generation workflows targeting satisfied pet owners</li>
+              <li>Professional response templates for negative feedback handling</li>
+              <li>Reputation monitoring across Google, Facebook, and Yell</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Service 4 -->
+        <div class="service-box reveal reveal-delay-1">
+          <div class="service-box-number">04</div>
+          <div class="service-box-content">
+            <h3>Technical SEO, Mobile Speed & Core Web Vitals</h3>
+            <p>
+              When a pet owner experiences an emergency, they search on a smartphone with poor reception. An outdated, slow website loses those frantic clients immediately. We optimize page load speeds to under 1.5 seconds, fix indexing errors, establish bulletproof mobile layouts, and resolve technical crawl bottlenecks.
+            </p>
+            <ul class="service-features-list">
+              <li>Sub-2-second load times on mobile 4G/5G connections</li>
+              <li>Secure HTTPS encryption and Core Web Vitals green scores</li>
+              <li>Clean, scalable website architecture built for multi-branch clinics</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Service 5 -->
+        <div class="service-box reveal">
+          <div class="service-box-number">05</div>
+          <div class="service-box-content">
+            <h3>Conversion Rate Optimization & Online Booking (Vetstoria)</h3>
+            <p>
+              Traffic is meaningless if pet owners bounce without booking. With <strong>27% of UK owners strictly preferring online booking</strong> and <strong>38% abandoning due to telephone friction</strong>, we streamline your booking funnels, embed direct self-booking integrations (Vetstoria, PetsApp, Teleos, RoboVet), and place prominent emergency tap-to-call buttons.
+            </p>
+            <ul class="service-features-list">
+              <li>Frictionless mobile appointment booking funnels</li>
+              <li>Prominent 24/7 emergency dispatch and telephone CTA placement</li>
+              <li>Registration form simplification to boost completion rates by 40%+</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Service 6 -->
+        <div class="service-box reveal reveal-delay-1">
+          <div class="service-box-number">06</div>
+          <div class="service-box-content">
+            <h3>Generative AI Search Optimization (GEO)</h3>
+            <p>
+              Pet owners increasingly ask ChatGPT, Claude, and Google AI Overviews for veterinary recommendations: <em>"What is the best vet in Manchester for reactive dogs?"</em>. We deploy structured entities, clear factual question-and-answer architecture, and citation networks that position your practice as the top recommendation across AI tools.
+            </p>
+            <ul class="service-features-list">
+              <li>Comprehensive Schema JSON-LD markup for AI knowledge graphs</li>
+              <li>Entity relationship mapping connecting your surgeons to clinical specialisms</li>
+              <li>Direct-answer question clusters optimized for AI snippet extraction</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUCT & TOOLS STACK SELECTION -->
+  <section class="section section--white">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Our Technology Stack"
+        title="The Professional Tooling Behind Your Practice's Growth"
+        subtitle="Transparent insight into the industry-standard SEO, citation, analytics, and conversion software we deploy on your behalf."
+      />
+
+      <div class="tools-grid reveal">
+        {toolStack.map((tool) => (
+          <div class="tool-card">
+            <div class="tool-card-header">
+              <span class="tool-badge">{tool.badge}</span>
+              <h4>{tool.name}</h4>
+              <span class="tool-category">{tool.category}</span>
+            </div>
+            <p>{tool.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4-STEP METHODOLOGY -->
+  <section class="section section--chalk">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Our Proven Process"
+        title="The 4-Step UK Veterinary SEO Framework"
+        subtitle="A repeatable, transparent methodology engineered specifically for the clinical and operational realities of UK veterinary medicine."
+      />
+      <ProcessTimeline steps={ukProcessSteps} />
+    </div>
+  </section>
+
+  <!-- E-E-A-T: NAMED SPECIALISTS & CLINICAL CREDENTIALS -->
+  <section class="section section--white" id="team-eeat">
+    <div class="container">
+      <SectionHeading
+        eyebrow="E-E-A-T & Clinical Expertise"
+        title="Meet Your Named Veterinary SEO Specialists"
+        subtitle="Most marketing agencies hide behind generic stock images and account managers who have never stepped inside a veterinary practice. At Paw Rank, your growth is directed by named healthcare SEO specialists and clinical veterinary advisors."
+      />
+
+      <div class="team-grid">
+        <!-- Hamza Iqbal -->
+        <div class="team-card reveal">
+          <div class="team-card-image">
+            <img src="/images/pawrank-cover.png" alt="Hamza Iqbal - Lead Veterinary SEO Strategist" loading="lazy" />
+          </div>
+          <div class="team-card-body">
+            <span class="team-role">Founder & Lead Veterinary SEO Strategist</span>
+            <h3>Hamza Iqbal</h3>
+            <p class="team-bio">
+              Hamza is a dedicated healthcare and local search strategist with over 8 years of specialized experience engineering organic growth architectures. Having audited dozens of veterinary practices across the UK and North America, Hamza develops custom local 3-pack strategies, geo-grid expansions, and conversion frameworks that consistently outcompete corporate consolidators.
+            </p>
+            <div class="team-badges">
+              <span class="cred-badge">Healthcare SEO Specialist</span>
+              <span class="cred-badge">Google Analytics & Local Certified</span>
+              <span class="cred-badge">Conversion Architecture</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Dr. Jehangir Asghar -->
+        <div class="team-card reveal reveal-delay-1">
+          <div class="team-card-image">
+            <img src="/images/Dr-Jehangir-Asghar.jpg" alt="Dr. Jehangir Asghar, DVM - Clinical Veterinary Advisor" loading="lazy" />
+          </div>
+          <div class="team-card-body">
+            <span class="team-role">Clinical Veterinary Advisor</span>
+            <h3>Dr. Jehangir Asghar, DVM</h3>
+            <p class="team-bio">
+              Dr. Jehangir brings firsthand surgical and clinical veterinary practice experience to the Paw Rank team. He reviews all medical keyword frameworks, symptom content clusters, and patient journey funnels to ensure our work adheres strictly to veterinary ethics, RCVS compliance guidelines, and clinical accuracy.
+            </p>
+            <div class="team-badges">
+              <span class="cred-badge">Doctor of Veterinary Medicine (DVM)</span>
+              <span class="cred-badge">Clinical Editorial Reviewer</span>
+              <span class="cred-badge">RCVS Guidelines Adherence</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VERIFIABLE RESULTS & CASE STUDY -->
+  <section class="section section--chalk">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Demonstrated Outcomes"
+        title="Real Clinical Results for Real Practices"
+        subtitle="Verifiable evidence of how local SEO turns an invisible clinic into the dominant veterinary choice in its catchment area."
+      />
+
+      <div class="case-study reveal">
+        <div class="case-study-inner">
+          <div class="case-study-content">
+            <span class="case-tag">Verified Practice Growth</span>
+            <h3>Case Study: Boosting New Patient Inquiries by 56% in 30 Days</h3>
+            
+            <div class="case-blocks">
+              <div class="case-block">
+                <h4 class="case-block-label">The Challenge</h4>
+                <p>
+                  Sajjad Pets Clinic was delivering compassionate, high-standard veterinary care, but was virtually invisible in the Google Local 3-Pack for high-intent searches like <em>"cat clinic near me"</em> and <em>"routine pet vaccinations"</em>. Corporate clinics were absorbing the majority of new pet registrations.
+                </p>
+              </div>
+              <div class="case-block">
+                <h4 class="case-block-label">Our Strategy</h4>
+                <p>
+                  We executed a hyper-local optimization plan: re-indexed their Google Business Profile, corrected secondary veterinary service categories, resolved directory citation conflicts, launched localized clinical blog posts, and deployed frictionless click-to-call and booking paths.
+                </p>
+              </div>
+              <div class="case-block">
+                <h4 class="case-block-label">The Results</h4>
+                <p>
+                  Within 30 days, the clinic leaped from outside the top 20 into the <strong>#4 position</strong> in Google Maps, generating a <strong>56% increase in inbound patient calls</strong> and filling empty appointment slots across weekday mornings.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div class="case-study-visual">
+            <img src="/images/Sajjad-pets-clinic-local-ranking-map.jpg" alt="Sajjad Pets Clinic local ranking map improvement showing dramatic rise in Google Maps rank" loading="lazy" />
+            <div class="case-stat">
+              <span class="case-stat-value">+56%</span>
+              <span class="case-stat-label">Inbound Patient Call Volume</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRANSPARENT UK PRICING TIERS -->
+  <section class="section section--white" id="pricing">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Transparent UK Pricing"
+        title="Clear, Public Rate Cards in British Pounds (£)"
+        subtitle="Competitors hide their pricing behind aggressive sales calls. We believe independent vets deserve upfront, honest pricing with zero hidden fees and no long-term lock-ins."
+      />
+
+      <div class="pricing-grid reveal">
+        <!-- GET FOUND TIER -->
+        <div class="pricing-card">
+          <div class="pricing-card-header">
+            <span class="pricing-tier">Foundation Tier</span>
+            <h3 class="pricing-name">Get Found UK</h3>
+            <p class="pricing-tagline">Build a Dominant Local 3-Pack Foundation</p>
+          </div>
+          
+          <div class="pricing-setup">
+            <span class="pricing-setup-label">First 30 Days (Onboarding & Foundation)</span>
+            <span class="pricing-setup-price">£595</span>
+            <span class="pricing-setup-note">Full 5-mile catchment audit, Google Business Profile rebuild & UK directory cleanup</span>
+          </div>
+
+          <div class="pricing-monthly">
+            <span class="pricing-monthly-label">Then Ongoing</span>
+            <span class="pricing-monthly-price">£795<span>/month</span></span>
+          </div>
+
+          <div class="pricing-best-for">
+            <strong>Best for:</strong> Single-site independent practices seeking a solid Google Maps foundation and steady new patient registrations.
+          </div>
+
+          <ul class="pricing-features">
+            <li><span set:html={icons.check} /> 3–5 core veterinary service focus areas</li>
+            <li><span set:html={icons.check} /> Complete Google Business Profile optimization</li>
+            <li><span set:html={icons.check} /> 1 major clinical page project per month</li>
+            <li><span set:html={icons.check} /> 2 Google Business Profile posts per month</li>
+            <li><span set:html={icons.check} /> UK directory citation synchronization (Yell, Scoot, 118)</li>
+            <li><span set:html={icons.check} /> Monthly technical & Core Web Vitals health monitor</li>
+            <li><span set:html={icons.check} /> Call & registration form tracking setup</li>
+            <li><span set:html={icons.check} /> Transparent quarterly strategy review call</li>
+            <li><span set:html={icons.check} /> 30-day rolling agreement (Zero lock-in contracts)</li>
+          </ul>
+
+          <a href="/contact-us/#calendly" class="btn btn--navy btn--full">
+            Schedule a Call About Get Found →
+          </a>
+        </div>
+
+        <!-- GROW APPOINTMENTS TIER (FEATURED) -->
+        <div class="pricing-card pricing-card--featured">
+          <div class="pricing-badge">Most Popular for UK Independents</div>
+          <div class="pricing-card-header">
+            <span class="pricing-tier">Growth Tier</span>
+            <h3 class="pricing-name">Grow Appointments UK</h3>
+            <p class="pricing-tagline">Dominate High-Value Procedures & Reviews</p>
+          </div>
+          
+          <div class="pricing-setup">
+            <span class="pricing-setup-label">First 30 Days (Deep Setup & Tracking Architecture)</span>
+            <span class="pricing-setup-price">£995</span>
+            <span class="pricing-setup-note">Comprehensive geo-grid audit, competitor backlink gap analysis, Vetstoria conversion setup</span>
+          </div>
+
+          <div class="pricing-monthly">
+            <span class="pricing-monthly-label">Then Ongoing</span>
+            <span class="pricing-monthly-price">£1,395<span>/month</span></span>
+          </div>
+
+          <div class="pricing-best-for">
+            <strong>Best for:</strong> Established practices with 2+ veterinary surgeons wanting to outrank corporate groups and capture lucrative surgical/dental cases.
+          </div>
+
+          <ul class="pricing-features">
+            <li><span set:html={icons.check} /> 6–10 core & high-margin clinical service focus areas</li>
+            <li><span set:html={icons.check} /> 2 major clinical landing page projects per month</li>
+            <li><span set:html={icons.check} /> 2 supporting pet health guide articles per month</li>
+            <li><span set:html={icons.check} /> 4 Google Business Profile updates per month</li>
+            <li><span set:html={icons.check} /> Automated reviews engine setup (Target: 100+ reviews for 3.5× registrations)</li>
+            <li><span set:html={icons.check} /> Vetstoria / digital booking conversion optimization</li>
+            <li><span set:html={icons.check} /> Generative AI (ChatGPT & Google AI) Schema optimization</li>
+            <li><span set:html={icons.check} /> Advanced call tracking with dynamic telephone insertion</li>
+            <li><span set:html={icons.check} /> Monthly 1-on-1 strategy call with Lead Strategist</li>
+            <li><span set:html={icons.check} /> 30-day rolling agreement (Zero lock-in contracts)</li>
+          </ul>
+
+          <a href="/contact-us/#calendly" class="btn btn--primary btn--full">
+            Schedule a Call About Grow Appointments →
+          </a>
+        </div>
+      </div>
+
+      <!-- MULTI-BRANCH NOTICE -->
+      <div class="multi-branch-card reveal">
+        <div class="multi-branch-info">
+          <h4>Operating Multiple Branch Surgeries or a Hospital Group?</h4>
+          <p>We provide bespoke multi-site veterinary SEO architectures from £1,995/month, ensuring distinct postcode visibility for every branch clinic without internal keyword cannibalization.</p>
+        </div>
+        <a href="/contact-us/#calendly" class="btn btn--outline">Inquire About Multi-Site Plans</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 10 EXPERT TIPS FOR UK PRACTICE MANAGERS -->
+  <section class="section section--chalk">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Actionable Practice Insights"
+        title="10 Expert Local SEO Tips for UK Veterinary Practice Owners"
+        subtitle="Practical, research-backed actions you can implement immediately to protect your practice's digital market share."
+      />
+
+      <div class="tips-grid reveal">
+        <div class="tip-card">
+          <span class="tip-num">01</span>
+          <h4>Claim & Fully Calibrate Google Business Profile First</h4>
+          <p>It remains the single highest-impact action for local visibility. Complete every attribute, select specific veterinary categories, and maintain accurate holiday opening hours.</p>
+        </div>
+        <div class="tip-card">
+          <span class="tip-num">02</span>
+          <h4>Race to 100+ Google Reviews</h4>
+          <p>Practices with 100+ reviews achieve 3.5× more new client registrations than those with fewer than 20. Implement automated post-consultation review prompts.</p>
+        </div>
+        <div class="tip-card">
+          <span class="tip-num">03</span>
+          <h4>Target Location + Clinical Keywords</h4>
+          <p>Don't stop at 'vet'. Create dedicated pages for 'laparoscopic spay [town]', 'pet passport / animal health certificate [county]', and 'cat dental cleaning'.</p>
+        </div>
+        <div class="tip-card">
+          <span class="tip-num">04</span>
+          <h4>Ensure Sub-2-Second Mobile Speed</h4>
+          <p>Over 75% of emergency vet searches occur on mobile phones. If your page takes longer than 3 seconds to render, panicked pet owners bounce to your competitor.</p>
+        </div>
+        <div class="tip-card">
+          <span class="tip-num">05</span>
+          <h4>Add Frictionless Online Booking (Vetstoria)</h4>
+          <p>27% of pet owners strictly prefer online booking. Eliminating telephone friction prevents the 48% annual churn observed in digitally native 18–34 pet owners.</p>
+        </div>
+        <div class="tip-card">
+          <span class="tip-num">06</span>
+          <h4>Use Real Team & Patient Photography</h4>
+          <p>Ditch stock photos. Pet owners want to see the real vets and registered veterinary nurses who will be caring for their family companions. Authenticity drives conversions.</p>
+        </div>
+        <div class="tip-card">
+          <span class="tip-num">07</span>
+          <h4>Track £10,000–£20,000 Pet Lifetime Care Value</h4>
+          <p>Justify your marketing budget to practice partners by evaluating the full lifetime spend of each registered pet rather than just the initial £45 consultation fee.</p>
+        </div>
+        <div class="tip-card">
+          <span class="tip-num">08</span>
+          <h4>Standardize NAP Data Across UK Directories</h4>
+          <p>Ensure your Practice Name, Address, and Phone number match identically across Yell, 118 Information, Scoot, Thomson Local, and Apple Maps.</p>
+        </div>
+        <div class="tip-card">
+          <span class="tip-num">09</span>
+          <h4>Build Separate Pages for Each Branch Surgery</h4>
+          <p>If you operate a hub hospital and branch surgeries, build individual, localized landing pages for each postcode to prevent Google Maps confusion.</p>
+        </div>
+        <div class="tip-card">
+          <span class="tip-num">10</span>
+          <h4>Format for Generative AI Citations (AEO/GEO)</h4>
+          <p>Publish clear, structured Q&A headers and clinical FAQs so ChatGPT, Claude, and Google AI Overviews cite your practice as the trusted local clinical authority.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FREE AUDIT LEAD MAGNET SECTION -->
+  <section class="section section--navy" id="free-audit">
+    <div class="container">
+      <div class="audit-banner reveal">
+        <div class="audit-content">
+          <span class="eyebrow eyebrow--light">Complimentary Local Intelligence</span>
+          <h2>Claim Your Free UK Veterinary SEO & Catchment Audit</h2>
+          <p class="text-lead">
+            Discover exactly how your clinic appears to pet owners in your local area. We'll manually review your Google Local 3-Pack rank across your 5-mile radius, evaluate review velocity against corporate competitors, test mobile speed, and identify high-value search terms you are currently missing.
+          </p>
+          <div class="audit-highlights">
+            <div class="audit-item">
+              <span class="audit-check" set:html={icons.check} />
+              <span>Full Google Maps 5-Mile Geo-Grid Visibility Check</span>
+            </div>
+            <div class="audit-item">
+              <span class="audit-check" set:html={icons.check} />
+              <span>Corporate Competitor Review & Budget Analysis</span>
+            </div>
+            <div class="audit-item">
+              <span class="audit-check" set:html={icons.check} />
+              <span>Top 20 Missing High-Intent Clinical Keywords</span>
+            </div>
+            <div class="audit-item">
+              <span class="audit-check" set:html={icons.check} />
+              <span>Mobile Booking Speed & Conversion Friction Review</span>
+            </div>
+          </div>
+          <div class="audit-action">
+            <a href="/contact-us/#calendly" class="btn btn--primary">Book Your Free Practice Audit Call</a>
+            <span class="audit-note">100% Free · No Obligation · Manual Review by Vet SEO Specialists</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMPREHENSIVE FAQ SECTION -->
+  <section class="section section--white" id="faq">
+    <div class="container">
+      <SectionHeading
+        eyebrow="Frequently Asked Questions"
+        title="Everything UK Practice Owners Need to Know About Veterinary SEO"
+        subtitle="Transparent answers regarding timelines, corporate competition, RCVS compliance, and expected return on investment."
+      />
+      <FAQ items={ukFaqItems} />
+    </div>
+  </section>
+
+  <!-- FINAL CTA BANNER -->
+  <CTABanner
+    title="Ready to Lead Local Search in Your UK Catchment?"
+    subtitle="Don't allow corporate clinics to dominate pet registrations in your town. Connect with local pet owners when they need compassionate, trusted veterinary care."
+    primaryCta={{ label: "Claim Your Free Practice Audit", href: "#free-audit" }}
+    secondaryCta={{ label: "Contact Us Directly", href: "/contact-us/" }}
+  />
+</BaseLayout>
+
+<style>
+  /* Split Section */
+  .split-section {
+    display: grid;
+    grid-template-columns: 1.15fr 1fr;
+    gap: 60px;
+    align-items: start;
+  }
+
+  .split-content h2 {
+    margin-top: 14px;
+    margin-bottom: 20px;
+  }
+
+  .split-content p {
+    margin-bottom: 16px;
+  }
+
+  .quote-box {
+    margin-top: 24px;
+    padding: 20px 24px;
+    background: var(--pr-white);
+    border-left: 4px solid var(--pr-blue);
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+    box-shadow: var(--shadow-subtle);
+  }
+
+  .quote-box p {
+    margin: 0;
+    font-size: 15px;
+    color: var(--pr-navy);
+    line-height: 1.55;
+  }
+
+  /* Pain Points Card */
+  .pain-points-card {
+    background: var(--pr-white);
+    border: 1px solid var(--pr-border);
+    border-radius: var(--radius-2xl);
+    padding: 36px;
+    box-shadow: var(--shadow-card);
+  }
+
+  .pain-points-card h3 {
+    font-size: 21px;
+    color: var(--pr-navy);
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--pr-border);
+  }
+
+  .pain-points-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .pain-points-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .pain-icon {
+    width: 38px;
+    height: 38px;
+    min-width: 38px;
+    border-radius: var(--radius-md);
+    background: var(--pr-light-blue);
+    color: var(--pr-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 8px;
+  }
+
+  .pain-points-list strong {
+    display: block;
+    font-size: 14.5px;
+    color: var(--pr-black);
+    margin-bottom: 2px;
+  }
+
+  .pain-points-list span {
+    font-size: 13.5px;
+    color: var(--pr-text);
+    line-height: 1.45;
+  }
+
+  /* UK Market Table */
+  .table-wrapper {
+    overflow-x: auto;
+    background: var(--pr-white);
+    border-radius: var(--radius-xl);
+    border: 1px solid var(--pr-border);
+    box-shadow: var(--shadow-card);
+    margin-top: 32px;
+  }
+
+  .market-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    font-size: 14px;
+  }
+
+  .market-table th {
+    background: var(--pr-navy);
+    color: var(--pr-white);
+    padding: 18px 20px;
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
+  .market-table td {
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--pr-border);
+    vertical-align: middle;
+  }
+
+  .market-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .market-table tr:hover {
+    background: var(--pr-chalk);
+  }
+
+  .td-metric {
+    font-weight: 700;
+    color: var(--pr-black);
+  }
+
+  .badge-value {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+    background: var(--pr-light-blue);
+    color: var(--pr-blue);
+    font-weight: 800;
+    font-family: var(--font-heading);
+    font-size: 14px;
+  }
+
+  .td-source {
+    color: var(--pr-text);
+    font-size: 13px;
+  }
+
+  .td-note {
+    color: var(--pr-text);
+    font-size: 13.5px;
+  }
+
+  .table-footnote {
+    font-size: 12px;
+    color: #8292A6;
+    margin-top: 14px;
+    line-height: 1.5;
+  }
+
+  /* Regional Benchmarks */
+  .benchmarks-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+    gap: 20px;
+    margin-bottom: 36px;
+  }
+
+  .benchmark-card {
+    background: var(--pr-chalk);
+    border: 1px solid var(--pr-border);
+    border-radius: var(--radius-lg);
+    padding: 22px;
+    transition: all var(--transition-base);
+  }
+
+  .benchmark-card:hover {
+    border-color: var(--pr-blue);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-subtle);
+  }
+
+  .benchmark-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--pr-border);
+    margin-bottom: 14px;
+  }
+
+  .benchmark-header h4 {
+    font-size: 16px;
+    margin: 0;
+    color: var(--pr-navy);
+  }
+
+  .benchmark-volume {
+    background: var(--pr-navy);
+    color: var(--pr-white);
+    padding: 4px 10px;
+    border-radius: var(--radius-pill);
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .benchmark-body {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .benchmark-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 13px;
+  }
+
+  .b-label {
+    color: var(--pr-text);
+  }
+
+  .b-val {
+    font-weight: 600;
+    color: var(--pr-black);
+  }
+
+  .b-val--veryhigh { color: var(--pr-coral); font-weight: 700; }
+  .b-val--high { color: #E88332; font-weight: 700; }
+  .b-val--mediumhigh { color: var(--pr-blue); font-weight: 700; }
+  .b-val--medium { color: var(--pr-success); font-weight: 700; }
+
+  .b-val--kw {
+    font-size: 12px;
+    color: var(--pr-blue);
+    font-style: italic;
+    text-align: right;
+  }
+
+  .benchmark-summary-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    background: var(--pr-light-blue);
+    border: 1px solid rgba(50, 92, 232, 0.2);
+    border-radius: var(--radius-xl);
+    padding: 28px;
+  }
+
+  .summary-stat {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .stat-num {
+    font-family: var(--font-heading);
+    font-size: 44px;
+    font-weight: 900;
+    color: var(--pr-blue);
+    line-height: 1;
+    min-width: 100px;
+  }
+
+  .stat-text {
+    font-size: 14.5px;
+    color: var(--pr-navy);
+    line-height: 1.45;
+  }
+
+  /* Services Box Grid */
+  .services-list-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .service-box {
+    background: var(--pr-white);
+    border: 1px solid var(--pr-border);
+    border-radius: var(--radius-xl);
+    padding: 36px;
+    display: grid;
+    grid-template-columns: 80px 1fr;
+    gap: 32px;
+    align-items: flex-start;
+    transition: all var(--transition-base);
+  }
+
+  .service-box:hover {
+    border-color: rgba(50, 92, 232, 0.3);
+    box-shadow: var(--shadow-card);
+  }
+
+  .service-box-number {
+    font-family: var(--font-heading);
+    font-size: 38px;
+    font-weight: 900;
+    color: var(--pr-blue);
+    line-height: 1;
+    background: var(--pr-light-blue);
+    border-radius: var(--radius-md);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 72px;
+  }
+
+  .service-box-content h3 {
+    font-size: 22px;
+    color: var(--pr-navy);
+    margin-bottom: 12px;
+  }
+
+  .service-box-content p {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 16px;
+  }
+
+  .service-features-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 10px;
+  }
+
+  .service-features-list li {
+    font-size: 13.5px;
+    color: var(--pr-text);
+    padding-left: 18px;
+    position: relative;
+  }
+
+  .service-features-list li::before {
+    content: '•';
+    position: absolute;
+    left: 0;
+    color: var(--pr-blue);
+    font-weight: bold;
+    font-size: 18px;
+    line-height: 1;
+    top: -2px;
+  }
+
+  /* Tools Grid */
+  .tools-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 36px;
+  }
+
+  .tool-card {
+    background: var(--pr-chalk);
+    border: 1px solid var(--pr-border);
+    border-radius: var(--radius-xl);
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    transition: all var(--transition-base);
+  }
+
+  .tool-card:hover {
+    border-color: var(--pr-blue);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .tool-card-header {
+    margin-bottom: 14px;
+  }
+
+  .tool-badge {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: var(--radius-pill);
+    background: rgba(50, 92, 232, 0.1);
+    color: var(--pr-blue);
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 8px;
+  }
+
+  .tool-card h4 {
+    font-size: 18px;
+    color: var(--pr-navy);
+    margin-bottom: 4px;
+  }
+
+  .tool-category {
+    display: block;
+    font-size: 12px;
+    color: var(--pr-text);
+    font-weight: 600;
+  }
+
+  .tool-card p {
+    font-size: 14px;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  /* Team Grid (E-E-A-T) */
+  .team-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 36px;
+    margin-top: 36px;
+  }
+
+  .team-card {
+    background: var(--pr-chalk);
+    border: 1px solid var(--pr-border);
+    border-radius: var(--radius-2xl);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: all var(--transition-base);
+  }
+
+  .team-card:hover {
+    box-shadow: var(--shadow-card);
+    border-color: var(--pr-blue);
+  }
+
+  .team-card-image {
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+    background: var(--pr-navy);
+  }
+
+  .team-card-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: top center;
+  }
+
+  .team-card-body {
+    padding: 32px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .team-role {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--pr-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 6px;
+  }
+
+  .team-card-body h3 {
+    font-size: 24px;
+    color: var(--pr-navy);
+    margin-bottom: 14px;
+  }
+
+  .team-bio {
+    font-size: 14px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    flex-grow: 1;
+  }
+
+  .team-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .cred-badge {
+    display: inline-block;
+    padding: 5px 12px;
+    border-radius: var(--radius-pill);
+    background: var(--pr-white);
+    border: 1px solid var(--pr-border);
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--pr-navy);
+  }
+
+  /* Case Study */
+  .case-study {
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+
+  .case-study-inner {
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 48px;
+    background: var(--pr-white);
+    border: 1px solid var(--pr-border);
+    border-radius: var(--radius-2xl);
+    padding: 48px;
+    box-shadow: var(--shadow-card);
+  }
+
+  .case-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: var(--radius-pill);
+    background: rgba(119, 185, 120, 0.15);
+    color: var(--pr-success);
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 12px;
+  }
+
+  .case-study-content h3 {
+    font-size: 24px;
+    margin-bottom: 24px;
+    color: var(--pr-navy);
+  }
+
+  .case-blocks {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+  }
+
+  .case-block {
+    padding: 16px 20px;
+    border-left: 3px solid var(--pr-blue);
+    border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+    background: var(--pr-light-blue);
+  }
+
+  .case-block-label {
+    font-family: var(--font-heading);
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--pr-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    margin-bottom: 4px;
+  }
+
+  .case-block p {
+    font-size: 14px;
+    margin: 0;
+    line-height: 1.5;
+  }
+
+  .case-study-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .case-study-visual img {
+    border-radius: var(--radius-lg);
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .case-stat {
+    background: var(--pr-navy);
+    border-radius: var(--radius-lg);
+    padding: 24px;
+    text-align: center;
+  }
+
+  .case-stat-value {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 48px;
+    font-weight: 900;
+    color: var(--pr-success);
+    line-height: 1;
+  }
+
+  .case-stat-label {
+    display: block;
+    margin-top: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.75);
+  }
+
+  /* Pricing Cards */
+  .pricing-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    max-width: 1060px;
+    margin: 40px auto 0;
+  }
+
+  .pricing-card {
+    background: var(--pr-white);
+    border: 2px solid var(--pr-border);
+    border-radius: var(--radius-2xl);
+    padding: 44px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    box-shadow: var(--shadow-card);
+  }
+
+  .pricing-card--featured {
+    border-color: var(--pr-blue);
+    box-shadow: 0 16px 48px rgba(50, 92, 232, 0.12);
+  }
+
+  .pricing-badge {
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--gradient-btn);
+    color: var(--pr-white);
+    font-size: 12px;
+    font-weight: 800;
+    padding: 6px 20px;
+    border-radius: var(--radius-pill);
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    box-shadow: var(--shadow-btn);
+  }
+
+  .pricing-tier {
+    font-size: 12px;
+    font-weight: 800;
+    color: var(--pr-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+  }
+
+  .pricing-name {
+    font-size: 28px;
+    color: var(--pr-navy);
+    margin: 6px 0;
+  }
+
+  .pricing-tagline {
+    font-size: 14px;
+    color: var(--pr-text);
+  }
+
+  .pricing-setup {
+    background: var(--pr-chalk);
+    border-radius: var(--radius-md);
+    padding: 14px 18px;
+    margin: 20px 0 16px;
+    border: 1px solid var(--pr-border);
+  }
+
+  .pricing-setup-label {
+    display: block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--pr-text);
+  }
+
+  .pricing-setup-price {
+    display: block;
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 900;
+    color: var(--pr-navy);
+    line-height: 1.1;
+    margin: 4px 0;
+  }
+
+  .pricing-setup-note {
+    display: block;
+    font-size: 12px;
+    color: var(--pr-text);
+    line-height: 1.35;
+  }
+
+  .pricing-monthly {
+    margin-bottom: 16px;
+  }
+
+  .pricing-monthly-label {
+    display: block;
+    font-size: 12px;
+    color: var(--pr-text);
+  }
+
+  .pricing-monthly-price {
+    font-family: var(--font-heading);
+    font-size: 40px;
+    font-weight: 900;
+    color: var(--pr-blue);
+    line-height: 1;
+  }
+
+  .pricing-monthly-price span {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--pr-text);
+  }
+
+  .pricing-best-for {
+    font-size: 13.5px;
+    line-height: 1.5;
+    background: var(--pr-light-blue);
+    padding: 12px 16px;
+    border-radius: var(--radius-sm);
+    margin-bottom: 24px;
+  }
+
+  .pricing-features {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    flex-grow: 1;
+  }
+
+  .pricing-features li {
+    font-size: 14px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--pr-black);
+  }
+
+  .pricing-features li span {
+    width: 18px;
+    height: 18px;
+    min-width: 18px;
+    color: var(--pr-blue);
+  }
+
+  .multi-branch-card {
+    max-width: 1060px;
+    margin: 32px auto 0;
+    background: var(--pr-chalk);
+    border: 1px dashed rgba(50, 92, 232, 0.4);
+    border-radius: var(--radius-xl);
+    padding: 24px 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .multi-branch-info h4 {
+    font-size: 18px;
+    color: var(--pr-navy);
+    margin-bottom: 6px;
+  }
+
+  .multi-branch-info p {
+    font-size: 14px;
+    margin: 0;
+  }
+
+  /* 10 Tips Grid */
+  .tips-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    margin-top: 36px;
+  }
+
+  .tip-card {
+    background: var(--pr-white);
+    border: 1px solid var(--pr-border);
+    border-radius: var(--radius-xl);
+    padding: 28px;
+    position: relative;
+    transition: all var(--transition-base);
+  }
+
+  .tip-card:hover {
+    border-color: var(--pr-blue);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-card);
+  }
+
+  .tip-num {
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 900;
+    color: var(--pr-blue);
+    background: var(--pr-light-blue);
+    padding: 4px 10px;
+    border-radius: var(--radius-sm);
+    display: inline-block;
+    margin-bottom: 12px;
+  }
+
+  .tip-card h4 {
+    font-size: 17px;
+    color: var(--pr-navy);
+    margin-bottom: 10px;
+  }
+
+  .tip-card p {
+    font-size: 14px;
+    line-height: 1.55;
+    margin: 0;
+  }
+
+  /* Free Audit Section */
+  .audit-banner {
+    background: linear-gradient(135deg, rgba(18, 47, 79, 0.9), rgba(11, 40, 69, 0.95));
+    border: 1px solid rgba(50, 92, 232, 0.3);
+    border-radius: var(--radius-2xl);
+    padding: 56px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .audit-content h2 {
+    color: var(--pr-white);
+    margin-top: 14px;
+    margin-bottom: 16px;
+  }
+
+  .audit-highlights {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin: 32px 0 40px;
+  }
+
+  .audit-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 15px;
+    color: var(--pr-white);
+  }
+
+  .audit-check {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    border-radius: var(--radius-pill);
+    background: rgba(119, 185, 120, 0.2);
+    color: var(--pr-success);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px;
+  }
+
+  .audit-action {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .audit-note {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  /* Responsive Adjustments */
+  @media (max-width: 1024px) {
+    .split-section {
+      grid-template-columns: 1fr;
+      gap: 40px;
+    }
+    .team-grid {
+      grid-template-columns: 1fr;
+    }
+    .tools-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    .pricing-grid {
+      grid-template-columns: 1fr;
+    }
+    .tips-grid {
+      grid-template-columns: 1fr;
+    }
+    .case-study-inner {
+      grid-template-columns: 1fr;
+      padding: 32px;
+    }
+    .service-box {
+      grid-template-columns: 1fr;
+      gap: 20px;
+    }
+    .service-box-number {
+      height: 52px;
+      width: 52px;
+      font-size: 26px;
+    }
+    .audit-highlights {
+      grid-template-columns: 1fr;
+    }
+    .audit-banner {
+      padding: 32px;
+    }
+    .multi-branch-card {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .tools-grid {
+      grid-template-columns: 1fr;
+    }
+    .benchmarks-grid {
+      grid-template-columns: 1fr;
+    }
+    .benchmark-summary-box {
+      grid-template-columns: 1fr;
+      gap: 16px;
+    }
+    .stat-num {
+      font-size: 32px;
+      min-width: 70px;
+    }
+  }
+</style>
