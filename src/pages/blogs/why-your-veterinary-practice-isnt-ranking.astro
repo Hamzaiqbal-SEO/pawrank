@@ -42,51 +42,54 @@ const faqs = [
   }
 ];
 
-const schemaJson = {
+const articleSchema = {
   "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "Article",
-      "headline": "Why Your Veterinary Practice Isn't Ranking (And How to Fix It)",
-      "description": "Align Google's local, organic, and AI signals to turn veterinary searches into appointments. Includes a diagnostic framework, case study, and priority matrix.",
-      "image": "https://pawrank.com/images/veterinary-search-ecosystem-integrated-signal-flows.webp",
-      "author": {
-        "@type": "Organization",
-        "name": "Paw Rank",
-        "url": "https://pawrank.com"
-      },
-      "publisher": {
-        "@type": "Organization",
-        "name": "Paw Rank",
-        "logo": {
-          "@type": "ImageObject",
-          "url": "https://pawrank.com/images/Pawrank-Logo.png"
-        }
-      },
-      "datePublished": "2026-09-08",
-      "dateModified": "2026-09-08"
-    },
-    {
-      "@type": "FAQPage",
-      "mainEntity": faqs.map(f => ({
-        "@type": "Question",
-        "name": f.q,
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": f.a
-        }
-      }))
+  "@type": "Article",
+  "headline": "Why Your Veterinary Practice Isn't Ranking (And How to Fix It)",
+  "description": "Align Google's local, organic, and AI signals to turn veterinary searches into appointments. Includes a diagnostic framework, case study, and priority matrix.",
+  "image": "https://pawrank.com/images/veterinary-search-ecosystem-integrated-signal-flows.webp",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://pawrank.com/blogs/why-your-veterinary-practice-isnt-ranking/"
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "Paw Rank",
+    "url": "https://pawrank.com"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Paw Rank",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://pawrank.com/images/Pawrank-Logo.png"
     }
-  ]
+  },
+  "datePublished": "2026-09-08",
+  "dateModified": "2026-09-08"
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": f.a
+    }
+  }))
 };
 ---
 
 <BaseLayout
   title="Why Your Veterinary Practice Isn't Ranking (And How to Fix It) | Paw Rank"
   description="Align Google's local, organic, and AI signals to turn veterinary searches into appointments. Includes a diagnostic framework, case study, and priority matrix."
+  canonical="https://pawrank.com/blogs/why-your-veterinary-practice-isnt-ranking/"
   ogImage="/images/veterinary-search-ecosystem-integrated-signal-flows.webp"
+  schema={[articleSchema, faqSchema]}
 >
-  <script type="application/ld+json" set:html={JSON.stringify(schemaJson)} />
 
   <!-- Article Hero -->
   <section class="article-hero">
