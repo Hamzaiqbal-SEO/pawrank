@@ -16,6 +16,9 @@ export default defineConfig({
     '/blog': '/blogs',
     '/blog/veterinary-seo-guide': '/blogs/veterinary-seo-guide',
     '/veterinary-seo-guide': '/blogs/veterinary-seo-guide',
+    '/blog/veterinary-seo-signal-alignment': '/blogs/veterinary-seo-signal-alignment',
+    '/veterinary-seo-signal-alignment': '/blogs/veterinary-seo-signal-alignment',
+    '/why-your-veterinary-practice-isnt-ranking': '/blogs/veterinary-seo-signal-alignment',
     '/schedule-an-appointment': '/contact-us',
   },
 });
