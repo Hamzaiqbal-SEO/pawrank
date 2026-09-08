@@ -242,7 +242,7 @@ strong {
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  text-decoration: none;
+  text-decoration: none !important;
   cursor: pointer;
   transition: all var(--transition-base);
   white-space: nowrap;
@@ -251,7 +251,7 @@ strong {
 .btn--primary {
   padding: 18px 38px;
   background: var(--gradient-btn);
-  color: var(--pr-white);
+  color: var(--pr-white) !important;
   border: 2px solid var(--pr-blue);
   font-size: 14px;
   box-shadow: var(--shadow-btn);
@@ -262,6 +262,8 @@ strong {
   border-color: var(--pr-blue-hover);
   transform: translateY(-2px);
   box-shadow: var(--shadow-btn-hover);
+  color: var(--pr-white) !important;
+  text-decoration: none !important;
 }
 
 .btn--navy {

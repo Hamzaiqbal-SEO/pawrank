@@ -121,13 +121,6 @@ const schemaJson = {
 
       <!-- Main Article -->
       <article class="article-content">
-        <img 
-          src="/images/veterinary-search-ecosystem-integrated-signal-flows.webp" 
-          alt="The Veterinary Search Ecosystem: Integrated Signal Flows" 
-          class="article-hero-img" 
-          loading="eager" 
-        />
-
         <!-- Introduction -->
         <div id="intro" class="article-anchor">
           <h2>Introduction</h2>
@@ -1026,14 +1019,14 @@ const schemaJson = {
     font-style: italic;
   }
 
-  .article-content a {
+  .article-content a:not(.btn) {
     color: var(--pr-blue);
     font-weight: 600;
     text-decoration: underline;
     text-underline-offset: 2px;
   }
 
-  .article-content a:hover { color: var(--pr-blue-hover); }
+  .article-content a:not(.btn):hover { color: var(--pr-blue-hover); }
 
   /* Callout Standard */
   .callout {
@@ -1343,6 +1336,23 @@ const schemaJson = {
     max-width: 540px;
     margin: 0 auto 24px;
     font-size: 16px;
+  }
+
+  .article-end-cta .btn--primary {
+    color: var(--pr-white) !important;
+    text-decoration: none !important;
+    background: var(--gradient-btn);
+    border: 2px solid var(--pr-blue);
+    box-shadow: var(--shadow-btn);
+  }
+
+  .article-end-cta .btn--primary:hover {
+    color: var(--pr-white) !important;
+    text-decoration: none !important;
+    background: var(--gradient-btn-hover);
+    border-color: var(--pr-blue-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-btn-hover);
   }
 
   @media (max-width: 960px) {
