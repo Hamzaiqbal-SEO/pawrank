@@ -20,6 +20,7 @@ export default defineConfig({
     '/blogs/veterinary-seo-signal-alignment': '/blogs/why-your-veterinary-practice-isnt-ranking',
     '/veterinary-seo-signal-alignment': '/blogs/why-your-veterinary-practice-isnt-ranking',
     '/why-your-veterinary-practice-isnt-ranking': '/blogs/why-your-veterinary-practice-isnt-ranking',
+    '/why-your-veterinary-practice-is-not-ranking': '/blogs/why-your-veterinary-practice-isnt-ranking',
     '/blog/why-your-veterinary-practice-isnt-ranking': '/blogs/why-your-veterinary-practice-isnt-ranking',
     '/schedule-an-appointment': '/contact-us',
   },
