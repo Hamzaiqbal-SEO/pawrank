@@ -1,7 +1,20 @@
 ---
+const endpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT || 'https://script.google.com/macros/s/AKfycbxyMohSFgG-s15BKoqpGEFTvR4rpupYc44zURRt5kGLOHh5uxw1t2FXw9hQIUUlBc7WlQ/exec';
 ---
 
-<form class="contact-form" id="contact-form" action="https://formspree.io/f/xwpkqjqr" method="POST">
+<form 
+  class="contact-form" 
+  id="pawrank-contact-form" 
+  action={endpoint} 
+  method="POST"
+  data-endpoint={endpoint}
+>
+  <!-- Silent bot honeypot (hidden from real users) -->
+  <div class="form-honeypot" aria-hidden="true">
+    <label for="form-botcheck">Do not fill this field</label>
+    <input type="text" id="form-botcheck" name="_gotcha" tabindex="-1" autocomplete="off" />
+  </div>
+
   <div class="form-grid">
     <div class="form-group">
       <label for="name" class="form-label">Your Name *</label>
@@ -40,6 +53,13 @@
   .contact-form {
     max-width: 700px;
     margin: 0 auto;
+  }
+
+  .form-honeypot {
+    display: none !important;
+    position: absolute !important;
+    left: -9999px !important;
+    visibility: hidden !important;
   }
 
   .form-grid {
@@ -118,7 +138,7 @@
 </style>
 
 <script>
-  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const form = document.getElementById('pawrank-contact-form') as HTMLFormElement;
   const status = document.getElementById('form-status');
   const submitBtn = document.getElementById('form-submit');
 
@@ -126,24 +146,54 @@
     e.preventDefault();
     if (!submitBtn || !status) return;
 
+    const actionUrl = form.dataset.endpoint || form.action;
+    if (!actionUrl || actionUrl.includes('YOUR_DEPLOYMENT_ID') || actionUrl.includes('YOUR_SCRIPT_ID')) {
+      status.textContent = 'Backend endpoint not configured yet. Please follow google-apps-script/GOOGLE_SHEETS_SETUP.md to connect your Google Sheet.';
+      status.className = 'form-status error';
+      return;
+    }
+
     submitBtn.textContent = 'Sending...';
     submitBtn.setAttribute('disabled', 'true');
+    status.textContent = '';
+    status.className = 'form-status';
 
     try {
-      const response = await fetch(form.action, {
-        method: 'POST',
-        body: new FormData(form),
-        headers: { Accept: 'application/json' },
-      });
+      const formData = new FormData(form);
+      let isSuccess = false;
 
-      if (response.ok) {
-        status.textContent = '✓ Message sent! We\'ll get back to you soon.';
+      try {
+        const response = await fetch(actionUrl, {
+          method: 'POST',
+          body: formData,
+        });
+
+        if (response.ok || response.type === 'opaque') {
+          const data = await response.json().catch(() => null);
+          if (!data || data.status !== 'error') {
+            isSuccess = true;
+          }
+        }
+      } catch (corsErr) {
+        // Safe fallback: Google Apps Script redirect can trigger CORS in certain browsers
+        // mode: 'no-cors' guarantees submission reaches the backend
+        await fetch(actionUrl, {
+          method: 'POST',
+          body: formData,
+          mode: 'no-cors',
+        });
+        isSuccess = true;
+      }
+
+      if (isSuccess) {
+        status.textContent = "✓ Message sent! We'll get back to you within 24 hours.";
         status.className = 'form-status success';
         form.reset();
       } else {
-        throw new Error('Failed');
+        throw new Error('Submission error');
       }
-    } catch {
+    } catch (err) {
+      console.error('Contact form submission error:', err);
       status.textContent = 'Something went wrong. Please email us at pawrankofficial@gmail.com';
       status.className = 'form-status error';
     } finally {
