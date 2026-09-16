@@ -2,52 +2,128 @@
 const endpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT || 'https://script.google.com/macros/s/AKfycbxyMohSFgG-s15BKoqpGEFTvR4rpupYc44zURRt5kGLOHh5uxw1t2FXw9hQIUUlBc7WlQ/exec';
 ---
 
-<form 
-  class="contact-form" 
-  id="pawrank-contact-form" 
-  action={endpoint} 
-  method="POST"
-  data-endpoint={endpoint}
->
-  <!-- Silent bot honeypot (hidden from real users) -->
-  <div class="form-honeypot" aria-hidden="true">
-    <label for="form-botcheck">Do not fill this field</label>
-    <input type="text" id="form-botcheck" name="_gotcha" tabindex="-1" autocomplete="off" />
-  </div>
+<div class="contact-form-container">
+  <!-- CONTACT FORM -->
+  <form 
+    class="contact-form" 
+    id="pawrank-contact-form" 
+    action={endpoint} 
+    method="POST"
+    data-endpoint={endpoint}
+  >
+    <!-- Silent bot honeypot (hidden from real users) -->
+    <div class="form-honeypot" aria-hidden="true">
+      <label for="form-botcheck">Do not fill this field</label>
+      <input type="text" id="form-botcheck" name="_gotcha" tabindex="-1" autocomplete="off" />
+    </div>
 
-  <div class="form-grid">
-    <div class="form-group">
-      <label for="name" class="form-label">Your Name *</label>
-      <input type="text" id="name" name="name" required class="form-input" placeholder="Dr. Jane Smith" />
+    <div class="form-grid">
+      <div class="form-group">
+        <label for="name" class="form-label">Your Name *</label>
+        <input type="text" id="name" name="name" required class="form-input" placeholder="Dr. Jane Smith" />
+      </div>
+      
+      <div class="form-group">
+        <label for="email" class="form-label">Email Address *</label>
+        <input type="email" id="email" name="email" required class="form-input" placeholder="jane@vetclinic.com" />
+      </div>
+      
+      <div class="form-group">
+        <label for="clinic" class="form-label">Clinic Name & Location</label>
+        <input type="text" id="clinic" name="clinic" class="form-input" placeholder="Happy Paws Vet, Austin TX" />
+      </div>
+      
+      <div class="form-group">
+        <label for="website" class="form-label">Website (if any)</label>
+        <input type="url" id="website" name="website" class="form-input" placeholder="https://yourvetclinic.com" />
+      </div>
     </div>
     
-    <div class="form-group">
-      <label for="email" class="form-label">Email Address *</label>
-      <input type="email" id="email" name="email" required class="form-input" placeholder="jane@vetclinic.com" />
+    <div class="form-group form-group--full">
+      <label for="message" class="form-label">Tell us about your practice *</label>
+      <textarea id="message" name="message" required class="form-input form-textarea" rows="5" placeholder="What are your biggest challenges with online visibility? What services do you want to grow?"></textarea>
     </div>
     
-    <div class="form-group">
-      <label for="clinic" class="form-label">Clinic Name & Location</label>
-      <input type="text" id="clinic" name="clinic" class="form-input" placeholder="Happy Paws Vet, Austin TX" />
-    </div>
+    <button type="submit" class="btn btn--primary btn--full" id="form-submit">
+      Send Message
+    </button>
     
-    <div class="form-group">
-      <label for="website" class="form-label">Website (if any)</label>
-      <input type="url" id="website" name="website" class="form-input" placeholder="https://yourvetclinic.com" />
+    <div class="form-status" id="form-status"></div>
+  </form>
+
+  <!-- INLINE BRANDED SUCCESS STATE (Replaces form after submission) -->
+  <div class="success-card" id="form-success-state" style="display: none;" aria-live="polite">
+    <!-- Top accent bar -->
+    <div class="success-card__accent"></div>
+
+    <div class="success-card__badge-wrapper">
+      <div class="success-card__icon-container">
+        <svg class="success-card__icon" width="38" height="38" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="20 6 9 17 4 12" class="checkmark-path"></polyline>
+        </svg>
+      </div>
+      <span class="eyebrow eyebrow--blue">Response Submitted</span>
+    </div>
+
+    <h3 class="success-card__title">Thank You for Reaching Out!</h3>
+    <p class="success-card__text">
+      We've successfully received your clinic's details. Our team is already analyzing your local veterinary competitive landscape and will be in touch within <strong>24–48 hours</strong>.
+    </p>
+
+    <!-- Metadata highlights -->
+    <div class="success-card__meta">
+      <div class="meta-item">
+        <div class="meta-item__icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+        </div>
+        <div class="meta-item__content">
+          <span class="meta-item__label">Response Time</span>
+          <strong class="meta-item__value">Within 24 business hours</strong>
+        </div>
+      </div>
+
+      <div class="meta-item">
+        <div class="meta-item__icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+            <polyline points="22,6 12,13 2,6"></polyline>
+          </svg>
+        </div>
+        <div class="meta-item__content">
+          <span class="meta-item__label">Confirmation Email</span>
+          <strong class="meta-item__value">Sent to your inbox</strong>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Actions -->
+    <div class="success-card__actions">
+      <button type="button" class="btn btn--outline success-reset-btn" id="btn-submit-new">
+        <svg class="reset-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21.5 2v6h-6M21.34 15.57a10 10 0 1 1-.57-8.38l5.67-5.67"></path>
+        </svg>
+        <span>Submit a New Form</span>
+      </button>
+
+      <a href="#calendly" class="btn btn--primary success-calendly-btn">
+        <span>Book Strategy Call</span>
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+
+    <div class="success-card__footnote">
+      Need urgent help? Reach us directly at <a href="mailto:pawrankofficial@gmail.com" class="footnote-link">pawrankofficial@gmail.com</a>
     </div>
   </div>
-  
-  <div class="form-group form-group--full">
-    <label for="message" class="form-label">Tell us about your practice *</label>
-    <textarea id="message" name="message" required class="form-input form-textarea" rows="5" placeholder="What are your biggest challenges with online visibility? What services do you want to grow?"></textarea>
-  </div>
-  
-  <button type="submit" class="btn btn--primary btn--full" id="form-submit">
-    Send Message
-  </button>
-  
-  <div class="form-status" id="form-status"></div>
-</form>
+</div>
 
 <!-- Confirmation Modal Popup (Paw Rank Brand Aligned) -->
 <div class="modal-overlay" id="submission-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
@@ -95,9 +171,15 @@ const endpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT || 'https://script
 </div>
 
 <style>
-  .contact-form {
+  .contact-form-container {
     max-width: 700px;
     margin: 0 auto;
+    position: relative;
+  }
+
+  .contact-form {
+    width: 100%;
+    animation: fadeIn 0.35s ease;
   }
 
   .form-honeypot {
@@ -175,13 +257,200 @@ const endpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT || 'https://script
     color: var(--pr-coral);
   }
 
-  @media (max-width: 600px) {
-    .form-grid {
-      grid-template-columns: 1fr;
+  /* ── INLINE SUCCESS STATE CARD ── */
+  .success-card {
+    position: relative;
+    background: var(--pr-white);
+    border: 1px solid var(--pr-border-dark);
+    border-radius: var(--radius-2xl);
+    padding: 48px 40px 36px 40px;
+    box-shadow: var(--shadow-card);
+    text-align: center;
+    overflow: hidden;
+    animation: fadeInUp 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .success-card__accent {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-hero);
+  }
+
+  .success-card__badge-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .success-card__icon-container {
+    width: 72px;
+    height: 72px;
+    border-radius: 50%;
+    background: var(--pr-light-blue);
+    color: var(--pr-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 10px 24px rgba(50, 92, 232, 0.18);
+    transition: transform 0.3s ease;
+  }
+
+  .success-card:hover .success-card__icon-container {
+    transform: scale(1.06);
+  }
+
+  .checkmark-path {
+    stroke-dasharray: 40;
+    stroke-dashoffset: 0;
+    animation: strokeDraw 0.6s ease-in-out forwards;
+  }
+
+  @keyframes strokeDraw {
+    from {
+      stroke-dashoffset: 40;
+    }
+    to {
+      stroke-dashoffset: 0;
     }
   }
 
-  /* ── Paw Rank Branded Confirmation Modal ── */
+  .success-card__title {
+    font-family: var(--font-heading);
+    font-size: clamp(24px, 3vw, 30px);
+    font-weight: 800;
+    color: var(--pr-navy);
+    margin: 0 0 14px 0;
+    letter-spacing: -0.025em;
+    line-height: 1.2;
+  }
+
+  .success-card__text {
+    font-family: var(--font-body);
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: var(--pr-text);
+    max-width: 520px;
+    margin: 0 auto 30px auto;
+  }
+
+  .success-card__text strong {
+    color: var(--pr-navy);
+  }
+
+  .success-card__meta {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    background: var(--pr-chalk);
+    border: 1px solid var(--pr-border);
+    border-radius: var(--radius-lg);
+    padding: 18px 22px;
+    margin: 0 auto 32px auto;
+    text-align: left;
+  }
+
+  .meta-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .meta-item__icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--pr-white);
+    color: var(--pr-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    border: 1px solid var(--pr-border);
+  }
+
+  .meta-item__content {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .meta-item__label {
+    font-size: 12px;
+    color: var(--pr-text);
+    font-weight: 500;
+  }
+
+  .meta-item__value {
+    font-size: 13.5px;
+    color: var(--pr-navy);
+    font-weight: 700;
+  }
+
+  .success-card__actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+
+  .success-reset-btn {
+    padding: 14px 26px;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+  }
+
+  .success-reset-btn .reset-icon {
+    transition: transform 0.4s ease;
+  }
+
+  .success-reset-btn:hover .reset-icon {
+    transform: rotate(-180deg);
+  }
+
+  .success-calendly-btn {
+    padding: 14px 28px;
+    font-size: 13px;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .success-calendly-btn svg {
+    transition: transform 0.2s ease;
+  }
+
+  .success-calendly-btn:hover svg {
+    transform: translateX(3px);
+  }
+
+  .success-card__footnote {
+    font-size: 13px;
+    color: var(--pr-text);
+    line-height: 1.5;
+  }
+
+  .footnote-link {
+    color: var(--pr-blue);
+    font-weight: 600;
+    text-decoration: none;
+  }
+
+  .footnote-link:hover {
+    color: var(--pr-blue-hover);
+    text-decoration: underline;
+  }
+
+  /* ── Confirmation Modal Popup ── */
   .modal-overlay {
     position: fixed;
     inset: 0;
@@ -219,7 +488,6 @@ const endpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT || 'https://script
     overflow: hidden;
   }
 
-  /* Top subtle brand accent border */
   .modal-card::before {
     content: '';
     position: absolute;
@@ -360,19 +628,39 @@ const endpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT || 'https://script
     text-decoration: underline;
   }
 
-  .modal-submit-btn:focus-visible,
-  .modal-close-icon:focus-visible,
-  .modal-calendly-link:focus-visible {
-    outline: 2px solid var(--pr-blue);
-    outline-offset: 3px;
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
   }
 
-  @media (max-width: 480px) {
-    .modal-card {
-      padding: 30px 22px 26px 22px;
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(16px);
     }
-    .modal-title {
-      font-size: 24px;
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .form-grid {
+      grid-template-columns: 1fr;
+    }
+    .success-card {
+      padding: 36px 20px 28px 20px;
+    }
+    .success-card__meta {
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .success-card__actions {
+      flex-direction: column;
+      width: 100%;
+    }
+    .success-card__actions .btn {
+      width: 100%;
     }
   }
 </style>
@@ -381,6 +669,10 @@ const endpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT || 'https://script
   const form = document.getElementById('pawrank-contact-form') as HTMLFormElement;
   const status = document.getElementById('form-status');
   const submitBtn = document.getElementById('form-submit');
+  const successState = document.getElementById('form-success-state');
+  const submitNewBtn = document.getElementById('btn-submit-new');
+
+  // Modal elements
   const modal = document.getElementById('submission-modal');
   const closeBtn = document.getElementById('modal-close-btn');
   const closeX = document.getElementById('modal-close-x');
@@ -399,7 +691,7 @@ const endpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT || 'https://script
     modal.classList.remove('is-open');
     modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
-    submitBtn?.focus();
+    submitNewBtn?.focus();
   }
 
   closeBtn?.addEventListener('click', closeModal);
@@ -418,6 +710,25 @@ const endpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT || 'https://script
     if (e.key === 'Escape' && modal?.classList.contains('is-open')) {
       closeModal();
     }
+  });
+
+  // Reset and show form again
+  submitNewBtn?.addEventListener('click', () => {
+    if (!form || !successState) return;
+
+    form.reset();
+    if (status) {
+      status.textContent = '';
+      status.className = 'form-status';
+    }
+
+    successState.style.display = 'none';
+    form.style.display = 'block';
+
+    // Scroll smoothly to top of form and focus first field
+    form.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    const firstInput = form.querySelector('input[name="name"]') as HTMLInputElement;
+    firstInput?.focus();
   });
 
   form?.addEventListener('submit', async (e) => {
@@ -464,7 +775,15 @@ const endpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT || 'https://script
       }
 
       if (isSuccess) {
-        form.reset();
+        // 1. Hide the form immediately
+        form.style.display = 'none';
+
+        // 2. Show the interactive branded success card
+        if (successState) {
+          successState.style.display = 'block';
+        }
+
+        // 3. Open the confirmation modal popup
         openModal();
       } else {
         throw new Error('Submission error');
