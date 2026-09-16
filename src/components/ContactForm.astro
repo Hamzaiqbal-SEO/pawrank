@@ -49,6 +49,32 @@ const endpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT || 'https://script
   <div class="form-status" id="form-status"></div>
 </form>
 
+<!-- Confirmation Modal Popup -->
+<div class="modal-overlay" id="submission-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-card">
+    <button type="button" class="modal-close-icon" id="modal-close-x" aria-label="Close dialog">
+      <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="1" y1="1" x2="13" y2="13"></line>
+        <line x1="13" y1="1" x2="1" y2="13"></line>
+      </svg>
+    </button>
+
+    <div class="modal-body">
+      <h3 class="modal-title" id="modal-title">Speak soon!</h3>
+      <p class="modal-text">
+        We've received your request and will call you back within 48 hours.
+      </p>
+      <p class="modal-subtext">
+        If you're unable to pick up or you've changed your mind, please email us at <a href="mailto:pawrankofficial@gmail.com" class="modal-email-link">pawrankofficial@gmail.com</a>
+      </p>
+
+      <button type="button" class="modal-close-btn" id="modal-close-btn">
+        CLOSE
+      </button>
+    </div>
+  </div>
+</div>
+
 <style>
   .contact-form {
     max-width: 700px;
@@ -135,12 +161,180 @@ const endpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT || 'https://script
       grid-template-columns: 1fr;
     }
   }
+
+  /* ── Confirmation Modal Popup ── */
+  .modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(11, 40, 69, 0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    z-index: 99999;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.22s ease, visibility 0.22s ease;
+  }
+
+  .modal-overlay.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+  }
+
+  .modal-card {
+    position: relative;
+    width: 100%;
+    max-width: 380px;
+    background: #ffffff;
+    border-radius: 4px;
+    padding: 36px 32px 32px 32px;
+    box-shadow: 0 24px 60px rgba(11, 40, 69, 0.25), 0 4px 16px rgba(0, 0, 0, 0.08);
+    transform: scale(0.92) translateY(8px);
+    transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  .modal-overlay.is-open .modal-card {
+    transform: scale(1) translateY(0);
+  }
+
+  .modal-close-icon {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 2px;
+    color: #6b7280;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    padding: 0;
+  }
+
+  .modal-close-icon:hover {
+    color: #111827;
+    border-color: #9ca3af;
+    background: #f9fafb;
+  }
+
+  .modal-body {
+    text-align: left;
+  }
+
+  .modal-title {
+    font-family: var(--font-heading);
+    font-size: 23px;
+    font-weight: 800;
+    color: #111827;
+    margin: 0 0 16px 0;
+    letter-spacing: -0.01em;
+  }
+
+  .modal-text {
+    font-family: var(--font-body);
+    font-size: 14px;
+    line-height: 1.55;
+    color: #374151;
+    margin: 0 0 16px 0;
+  }
+
+  .modal-subtext {
+    font-family: var(--font-body);
+    font-size: 13.5px;
+    line-height: 1.55;
+    color: #4b5563;
+    margin: 0 0 26px 0;
+  }
+
+  .modal-email-link {
+    color: #111827;
+    font-weight: 600;
+    text-decoration: underline;
+    word-break: break-all;
+    transition: color 0.15s ease;
+  }
+
+  .modal-email-link:hover {
+    color: var(--pr-blue);
+  }
+
+  .modal-close-btn {
+    width: 100%;
+    padding: 13px 20px;
+    background: #ffffff;
+    border: 2px solid #111827;
+    border-radius: 2px;
+    color: #111827;
+    font-family: var(--font-heading);
+    font-size: 13px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.18s ease;
+  }
+
+  .modal-close-btn:hover {
+    background: #111827;
+    color: #ffffff;
+  }
+
+  .modal-close-btn:focus-visible,
+  .modal-close-icon:focus-visible {
+    outline: 2px solid var(--pr-blue);
+    outline-offset: 2px;
+  }
 </style>
 
 <script>
   const form = document.getElementById('pawrank-contact-form') as HTMLFormElement;
   const status = document.getElementById('form-status');
   const submitBtn = document.getElementById('form-submit');
+  const modal = document.getElementById('submission-modal');
+  const closeBtn = document.getElementById('modal-close-btn');
+  const closeX = document.getElementById('modal-close-x');
+
+  function openModal() {
+    if (!modal) return;
+    modal.classList.add('is-open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    closeBtn?.focus();
+  }
+
+  function closeModal() {
+    if (!modal) return;
+    modal.classList.remove('is-open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    submitBtn?.focus();
+  }
+
+  closeBtn?.addEventListener('click', closeModal);
+  closeX?.addEventListener('click', closeModal);
+
+  // Close when clicking backdrop outside card
+  modal?.addEventListener('click', (e) => {
+    if (e.target === modal) {
+      closeModal();
+    }
+  });
+
+  // Close on Escape key
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && modal?.classList.contains('is-open')) {
+      closeModal();
+    }
+  });
 
   form?.addEventListener('submit', async (e) => {
     e.preventDefault();
@@ -148,7 +342,7 @@ const endpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT || 'https://script
 
     const actionUrl = form.dataset.endpoint || form.action;
     if (!actionUrl || actionUrl.includes('YOUR_DEPLOYMENT_ID') || actionUrl.includes('YOUR_SCRIPT_ID')) {
-      status.textContent = 'Backend endpoint not configured yet. Please follow google-apps-script/GOOGLE_SHEETS_SETUP.md to connect your Google Sheet.';
+      status.textContent = 'Backend endpoint not configured yet. Please configure your Google Apps Script URL.';
       status.className = 'form-status error';
       return;
     }
@@ -186,9 +380,8 @@ const endpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT || 'https://script
       }
 
       if (isSuccess) {
-        status.textContent = "✓ Message sent! We'll get back to you within 24 hours.";
-        status.className = 'form-status success';
         form.reset();
+        openModal();
       } else {
         throw new Error('Submission error');
       }
