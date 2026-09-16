@@ -49,28 +49,47 @@ const endpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT || 'https://script
   <div class="form-status" id="form-status"></div>
 </form>
 
-<!-- Confirmation Modal Popup -->
+<!-- Confirmation Modal Popup (Paw Rank Brand Aligned) -->
 <div class="modal-overlay" id="submission-modal" aria-hidden="true" role="dialog" aria-modal="true" aria-labelledby="modal-title">
   <div class="modal-card">
     <button type="button" class="modal-close-icon" id="modal-close-x" aria-label="Close dialog">
-      <svg width="12" height="12" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
+      <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round">
         <line x1="1" y1="1" x2="13" y2="13"></line>
         <line x1="13" y1="1" x2="1" y2="13"></line>
       </svg>
     </button>
 
     <div class="modal-body">
+      <!-- Brand Icon / Badge -->
+      <div class="modal-badge-wrapper">
+        <div class="modal-brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg>
+        </div>
+        <span class="eyebrow eyebrow--blue">Inquiry Received</span>
+      </div>
+
       <h3 class="modal-title" id="modal-title">Speak soon!</h3>
+
       <p class="modal-text">
-        We've received your request and will call you back within 48 hours.
-      </p>
-      <p class="modal-subtext">
-        If you're unable to pick up or you've changed your mind, please email us at <a href="mailto:pawrankofficial@gmail.com" class="modal-email-link">pawrankofficial@gmail.com</a>
+        We've received your request and will call you back within <strong>48 hours</strong>.
       </p>
 
-      <button type="button" class="modal-close-btn" id="modal-close-btn">
+      <p class="modal-subtext">
+        If you're unable to pick up or you've changed your mind, please email us anytime at <a href="mailto:pawrankofficial@gmail.com" class="modal-email-link">pawrankofficial@gmail.com</a>.
+      </p>
+
+      <!-- Primary Action -->
+      <button type="button" class="btn btn--primary btn--full modal-submit-btn" id="modal-close-btn">
         CLOSE
       </button>
+
+      <!-- Calendly Alternative -->
+      <div class="modal-footer-note">
+        <span>Need to talk sooner?</span>
+        <a href="#calendly" class="modal-calendly-link" id="modal-calendly-link">Book on our calendar &rarr;</a>
+      </div>
     </div>
   </div>
 </div>
@@ -162,22 +181,22 @@ const endpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT || 'https://script
     }
   }
 
-  /* ── Confirmation Modal Popup ── */
+  /* ── Paw Rank Branded Confirmation Modal ── */
   .modal-overlay {
     position: fixed;
     inset: 0;
-    background: rgba(11, 40, 69, 0.55);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
+    background: rgba(11, 40, 69, 0.65);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 20px;
+    padding: 24px;
     z-index: 99999;
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    transition: opacity 0.22s ease, visibility 0.22s ease;
+    transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.25s cubic-bezier(0.16, 1, 0.3, 1);
   }
 
   .modal-overlay.is-open {
@@ -189,13 +208,26 @@ const endpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT || 'https://script
   .modal-card {
     position: relative;
     width: 100%;
-    max-width: 380px;
-    background: #ffffff;
-    border-radius: 4px;
-    padding: 36px 32px 32px 32px;
-    box-shadow: 0 24px 60px rgba(11, 40, 69, 0.25), 0 4px 16px rgba(0, 0, 0, 0.08);
-    transform: scale(0.92) translateY(8px);
-    transition: transform 0.24s cubic-bezier(0.16, 1, 0.3, 1);
+    max-width: 440px;
+    background: var(--pr-white);
+    border: 1px solid var(--pr-border-dark);
+    border-radius: var(--radius-2xl);
+    padding: 38px 34px 32px 34px;
+    box-shadow: var(--shadow-navy);
+    transform: scale(0.92) translateY(12px);
+    transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+    overflow: hidden;
+  }
+
+  /* Top subtle brand accent border */
+  .modal-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--gradient-hero);
   }
 
   .modal-overlay.is-open .modal-card {
@@ -204,94 +236,144 @@ const endpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT || 'https://script
 
   .modal-close-icon {
     position: absolute;
-    top: 16px;
-    right: 16px;
-    width: 26px;
-    height: 26px;
+    top: 18px;
+    right: 18px;
+    width: 32px;
+    height: 32px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: #ffffff;
-    border: 1px solid #d1d5db;
-    border-radius: 2px;
-    color: #6b7280;
+    background: var(--pr-chalk);
+    border: 1px solid var(--pr-border);
+    border-radius: 50%;
+    color: var(--pr-navy);
     cursor: pointer;
-    transition: all 0.15s ease;
+    transition: all 0.2s ease;
     padding: 0;
   }
 
   .modal-close-icon:hover {
-    color: #111827;
-    border-color: #9ca3af;
-    background: #f9fafb;
+    color: var(--pr-blue);
+    background: var(--pr-light-blue);
+    border-color: var(--pr-blue-light);
+    transform: rotate(90deg);
   }
 
   .modal-body {
     text-align: left;
   }
 
+  .modal-badge-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .modal-brand-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--pr-light-blue);
+    color: var(--pr-blue);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-shadow: 0 4px 12px rgba(50, 92, 232, 0.15);
+  }
+
   .modal-title {
     font-family: var(--font-heading);
-    font-size: 23px;
+    font-size: 28px;
     font-weight: 800;
-    color: #111827;
-    margin: 0 0 16px 0;
-    letter-spacing: -0.01em;
+    color: var(--pr-navy);
+    margin: 0 0 14px 0;
+    letter-spacing: -0.025em;
+    line-height: 1.15;
   }
 
   .modal-text {
     font-family: var(--font-body);
-    font-size: 14px;
-    line-height: 1.55;
-    color: #374151;
-    margin: 0 0 16px 0;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--pr-text);
+    margin: 0 0 14px 0;
+  }
+
+  .modal-text strong {
+    color: var(--pr-navy);
   }
 
   .modal-subtext {
     font-family: var(--font-body);
     font-size: 13.5px;
-    line-height: 1.55;
-    color: #4b5563;
-    margin: 0 0 26px 0;
+    line-height: 1.6;
+    color: var(--pr-text);
+    margin: 0 0 28px 0;
+    padding: 12px 14px;
+    background: var(--pr-chalk);
+    border-radius: var(--radius-md);
+    border-left: 3px solid var(--pr-blue);
   }
 
   .modal-email-link {
-    color: #111827;
+    color: var(--pr-blue);
     font-weight: 600;
-    text-decoration: underline;
+    text-decoration: none;
     word-break: break-all;
     transition: color 0.15s ease;
   }
 
   .modal-email-link:hover {
-    color: var(--pr-blue);
+    color: var(--pr-blue-hover);
+    text-decoration: underline;
   }
 
-  .modal-close-btn {
-    width: 100%;
-    padding: 13px 20px;
-    background: #ffffff;
-    border: 2px solid #111827;
-    border-radius: 2px;
-    color: #111827;
-    font-family: var(--font-heading);
-    font-size: 13px;
-    font-weight: 800;
+  .modal-submit-btn {
     letter-spacing: 0.08em;
-    text-transform: uppercase;
-    cursor: pointer;
-    transition: all 0.18s ease;
+    font-size: 13px;
+    padding: 16px 28px;
   }
 
-  .modal-close-btn:hover {
-    background: #111827;
-    color: #ffffff;
+  .modal-footer-note {
+    margin-top: 18px;
+    text-align: center;
+    font-size: 13px;
+    color: var(--pr-text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex-wrap: wrap;
   }
 
-  .modal-close-btn:focus-visible,
-  .modal-close-icon:focus-visible {
+  .modal-calendly-link {
+    color: var(--pr-blue);
+    font-weight: 700;
+    text-decoration: none;
+    transition: all 0.15s ease;
+  }
+
+  .modal-calendly-link:hover {
+    color: var(--pr-blue-hover);
+    text-decoration: underline;
+  }
+
+  .modal-submit-btn:focus-visible,
+  .modal-close-icon:focus-visible,
+  .modal-calendly-link:focus-visible {
     outline: 2px solid var(--pr-blue);
-    outline-offset: 2px;
+    outline-offset: 3px;
+  }
+
+  @media (max-width: 480px) {
+    .modal-card {
+      padding: 30px 22px 26px 22px;
+    }
+    .modal-title {
+      font-size: 24px;
+    }
   }
 </style>
 
@@ -302,6 +384,7 @@ const endpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT || 'https://script
   const modal = document.getElementById('submission-modal');
   const closeBtn = document.getElementById('modal-close-btn');
   const closeX = document.getElementById('modal-close-x');
+  const calendlyLink = document.getElementById('modal-calendly-link');
 
   function openModal() {
     if (!modal) return;
@@ -321,6 +404,7 @@ const endpoint = import.meta.env.PUBLIC_CONTACT_FORM_ENDPOINT || 'https://script
 
   closeBtn?.addEventListener('click', closeModal);
   closeX?.addEventListener('click', closeModal);
+  calendlyLink?.addEventListener('click', closeModal);
 
   // Close when clicking backdrop outside card
   modal?.addEventListener('click', (e) => {
